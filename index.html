@@ -1,0 +1,41 @@
+<!--
+Code inspired by https://levelup.gitconnected.com/building-a-simple-website-that-outputs-results-from-a-csv-using-users-input-bfcb782ced45
+
+-->
+<!DOCTYPE html>
+
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chinese Practice</title>
+    <link rel="stylesheet" href="index.css">
+    <script src=”https://d3js.org/d3.v5.min.js"></script>
+</head>
+<body>
+    <h1>Chinese Practice</h1>
+    <p>created by Karen Yi</p>
+    <form id="form">
+        <label for="answer" id="prompt">Translate the following sentence</label>
+        <input type="text" id="answer">
+        <input type="submit">
+    </form>
+    <script>
+        d3.csv("vocab.csv").then(function (data) {
+            var vocab = data;
+            var q = d3.select("#prompt");
+            var form = d3.select("#form");
+            form.on("submit", generateQ)
+        })
+
+        function generateQ() {
+            d3.select("prompt").html("")
+            //prevent page from reloading
+            d3.event.preventDefault(); 
+            var template = d3.select
+        }
+        
+    </script>
+</body>
+</html>
