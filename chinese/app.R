@@ -2,16 +2,55 @@
 
 library(shiny)
 library(tidyverse)
+library(readr)
+library(topicmodels)
+library(NLP)
+library(openNLP)
+library(data.table)
 
 ####### READ DATA
 sentences <- read.csv("sentences.csv")
 sentences <- sentences[[1]]
 
-#???: how to read in chinese characters and pinyin
-vocab <- read.csv("vocab.csv")
+vocab <- read_csv("chinese/vocab.csv")
 View(vocab)
 
-vocab <- read.csv("C:/Users/notka/Documents/GitHub/chinese-practice/chinese/vocab.csv")
+
+sentAnnotator <- Maxent_Sent_Token_Annotator(language="en",probs=TRUE,model=NULL)
+wordAnnotator <- Maxent_Word_Token_Annotator(language="en",probs=TRUE,model=NULL)
+posAnnotator <- Maxent_POS_Tag_Annotator(language="en",probs=TRUE,model=NULL)
+
+sentence <- vocab$english
+sentence <- map(sentence, ~paste0(toupper(substr(.,0,1)),
+                                  substr(.,2,nchar(.))))
+
+sentence <- paste0(sentence,collapse=". ")
+
+results <- annotate(sentence,
+                    posAnnotator,
+                    annotate(sentence,
+                             wordAnnotator,
+                             annotate(sentence,
+                                      sentAnnotator)))
+
+words <- results[results$type=="word"]$features %>% unlist()
+words <- words[names(words)=="POS"] %>% unname()
+words[words=="."] <- ""
+words <- data.frame(sentences = 1:length(words),words)
+
+sentences <- results[results$type=="sentence"]$features %>% unlist()
+sentences <- data.frame(sentences, name = names(sentences)) %>%
+    filter(name!="prob") %>%
+    mutate(sep = name=="constituents1") %>%
+    mutate(sentences = sentences - 121) %>%
+    as.data.table()
+sentences <- sentences[,id:=cumsum(sep)]
+sentences <- sentences[,!c("sep")]
+sentences <- left_join(sentences,words) %>%
+    filter(words!="")
+sentences <- sentences[,.(list(words)),by="id"]
+
+# words <- words[grep("[A-Z]",words)]
 
 parts <- c("noun", "verb")
 
