@@ -1,591 +1,994 @@
-﻿chinese,pinyin,english,speech
-等地,děng dì,etc,noun
-细节,xì jié,detail,noun
-视频,shì pín,video,noun
-俱乐部,jù lè bù,club,noun
-主席,zhǔ xí,president,noun
-合同,hé tóng,contract,noun
-做爱,zuò aì,have sex,verb
-上床,shàng chuáng,have sex,verb
-效率,xiào lǜ,effectiveness,noun
-课题,kè tí,topic,noun
-共用,gòng yòng,share,verb
-冷冻食品,lěng dòng shí pǐn,frozen food,noun
-房租,fáng zū,rent,noun
-互动,hù dòng,interact,verb
-拒绝,jù jué,refuse,verb
-莫通车,mó tò ché,motorcycle,noun
-忽略,hū lüè,neglect,verb
-后果,hoù guǒ,consequence,noun
-测验,cè yàn,quiz,noun
-计算机语言,jì suàn jī yǔ yán,computer language,noun
-计算器,jì suàn qì,calculator,noun
-峰哥,fēng gé,style,noun
-古典,gú diǎn,classical,adjective
-经典,jīng diǎn,classic,noun
-现代,xiàn dài,modern,adjective
-题材,tí cái,genre ,noun
-权利,quán lì,rights,noun
-权力,quán lì,authority,noun
-高汤,gāo tāng,broth,noun
-特质,tè zhì,specially made ,adjective
-恢复,huī fù,recover,verb
-咨询,zī xún,consult,verb
-文艺,wén yì,artsy,adjective
-编程,biān chéng,programming,noun
-统计,tǒng jì,statistics,noun
-教育,jiào yù,education,noun
-报课,bào kè,sign up for classes,verb
-交流,jiāo liú,communication,noun
-沟通,gōu tōng,communication,noun
-传播,chuán bō,communications,noun
-伊朗,yī lǎng,Iran,noun
-波斯,bō sī,Persian,adjective
-背诵,bèi sòng,memorize,verb
-替补,tì bǔ,substitute,verb
-条理,tiáo lǐ,organized,adjective
-调理,tiáo lǐ,rest and recover,verb
-画家,huà jiā,artist,noun
-动力,dòng lì,motivation,noun
-主动,zhǔ dòng,proactive,adjective
-研究员,yán jiū yuán, researcher,noun
-职员,zhí yuán,staff,noun
-队员,duì yuán,team member,noun
-组员,zǔ yuán,team member,noun
-优先,yòu xiān,priority,noun
-误导,wù dǎo,mislead,verb
-富有,fú yǒu,be rich in,adjective
-哲理,zhé lǐ,philosophy,noun
-哲学,zhé xué,philosophy,noun
-心理生物学,xīn lǐ shēng wù xué,psychobiology,noun
-侧重点,cè zhòng,concentration,noun
-本科生,běn kē shēng,undergraduate student,noun
-研究生,yán jiū shēng,graduate student,noun
-博士学位,bó shì,PhD degree,noun
-博士生,bó shì shēng,doctoral student,noun
-学士学位,xué shì xué wèi,bachelor’s degree,noun
-硕士生,shuò shì shēng,master’s degree student,noun
-硕士学位,shuò shì xué wèi,master’s degree,noun
-词组,cí zú,phrase,noun
-窃笑,qiè xiào,snickering,verb
-精神,jīng shén,energetic,noun
-创造精神,chuàng zào,full of creativity,noun
-冒险精神,mào xiǎn,adventurous spirit,noun
-木星,mù xīng,Jupiter,noun
-土星,tǔ xīng,Saturn,noun
-火星,huǒ xīng,Mars,noun
-金星,jīn xīng,Venus,noun
-水星,shuǐ xīng,Mercury,noun
-海王星,hǎi wáng xīng,Neptune,noun
-天王星,tiān wáng xīng,Uranus,noun
-冥王星,míng wáng xīng,Pluto,noun
-伊甸园,yī diàn yuán,garden of Eden,noun
-谦虚,qiān xū,modest ,noun
-保守,bǎo shǒu,modest ,adjective
-收入,shōu rù,income,noun
-实习生,shí xí shēng,intern,noun
-实习,shí xí,internship,noun
-穿墙,chuān qiáng,pass the firewall ,verb
-公益机构,gōng yì jī gòu,nonprofit organization,noun
-志愿者,zhì yuàn zhě,volunteer ,noun
-义工,yì gōng,volunteer ,noun
-做义工,zuò yì gōng,do volunteer work,verb
-义务,yì wù,unpaid ,noun
-总统,zǒng tǒng,president,noun
-秘书,mì shū,secretary,noun
-选举,xuǎn jǔ,election ,noun
-选,xuǎn,elect,verb
-推荐,tuī jiàn,recommend,verb
-举个例子,jǔ gè lì zi,give an example,verb
-栗子,lì zi,chestnut,noun
-宿舍,sù shè,dorm,noun
-公寓,gōng yù,apartment,noun
-同犯,tóng fàn,accomplice,noun
-不屑一顾,bú xiè yí gù,didn’t give it a second glance ,
-向日葵,xiàng rì kuí,sunflower,
-晒,shaì,show off,
-灵魂,líng hún,soul,
-晕倒,yūn dǎo,to faint,
-让一让,ràng yí ràng,excuse me,
-口语,kǒu yǔ,colloquial,
-晚点,wǎn diǎn,delayed,
-在这种情况下,qíng kuàng,under these circumstances,
-素菜,sù cài,vegetarian dish,
-成语,chéng yǔ,aphorism,
-俗语,sú yǔ,idiom,
-交谈,jiāo tán,conversation,
-允许,yún xǔ,allow,
-批准,pī zhǔn,approve ,
-规矩,guī jǔ,rule,
-规则,guī zé,rule ,
-最佳,zuì jiā,best ,
-导演,dǎo yǎn,director,
-农场主,nóng mín zhǔ,farm owner ,
-农民,nóng mín,small farmers ,
-农民工,nóng mín gōng,farmers who moved to the city to find work,
-户口,hù kǒu,"“registered residence""",
-快递,kuài dì,express delivery ,
-快递公司,kuài dì gōng sī,like USPS ,
-情况,qíng kuàng,situation,
-托盘,tuō pán,tray,
-塑料,sù liào,plastic,
-叉子,chā,fork,
-确定,què dìng,determine,
-钢刀,gāng dāo,steel knife,
-紧,jǐn,tight,
-并,bìng,and,
-额头,é tóu,forehead,
-印记,yìn jì,imprint,
-窗台,chuāng tái,windowsill,
-继续,jì xù,continue,
-前进,qián jìn,go ahead,
-透过,tòu guò,pass through,
-任何,rèn hé,any,
-锁眼,suǒ yǎn,keyhole,
-守卫,shǒu wèi,guard,
-引起,yǐn qǐ,cause,
-纹身,wén shēn,tattoo,
-囚犯,qiú fàn,prisoner,
-甚至,shèn zhì,even ,
-必须,bì xū,must,
-配合,pèi hé,cooperate,
-威胁,wēi xié,threaten,
-讨论,tǎo lùn,discuss,
-警卫,jǐng wèi,guard,
-沿着,yán zhe,along,
-圈,quān,circle,
-反应,fǎn yìng,reaction,
-不管,bù guǎn,ignore,
-查看,chá,examine,
-实验,shí yàn,experiment,
-面具,miàn jù,mask,
-尽头,jìn tóu,end,
-建议,jiàn yì,suggest,
-抓住,zhuā zhù,capture,
-可能性,kě néng xìng,probability,
-出现,chū xiàn,emerge,
-通向,tōng xiàng,to lead to,
-实验室,shí yàn shì,lab,
-这样一来,zhè yàng yì lái,therefore,
-图标,tú biāo,icon ,
-躺,tǎng,lying down,
-信息,xìn xī,message,
-手术,shǒu shù,surgery,
-假装,jiǎ zhuāng,pretend,
-柜子,guì zi,cabinet,
-文件,wén jiàn,document,
-行为,xíng wéi,behavior,
-脱,tuō,take off ,
-招手,zhāo shǒu,wave,
-至少,zhǐ shǎo,at least,
-货车,huò chē,truck,
-躲,duǒ,hide,
-注视,zhù shì,watch attentively,
-示意,shì yì,signal,
-摘下,zhāi,take off ,
-肩膀,jiān bǎng,shoulder,
-挥手,huī shǒu,wave,
-准时,zhǔn shí,on time,
-事业,shì yè,cause,
-季,jì,season ,
-信任,xìn rèn,trust,
-理论,lǐ lùn,theory ,
-观点,guān diǎn,opinion,
-看法,kàn fǎ,opinion,
-通俗,tōng sú,informal,
-演唱会,yǎn chàng huì,vocal concert,
-音乐会,yīn yuè huì,orchestral concert,
-音乐剧,yīn yuè jù,musical play,
-歌剧,gē jù,opera,
-话剧,huà jù,stage play,
-主题,zhǔ tí,theme,
-辅导,fǔ dǎo,coaching,
-口音,kǒu yīn,orally,
-大饱口福,dà bǎo kǒu fú,satisfied,
-埋怨,mán yuàn,complain,
-杂,zá,varied,
-砸,zá,break,
-变性,biàn xìng,transgender,
-业,yè,industry,
-代,dài,generation,
-利弊,lì bì,pros and cons,
-资本主义,zī běn zhǔ yì,capitalism,
-共产主义,gòng chǎn zhǔ yì,communism,
-议会,yì huì,legislative assembly,
-主意,zhǔ yi,idea,
-主义,zhǔ yì,\ism,
-分解,fēn jiě,disintegrate,
-受潮,shòu cháo,damp,
-大豆,dà dòu,soybeans,
-评分,píng fēn,rating,
-提议,tí yì,propose,
-意见,yì jiàn,objection,
-周到,zhōu dào,thorough,
-高粱,gāo liáng,sorghum,
-山火,shān huǒ,mountain wildfire,
-火灾,huǒ zāi,wildfire,
-旱灾,hàn zāi,drought,
-赈灾,zhèn zāi,disaster relief,
-蝗灾,huáng zāi,locust swarm,
-挡风玻璃,dǎng fēng bō lí,windshield,
-情绪,qíng xù,emotions,
-低落,dī luò,depress,
-成份,chéng fèn,ingredients,
-愿意,yuàn yì,willing,
-私立,sī lì,private institution,
-公立,gōng lì,public institution,
-贷款,dài kuǎn,student loan,
-角色,jué sè,character,
-记性,jì xìng,ability to remember,
-记忆,jì yì,memories,
-预知,yù zhí,anticipate,
-惊喜,jīng xǐ,surprise,
-注册课程,zhù cè kè chéng,sign up for classes,
-注课,zhù kè,sign up for classes,
-报名,bào míng,sign up  ,
-公益,gōng yì,public welfare,
-捐物,juān wù,donate things,
-即使,jí shǐ,even though,
-抵抗,dǐ kàng,resist,
-如何,rú hé,how,
-政府,zhèng fǔ,government,
-社团,shè tuán,club,
-无礼,wú lǐ,rude,
-辩论,biàn lùn,debate,
-争论,zhēng lùn,argue,
-吵架,chǎo jià,bicker,
-摇滚,yáo gǔn,rock and roll,
-从起,cóng qǐ,restart,
-清晰,qīng xī,clear,
-设备,shè bèi,equipment,
-及,jí,and,
-使,shǐ,make,
-入,rù,in,
-将,jiāng,take,
-除,chú,get rid of,
-壳,ké,shell,
-裂,liè,crack,
-即可,jí kě,that’s it,
-若,ruò,if,
-释放,shì fàng,release,
-湿,shī,wet,
-涩,sè,astringent,
-旁听,páng tīng,audit,
-开车带她去,kāi chē dài tā qù,drive her there,
-经验,jīng yàn,experience,
-有限,yǒu xiàn,limited,
-几率,jī lǜ,probability,
-星云,xīng yún,nebula,
-大爆炸,dà bào zhà,big bang,
-效果,xiào guǒ,effect,
-结果,jié guǒ,result,
-期中考,qī zhōng kǎo,midterm,
-期末考,qī mò kǎo,finals,
-农场,nóng chǎng,farm,
-网络,wǎng luò,internet service,
-数据,shù jù,data,
-流量,liú liàng,roaming/data,
-打架,dǎ jià,fight,
-破涕为笑,pò tì wèi xiào,laugh out loud,
-坚果,jiān guǒ,nuts,
-蔓越莓,màn yuè méi,cranberry,
-隔离,gé lí,quarantine,
-疫苗,yì miáo,vaccine,
-这辈子,zhè bèi zǐ,this life,
-一生中,yì shēng zhōng,in this life,
-自恋,zì liàn,narcissism,
-遗憾,yí hàn,regret,
-评语,píng yǔ,review ,
-可以信赖,kě yǐ xìn lài,can be trusted,
-来往,lái wǎng,encounter,
-辞职,cí zhí,resign,
-行不通,xíng bù tōng,doesn't work,
-翻车,fān chē,fail,
-知识,zhī shì,knowledge,
-之一,zhī yī,one of,
-宇宙,yǔ zhòu,universe,
-截止,jié zhǐ,deadline,
-食指,shí zhǐ,index finger,
-激素,jī sù,hormone,
-运行,yùn xíng,move,
-免疫系统,miǎn yì xì tǒng,immune system,
-单身,dān shēn,single,
-正规,zhèng guī,respectable,
-环境保护,huán jìng bǎo hù, environmentalism,
-打搅,dǎ jiǎo,bother,
-中立,zhōng lì,neutral,
-画面,huà miàn,picture,
-血腥,xuě xīng,bloody,
-暴力 bào lì,violence,,
-灵感,líng gǎn,inspiration,
-失望,shī wàng,disappointed,
-消失,xiāo shī,disappear,
-谈恋爱,tán liàn ài,in a relationship,
-约会,yuē huì,a ,
-会计,kuài jì,accounting,
-论证,lùn zhěng,substantiate,
-学历,xué lì,diploma,
-属于,shǔ yú,count as,
-投诉,tóu sù,formally complain,
-勤快,qín kuài,diligent,
-机构,jī gòu,mechanism,
-额度,é dù,status quo,
-额外,é wài,extra,
-非正常,fēi zhèng cháng,unusual,
-乳糖不耐,rǔ táng bú nài,lactose intolerant,
-支出,zhī chū,expense,
-支付,zhī fù,pay,
-花销,huā xiāo,expenditure,
-主专业,zhǔ zhuān yè,major,
-附专业,fù zhuān yè,minor,
-故事情节,gù shì qíng jié,story plot,
-人物,rén wù,characters,
-山羊胡须,shān yáng hú xū,mountain goat beard,
-风格,fēng gé,style,
-表情,biǎo qíng,emoji,
-吃药三分毒,chī yào sān fēn dú,medicine is partly poison,
-大电灯泡,dà diàn dēng pào,third wheel,
-提示,tí shì,notifications,
-奶泡,nǎi pào,milk foam,
-语境,yǔ jìng,context,
-判断,yàn,judge， determine,
-评判,píng yàn,judge,
-批评,pī píng,criticize,
-心理医生,xīn lǐ yī shēng,therapist,
-迷惘,mí wàng,lost ,
-概念,gài niàn,concept,
-应用,yìng yòng,application ,
-小测验,xiǎo cè yàn,quiz,
-基础,jī chǔ,basic skills,
-实现,shí xiàn,realize,
-明知故犯,míng zhī gù fàn,,
-论坛,lùn tán,forum,
-会议,huì yì,meeting,
-政策,zhèng cè,policy,
-可持续性,kě chí xù xìng,sustainability,
-持续,chí shù,sustainability,
-环境主义,huán jìng zhǔ yì,environmentalism,
-独体字,dú tǐ zì,single characters,
-话题,huà tí,topic,
-咄咄逼人,duō duō bī rén,pushy,
-理由,lǐ yóu,excuse,
-了解,liáo jiě,know,
-理解,lǐ jiě,understand deeply,
-时装,shí zhuāng,fashion,
-领导,líng dǎo,leader,
-遗传,yí chuán,genetic,
-散光,sǎn guāng,astigmatism,
-疗养,liáo yǎng,convalescence,
-干部,gàn bù,cohort,
-话筒,huà tǒng,microphone,
-麦克风,mài kè fēng,microphone,
-对外经济贸易大学,duì wài jīng jì mào yì dà xué,Beijing international economics and trade school ,
-三头六臂,sān tóu liù bì,multitasking,
-互联网,hù lián wǎng,internet,
-名词,míng cí,noun,
-动词,dòng cí,verb,
-形容词,xíng róng cí,adjective,
-副词,fù cí,adverb,
-介词,jiè cí,preposition,
-相处,xiāng chǔ,get along,
-幸运,xìng yùn,fortune,
-运气,yùn qì,happenstance,
-吃到苦,chī dào kǔ,suffer,
-山海,shān hài,a famous collection of myths,
-提莫,tí mò,topic,
-优势,yōu shì,advantage,
-参考,cān kǎo,source,
-王德明,wáng dé míng,太爷,
-王仁琴,wáng rén qín,姥姥,
-钟生坦,zhōng shēng tǎn,姥爷,
-徐萍萍,xú píng ping,奶奶,
-伊善庆,yī shàn qìng,爷爷,
-萍水相逢,píng shuǐ xiāng féng,by chance,
-各奔东西,gè bēn dōng xī,each go our own separate ways,
-铁树开花,tiě shù kāi huā,rare occurrence,
-叶落归根,yè luò guī gēn,as we grow old,
-社区,shè qū,community,
-新冠,xīn guàn,virus,
-冠军,guàn jūn,champion,
-长期,cháng qī,long-term,
-可造之材,kě zào zhī cái,has potential,
-无性别,wú xìng bié,gender,
-大众,dà zhòng,public,
-承认,chéng rèn,recognize,
-公共服务,gōng gòng fú wù,public service,
-公务员,gōng wù rén,public servant,
-烘焙店,hōng bèi diàn,bakery,
-分享,fēn xiǎng,share,
-无穷,wú qióng,infinite,
-约会平台,yuē huì píng tái,dating platform,
-员工,yuán gōng,employee,
-模糊,mó hù,blurry,
-相通,xiāng tóng,similar,
-培训,péi xùn,training,
-焦虑,jiāo lǜ,anxiety,
-教育政策研究,jiào yù zhèng cè yán jiū,education policy research,
-尝试,cháng shì,try,
-说三道四,shuō sān dào sì,say nonsense,
-指手画脚,zhǐ shǒu huà jiǎo,finger pointing,
-思路是对的,sī lù shì duì de,train of thought is correct,
-闺蜜,guī mì,best friends ,
-书评,shū píng,book review,
-观众,guān zhòng,audience,
-小组作业,xiǎo zǔ zuò yè,group work,
-建筑,jiàn zhú,architecture,
-谈谈,tán tán,discuss,
-阴性,yīn xìng,negative ,
-阳性,yáng xìng,positive ,
-毒品,dú pǐn,drugs,
-爱屋及乌,ài wū jí wū,your love for someone extends even to the crows on their roof,
-心意到了就好,xīn yì dào le jiù hǎo,it's the thought that counts,
-负数,fù shù,negative number,
-正数,zhèng shù,positive number,
-整数,zhěng shù,whole number,
-正能量,zhèng néng liàng,quality of having positive personality,
-重色轻友,zhòng sè qīng yǒu,when you get an SO you neglect your friends,
-文学作品,wén xué zuò pǐn,literature,
-取笑,qǔ xiào,make fun of,
-独一无二,dú yī wú èr,unique,
-独特,dú tè,unique,
-对号入座,duì hào rù zuò,seat according to your number ,
-对话,duì huà,dialogue,
-共鸣,gòng míng,sympathize,
-寄养家庭,jì yǎng jiā tíng,foster family,
-寄宿学校,jì yǎng xué xiào,boarding school,
-液体, yè tǐ, liquid,
-固体, gù tǐ, solid,
-气体, qì tǐ, gas,
-标题, biāo tí, heading,
-内容, nèi róng, content,
-职位, zhǐ wèi, position ,
-款式, kuǎn shì, style ,
-歧视, qí shì, prejudice,
-种族歧视, zhǒng zú qí shì, racist,
-移民, yí mín, immigrate,
-边界, biān jiè, boundary,
-人生如梦, rén shēng rú mèng, life is but a dream ,
-二手, èr shǒu, secondhand,
-城堡, chéng bǎo, castle,
-难民, nán mín, refugee,
-帐篷, zhàng péng, tent,
-统一, tǒng yī, unified,
-汇, huì, converge ,
-精力, jīng lì, energy,
-对方, duì fāng, the other,
-强扭的瓜不甜, qiáng niǔ de guā bù tián, if it takes too much effort the result isn't worth it,
-列表, liè biǎo, list,
-频道, pín dào, ,
-私信, sī xìn, DM,
-抱团, bào tuán, meet up,
-提及, tí jí, mention,
-添加, tiān jiā, add,
-连接, lián jiē, connect,
-团队, tuán duì, team,
-成员, chéng yuán, member,
-保存, bǎo cún, save,
-档案, dǎng àn, file,
-离线, lí xiàn, offline,
-未读, wèi dú, unread,
-用户组, yòng hù zǔ, user group,
-自定义, zì dìng yì, customize,
-本, běn, this,
-首选项, shǒu xuǎn xiàng, preferences,
-通知, tōng zhī, notifications,
-侧栏, cè lán, sidebar,
-媒体, méi tǐ, media,
-地区, dì qū, area,
-辅助功能, fǔ zhù gōng néng, accessibility,
-标记, biǎo jì, mark,
-音频, yín pín, audio,
-帐户, zhàng hù, account,
-隐私, yǐn sī, privacy,
-可见性, kě jiàn xìng, visibility,
-显示, xiǎn shì, show,
-草稿, cǎo gǎo, draft,
-预定, yù dìng, reserve,
-程序, chéng xù, program,
-排序, pái xù, sort,
-按字母顺序, àn zì mù xùn xù, order alphabetically,
-进行, jìn xíng, conduct,
-单独, dān dú, individual,
-私人频道, sī rén pín dào, private channel,
-分区, fēn qū, section,
-外部, wài bù, external,
-组成, zǔ chéng, group into,
-仅, jǐn, only,
-加星标, jiā xīng biāo, starred,
-关闭, guān bì, close,
-关键, guān jiàn, essential,
-移动设备, yí dòng shè bèi, mobile device,
-设置, shè zhì, settings,
-特殊, tè shū, special,
-邀请, yāo qǐng, invite,
-分隔, fēn gé, separate,
-逗号, dòu hào, comma,
-区分, qū fēn, distinguish,
-暂停, zàn tíng, pause,
-默认, mò rèn, default,
-录制, lù zhì, record,
-隐藏, yǐn cáng, hide,
-免费版, miǎn fèi bǎn, free version/edition,
-访问, fǎng wèn, access ,
-在线, zài xiàn, online,
-复制, fù zhì, copy,
-链接, lián jiē, hyperlink,
-预览, yù lǎn, preview,
-愿消息, yuán xiāo xǐ, original message,
-以, yǐ, to [verb],
-点按, diǎn àn, tap,
-跳转, tiào zhuǎn, jump/skip ,
-动态, dòng tài, dynamic,
-条件, tiáo jiàn, condition,
-搜索, sōu suǒ, search,
-办事项, bàn shì xiàng, to-dos,
-状态, zhuàng tài, status,
-输入, shū rù, enter,
-升级, shēng jí, upgrade,
-歌单, gē dān, playlist,
-播放, bò fàng, played/broadcast ,
-收藏, shōu cáng, add/collect,
-转至, zhuǎn zhì, go to,
-艺人, yì rén, artist,
-包含, bāo hán, include,
-专辑, zhuān jí, album,
-删除, shān chú, remove,
-个人资料, gè rén zī liào, personal profile,
-编辑, biān jí, edit,
-详情, xiáng qíng, details,
-重命名, zhòng mìng míng, rename,
-文件夹, wén jiàn jiā, ,
-创建, chuàng jiàn, create,
-设为, shè wèi, set as,
-共同创建者, gōng tóng chuàng jiàn zhě, co-creators,
-嵌入, qiàn rù, embed,
-屏蔽, píng bì, ,
-举报, jǔ bào, report ,
-公开, gōng kāi, public,
-喜好, xǐ hào,,
-热门, rè mén, popular,
-感伤, gǎn shāng, sentimental,
-弛放, chí fàng, relaxing,
-浪漫, làng màn, romantic,
-相似, xiāng sì, similar,
-动向, dòng xiàng, trend,
-专属, zhuān shǔ, exclusive,
-重复, chóng fù, repeat,
-厌, yàn, disgusted,
-制作, zhì zuò, make,
-时光胶囊, shí guāng jiāo náng, time capsule,
-通勤, tōng qín, daily commute,
-回味过往, huí wèi guò wǎng, reminisce,
-聆听, líng tīng, listen,
-听众, tīng zhòng, audience,
-目录, mù lù, catalog,
-唱片, chàng piàn, record,
-精选辑, jīng xuǎn jí, best of collection,
-发布, fā bù, release,
-单曲, dān qǔ, single ,
-巡回, xún huí, tour,
-此, cǐ, this,
-刷新, shuā xīn, refresh,
+﻿chinese,pinyin,english
+等地,děng dì,etc
+细节,xì jié,details
+视频,shì pín,video
+俱乐部,jù lè bù,club
+主席,zhǔ xí,president; chairperson
+合同,hé tóng,contract
+做爱,zuò aì,have sex
+上床,shàng chuáng,have sex
+效率,xiào lǜ,"effectiveness, efficiency"
+课题,kè tí,topic
+共用,gòng yòng,share
+冷冻食品,lěng dòng shí pǐn,frozen food
+房租,fáng zū,rent
+互动,hù dòng,interact
+拒绝,jù jué,refuse
+莫通车,mó tò ché,motorcycle
+忽略,hū lüè,neglect
+后果,hoù guǒ,consequence
+测验,cè yàn,quiz
+计算机语言,jì suàn jī yǔ yán,computer language
+计算器,jì suàn qì,calculator
+峰哥,fēng gé,"style (art, music, writing, speech, everything)"
+古典,gú diǎn,classical
+经典,jīng diǎn,classic (as in that one’s a classic)
+现代,xiàn dài,modern
+题材,tí cái,genre (specific topic like movies and books)
+权利,quán lì,rights
+权力,quán lì,"authority, power"
+高汤,gāo tāng,broth
+特质,tè zhì,specially made (food etc)
+恢复,huī fù,recover
+咨询,zī xún,consult
+文艺,wén yì,artsy
+编程,biān chéng,programming
+统计,tǒng jì,statistics
+教育,jiào yù,education
+报课,bào kè,sign up for classes
+交流,jiāo liú,"communication, dialogue"
+沟通,gōu tōng,"communication, understanding"
+传播,chuán bō,"communications, disseminate, broadcast"
+伊朗,yī lǎng,Iran
+波斯,bō sī,Persian
+背诵,bèi sòng,memorize
+替补,tì bǔ,substitute
+条理,tiáo lǐ,organized
+调理,tiáo lǐ,rest and recover
+画家,huà jiā,artist
+动力,dòng lì,motivation
+主动,zhǔ dòng,proactive; initiate
+研究员,yán jiū,yuán researcher
+职员,zhí yuán,staff
+队员,duì yuán,team member
+组员,zǔ yuán,team member
+优先,yòu xiān,priority
+误导,wù dǎo,mislead
+富有,fú yǒu,be rich in
+哲理,zhé lǐ,philosophical
+哲学,zhé xué,philosophy
+心理生物学,xīn lǐ shēng wù xué,psychobiology
+侧重点,cè zhòng,concentration/focus
+本科生,běn kē shēng,undergraduate student
+研究生,yán jiū shēng,graduate student
+博士学位,bó shì,PhD degree
+博士生,bó shì shēng,doctoral student
+学士学位,xué shì xué wèi,bachelor’s degree
+硕士生,shuò shì shēng,master’s degree student
+硕士学位,shuò shì xué wèi,master’s degree
+词组,cí zú,phrase
+窃笑,qiè xiào,snickering
+精神,jīng shén,"energetic, alertness"
+创造精神,chuàng zào,full of creativity
+冒险精神,mào xiǎn,adventurous spirit
+木星,mù xīng,Jupiter
+土星,tǔ xīng,Saturn
+火星,huǒ xīng,Mars
+金星,jīn xīng,Venus
+水星,shuǐ xīng,Mercury
+海王星,hǎi wáng xīng,Neptune
+天王星,tiān wáng xīng,Uranus
+冥王星,míng wáng xīng,Pluto
+伊甸园,yī diàn yuán,garden of Eden
+谦虚,qiān xū,modest (in attitude)
+保守,bǎo shǒu,modest (in appearance); conservative
+收入,shōu rù,income
+实习生,shí xí shēng,intern
+实习,shí xí,internship
+穿墙,chuān qiáng,pass the firewall (slang)
+公益机构,gōng yì jī gòu,nonprofit organization
+志愿者,zhì yuàn zhě,volunteer (person)
+义工,yì gōng,volunteer (person)
+做义工,zuò yì gōng,do volunteer work
+义务,yì wù,unpaid (labor) (more formal than mianfei but less formal than pro bono)
+总统,zǒng tǒng,president
+秘书,mì shū,secretary
+选举,xuǎn jǔ,election (choose/recommend)
+选,xuǎn,1) elect 2) choose
+推荐,tuī jiàn,recommend
+举个例子,lì zi,give an example
+栗子,lì zi,chestnut
+宿舍,sù shè,dorm
+公寓,gōng yù,apartment
+同犯,tóng fàn,accomplice
+不屑一顾,bú xiè yí gù,didn’t give it a second glance (unimpressed)
+向日葵,xiàng rì kuí,sunflower
+晒,shaì,show off
+灵魂,líng hún,soul
+晕倒,yūn dǎo,to faint
+让一让,ràng yí ràng,excuse me
+口语,kǒu yǔ,colloquial
+晚点,wǎn diǎn,delayed
+在这种情况下,qíng kuàng,under these circumstances
+素菜,sù cài,vegetarian dish
+成语,chéng yǔ,aphorism
+俗语,sú yǔ,idiom
+交谈,jiāo tán,conversation
+允许,yún xǔ,allow
+批准,pī zhǔn,approve (more formal)
+规矩,guī jǔ,rule
+规则,guī zé,rule (game rule)
+最佳,zuì jiā,best (formal/title)
+导演,dǎo yǎn,director
+农场主,nóng mín zhǔ,farm owner (like in America)
+农民,nóng mín,small farmers (like in China)
+农民工,nóng mín gōng,farmers who moved to the city to find work
+户口,hù kǒu,“registered residence” allows your kids to go to a certain school etc. based on evidence of where you live
+快递,kuài dì,express delivery (of packages)
+快递公司,kuài dì gōng sī,like USPS (a type of relatively fast delivery company)
+情况,qíng kuàng,situation
+托盘,tuō pán,tray
+塑料,sù liào,plastic
+叉子,chā,fork
+确定,què dìng,1) determine 2) certain
+钢刀,gāng dāo,steel knife
+紧,jǐn,tight
+并,bìng,"and, furthermore; actually"
+额头,é tóu,forehead
+印记,yìn jì,imprint
+窗台,chuāng tái,windowsill
+继续,jì xù,continue
+前进,qián jìn,go ahead
+透过,tòu guò,pass through
+任何,rèn hé,any
+锁眼,suǒ yǎn,keyhole
+守卫,shǒu wèi,guard
+引起,yǐn qǐ,cause
+纹身,wén shēn,tattoo
+囚犯,qiú fàn,prisoner
+甚至,shèn zhì,even (I don’t even know...)
+必须,bì xū,must
+配合,pèi hé,cooperate
+威胁,wēi xié,threaten
+讨论,tǎo lùn,discuss
+警卫,jǐng wèi,guard
+沿着,yán zhe,along
+圈,quān,circle
+反应,fǎn yìng,reaction
+不管,bù guǎn,1) ignore 2) regardless
+查看,chá,examine
+实验,shí yàn,experiment
+面具,miàn jù,mask
+尽头,jìn tóu,"end, limit"
+建议,jiàn yì,suggest
+抓住,zhuā zhù,capture
+可能性,kě néng xìng,probability
+出现,chū xiàn,"emerge, appear"
+通向,tōng xiàng,to lead to
+实验室,shí yàn shì,lab
+这样一来,zhè yàng yì lái,"therefore, if (this) happens then"
+图标,tú biāo,icon (computer)
+躺,tǎng,lying down
+信息,xìn xī,"message, news; information"
+手术,shǒu shù,surgery
+假装,jiǎ zhuāng,pretend
+柜子,guì zi,cabinet
+文件,wén jiàn,document
+行为,xíng wéi,"behavior, activity, conduct"
+脱,tuō,take off (clothing)
+招手,zhāo shǒu,wave
+至少,zhǐ shǎo,at least
+货车,huò chē,truck
+躲,duǒ,hide
+注视,zhù shì,watch attentively
+示意,shì yì,"signal, indicate (to someone)"
+摘下,zhāi,"1) take off, remove 2) pick (as a fruit)"
+肩膀,jiān bǎng,shoulder
+挥手,huī shǒu,wave
+准时,zhǔn shí,on time
+事业,shì yè,"1) a cause, career, 2) facility"
+季,jì,season (of a show)
+信任,xìn rèn,trust
+理论,lǐ lùn,theory (formal but usable)
+观点,guān diǎn,opinion
+看法,kàn fǎ,"opinion, comment, stance"
+通俗,tōng sú,"informal, popular"
+演唱会,yǎn chàng huì,vocal concert
+音乐会,yīn yuè huì,orchestral concert
+音乐剧,yīn yuè jù,musical play
+歌剧,gē jù,opera
+话剧,huà jù,stage play
+主题,zhǔ tí,theme
+辅导,fǔ dǎo,coaching
+口音,kǒu yīn,orally
+大饱口福,dà bǎo kǒu fú,satisfied
+埋怨,mán yuàn,"complain, blame"
+杂,zá,varied
+砸,zá,"break, fail"
+变性,biàn xìng,transgender
+业,yè,"industry, business, profession"
+代,dài,generation
+利弊,lì bì,pros and cons
+资本主义,zī běn zhǔ yì,capitalism
+共产主义,gòng chǎn zhǔ yì,communism
+议会,yì huì,legislative assembly
+主意,zhǔ yi,idea
+主义,zhǔ yì,\ism
+分解,fēn jiě,"disintegrate,decompose"
+受潮,shòu cháo,damp
+大豆,dà dòu,soybeans
+评分,píng fēn,rating
+提议,tí yì,propose
+意见,yì jiàn,objection
+周到,zhōu dào,1. considerate (as a host) 2. thorough
+高粱,gāo liáng,sorghum
+山火,shān huǒ,mountain wildfire
+火灾,huǒ zāi,wildfire
+旱灾,hàn zāi,drought
+赈灾,zhèn zāi,disaster relief
+蝗灾,huáng zāi,locust swarm
+挡风玻璃,dǎng fēng bō lí,windshield
+情绪,qíng xù,"emotions, feelings"
+低落,dī luò,depress
+成份,chéng fèn,ingredients
+愿意,yuàn yì,willing
+私立,sī lì,private institution
+公立,gōng lì,public institution
+贷款,dài kuǎn,student loan
+角色,jué sè,"character, role"
+记性,jì xìng,ability to remember/memorize
+记忆,jì yì,memories
+预知,yù zhí,"anticipate, foresee"
+惊喜,jīng xǐ,surprise
+注册课程,zhù cè kè chéng,sign up for classes
+注课,zhù kè,sign up for classes
+报名,bào míng,sign up  
+公益,gōng yì,public welfare (public affairs)
+捐物,juān wù,donate things
+即使,jí shǐ,even though
+抵抗,dǐ kàng,resist
+如何,rú hé,how
+政府,zhèng fǔ,government
+社团,shè tuán,club
+无礼,wú lǐ,rude
+辩论,biàn lùn,debate
+争论,zhēng lùn,argue
+吵架,chǎo jià,bicker
+摇滚,yáo gǔn,rock and roll
+从起,cóng qǐ,restart
+清晰,qīng xī,clear (in resolution)
+设备,shè bèi,equipment
+及,jí,and
+使,shǐ,make (it) do something
+入,rù,in
+将,jiāng,take (it) and do something with (it)
+除,chú,get rid of
+壳,ké,shell
+裂,liè,crack
+即可,jí kě,"that’s it, all done"
+若,ruò,if
+释放,shì fàng,release
+湿,shī,wet
+涩,sè,astringent
+旁听,páng tīng,audit
+你觉得这个餐馆怎么样,nǐ jué de zhè gè cān guǎn zěn me yàng,what is your opinion of this restaurant
+开车带她去,kāi chē dài tā qù,drive her there
+经验,jīng yàn,experience
+有限,yǒu xiàn,limited
+几率,jī lǜ,probability
+星云,xīng yún,nebula
+大爆炸,dà bào zhà,big bang
+效果,xiào guǒ,effect
+结果,jié guǒ,result
+期中考,qī zhōng kǎo,midterm
+期末考,qī mò kǎo,finals
+农场,nóng chǎng,farm
+网络,wǎng luò,internet service
+数据,shù jù,data
+流量,liú liàng,roaming/data
+打架,dǎ jià,fight
+破涕为笑,pò tì wèi xiào,break into tears for laughter (lol)
+坚果,jiān guǒ,nuts
+蔓越莓,màn yuè méi,cranberry
+隔离,gé lí,quarantine
+疫苗,yì miáo,vaccine
+这辈子,zhè bèi zǐ,this life
+一生中,yì shēng zhōng,in this life
+自恋,zì liàn,narcissism
+遗憾,yí hàn,regret
+评语,píng yǔ,review (like Yelp)
+可以信赖,kě yǐ xìn lài,can be trusted
+来往,lái wǎng,"encounter, interaction"
+辞职,cí zhí,resign
+行不通,xíng bù tōng,doesn't work
+翻车,fān chē,fail
+知识,zhī shì,knowledge
+之一,zhī yī,one of
+宇宙,yǔ zhòu,universe
+截止,jié zhǐ,deadline
+食指,shí zhǐ,index finger
+激素,jī sù,hormone
+运行,yùn xíng,"move, run"
+免疫系统,miǎn yì xì tǒng,immune system
+单身,dān shēn,single
+正规,zhèng guī,respectable
+环境保护,huán jìng bǎo hù,environmentalism
+打搅,dǎ jiǎo,bother
+中立,zhōng lì,neutral
+画面,huà miàn,picture
+血腥,xuě xīng,bloody
+暴力 bào lì,violence,
+灵感,líng gǎn,inspiration
+失望,shī wàng,disappointed
+消失,xiāo shī,disappear
+谈恋爱,tán liàn ài,in a relationship
+约会,yuē huì,a (romantic) date
+会计,kuài jì,accounting
+论证,lùn zhěng,substantiate
+学历,xué lì,diploma
+属于,shǔ yú,count as
+投诉,tóu sù,formally complain
+勤快,qín kuài,diligent
+机构,jī gòu,mechanism
+额度,é dù,"status quo, usual"
+额外,é wài,extra
+非正常,fēi zhèng cháng,unusual
+乳糖不耐,rǔ táng bú nài,lactose intolerant
+支出,zhī chū,expense
+支付,zhī fù,pay
+花销,huā xiāo,expenditure
+主专业,zhǔ zhuān yè,major
+附专业,fù zhuān yè,minor
+故事情节,gù shì qíng jié,story plot
+人物,rén wù,characters
+山羊胡须,shān yáng hú xū,mountain goat beard
+风格,fēng gé,style
+表情,biǎo qíng,emoji
+吃药三分毒,chī yào sān fēn dú,medicine is partly poison
+大电灯泡,dà diàn dēng pào,third wheel
+提示,tí shì,notifications
+奶泡,nǎi pào,milk foam
+语境,yǔ jìng,context
+判断,pàn duàn,"judge, determine"
+评判,píng yàn,judge
+批评,pī píng,criticize
+心理医生,xīn lǐ yī shēng,therapist
+迷惘,mí wàng,lost (psychologically)
+概念,gài niàn,concept
+应用,yìng yòng,application (app and noun)
+小测验,xiǎo cè yàn,quiz
+基础,jī chǔ,basic skills; foundational
+实现,shí xiàn,"realize, make real"
+明知故犯,míng zhī gù fàn,to knowingly do wrong
+论坛,lùn tán,forum
+会议,huì yì,meeting
+政策,zhèng cè,policy
+可持续性,kě chí xù xìng,sustainability
+持续,chí shù,sustainability
+环境主义,huán jìng zhǔ yì,environmentalism
+独体字,dú tǐ zì,single characters
+话题,huà tí,topic
+咄咄逼人,duō duō bī rén,pushy
+理由,lǐ yóu,"excuse, justification"
+了解,liáo jiě,know
+理解,lǐ jiě,understand deeply
+时装,shí zhuāng,fashion
+领导,líng dǎo,leader
+遗传,yí chuán,genetic
+散光,sǎn guāng,astigmatism
+疗养,liáo yǎng,convalescence
+干部,gàn bù,cohort
+话筒,huà tǒng,microphone
+麦克风,mài kè fēng,microphone
+对外经济贸易大学,duì wài jīng jì mào yì dà xué,Beijing international economics and trade school (UIBE)
+三头六臂,sān tóu liù bì,multitasking
+互联网,hù lián wǎng,internet
+名词,míng cí,noun
+动词,dòng cí,verb
+形容词,xíng róng cí,adjective
+副词,fù cí,adverb
+介词,jiè cí,preposition
+相处,xiāng chǔ,get along
+幸运,xìng yùn,fortune
+运气,yùn qì,happenstance
+吃到苦,chī dào kǔ,suffer
+山海,shān hài,a famous collection of myths
+提莫,tí mò,topic
+优势,yōu shì,advantage
+参考,cān kǎo,source
+王德明,wáng dé míng,太爷
+王仁琴,wáng rén qín,姥姥
+钟生坦,zhōng shēng tǎn,姥爷
+徐萍萍,xú píng ping,奶奶
+伊善庆,yī shàn qìng,爷爷
+萍水相逢,píng shuǐ xiāng féng,"by chance, we meet briefly, as two water plants drifting in a current may briefly intertwine"
+各奔东西,gè bēn dōng xī,each go our own separate ways
+铁树开花,tiě shù kāi huā,rare occurrence
+叶落归根,yè luò guī gēn,"as we grow old, we wish to return to our origins, as the leaf returns to the root from whence it came"
+社区,shè qū,community
+新冠,xīn guàn,virus
+冠军,guàn jūn,champion
+长期,cháng qī,long-term
+可造之材,kě zào zhī cái,has potential
+无性别,wú xìng bié,gender
+大众,dà zhòng,public
+承认,chéng rèn,recognize
+公共服务,gōng gòng fú wù,public service
+公务员,gōng wù rén,public servant
+烘焙店,hōng bèi diàn,bakery
+分享,fēn xiǎng,share
+无穷,wú qióng,infinite
+约会平台,yuē huì píng tái,dating platform
+员工,yuán gōng,employee
+模糊,mó hù,blurry
+相通,xiāng tóng,similar
+培训,péi xùn,training
+焦虑,jiāo lǜ,anxiety
+教育政策研究,jiào yù zhèng cè yán jiū,education policy research
+尝试,cháng shì,try
+说三道四,shuō sān dào sì,say nonsense
+指手画脚,zhǐ shǒu huà jiǎo,finger pointing
+思路是对的,sī lù shì duì de,train of thought is correct
+闺蜜,guī mì,best friends (usually girls)
+书评,shū píng,book review
+观众,guān zhòng,audience
+小组作业,xiǎo zǔ zuò yè,group work
+建筑,jiàn zhú,architecture
+谈谈,tán tán,discuss
+阴性,yīn xìng,negative (assay result)
+阳性,yáng xìng,positive (assay result)
+毒品,dú pǐn,drugs
+爱屋及乌,ài wū jí wū,your love for someone extends even to the crows on their roof
+心意到了就好,xīn yì dào le jiù hǎo,it's the thought that counts
+负数,fù shù,negative number
+正数,zhèng shù,positive number
+整数,zhěng shù,whole number
+正能量,zhèng néng liàng,quality of having positive personality
+重色轻友,zhòng sè qīng yǒu,when you get an SO you neglect your friends
+文学作品,wén xué zuò pǐn,literature
+取笑,qǔ xiào,make fun of
+独一无二,dú yī wú èr,unique
+独特,dú tè,unique
+对号入座,duì hào rù zuò,seat according to your number (take something personally when it didn't apply to you)
+对话,duì huà,dialogue
+共鸣,gòng míng,sympathize/resonate
+寄养家庭,jì yǎng jiā tíng,foster family
+寄宿学校,jì yǎng xué xiào,boarding school
+液体,yè tǐ,liquid
+固体,gù tǐ,solid
+气体,qì tǐ,gas
+标题,biāo tí,heading
+内容,nèi róng,content
+职位,zhǐ wèi,position (as in a job)
+款式,kuǎn shì,"style (as in fashion, type)"
+歧视,qí shì,prejudice
+种族歧视,zhǒng zú qí shì,racist
+移民,yí mín,immigrate
+边界,biān jiè,boundary
+人生如梦,rén shēng rú mèng,"life is but a dream (my first words) (time flies, nothing is real) "
+二手,èr shǒu,secondhand
+城堡,chéng bǎo,castle
+难民,nán mín,refugee
+帐篷,zhàng péng,tent
+统一,tǒng yī,unified
+汇,huì,converge (as rivulets into a river)
+精力,jīng lì,energy
+对方,duì fāng,the other
+强扭的瓜不甜,qiáng niǔ de guā bù tián,if it takes too much effort the result isn't worth it
+列表,liè biǎo,list
+频道,pín dào,(television) channel
+私信,sī xìn,DM
+抱团,bào tuán,meet up
+提及,tí jí,"mention, @"
+添加,tiān jiā,add
+连接,lián jiē,connect
+团队,tuán duì,team
+成员,chéng yuán,member
+保存,bǎo cún,save
+档案,dǎng àn,file
+离线,lí xiàn,offline
+未读,wèi dú,unread
+用户组,yòng hù zǔ,user group
+自定义,zì dìng yì,customize
+本,běn,this
+首选项,shǒu xuǎn xiàng,preferences
+通知,tōng zhī,notifications
+侧栏,cè lán,sidebar
+媒体,méi tǐ,media
+地区,dì qū,area
+辅助功能,fǔ zhù gōng néng,accessibility
+标记,biǎo jì,mark
+音频,yín pín,audio
+帐户,zhàng hù,account
+隐私,yǐn sī,privacy
+可见性,kě jiàn xìng,visibility
+显示,xiǎn shì,"show(n), visible "
+草稿,cǎo gǎo,draft
+预定,yù dìng,reserve
+程序,chéng xù,program
+排序,pái xù,sort
+按字母顺序,àn zì mù xùn xù,order alphabetically
+进行,jìn xíng,"conduct, execute"
+单独,dān dú,individual
+私人频道,sī rén pín dào,private channel
+分区,fēn qū,section
+外部,wài bù,external
+组成,zǔ chéng,group into
+仅,jǐn,only
+加星标,jiā xīng biāo,starred
+关闭,guān bì,close
+关键,guān jiàn,essential
+移动设备,yí dòng shè bèi,mobile device
+设置,shè zhì,settings
+特殊,tè shū,special
+邀请,yāo qǐng,invite
+分隔,fēn gé,separate
+逗号,dòu hào,comma
+区分,qū fēn,distinguish
+暂停,zàn tíng,pause
+默认,mò rèn,default
+录制,lù zhì,record
+隐藏,yǐn cáng,"hide, conceal"
+免费版,miǎn fèi bǎn,free version/edition
+访问,fǎng wèn,access (a file)
+在线,zài xiàn,online
+复制,fù zhì,copy
+链接,lián jiē,hyperlink
+预览,yù lǎn,preview
+愿消息,yuán xiāo xǐ,original message
+以,yǐ,to [verb]; use
+点按,diǎn àn,tap
+跳转,tiào zhuǎn,jump/skip (to a section)
+动态,dòng tài,"dynamic, movement, news"
+条件,tiáo jiàn,"condition, prerequisite"
+搜索,sōu suǒ,search
+办事项,bàn shì xiàng,to-dos
+状态,zhuàng tài,status
+输入,shū rù,"enter, input"
+升级,shēng jí,upgrade
+歌单,gē dān,playlist
+播放,bò fàng,played/broadcast 
+收藏,shōu cáng,add/collect
+转至,zhuǎn zhì,go to
+艺人,yì rén,artist
+包含,bāo hán,include
+专辑,zhuān jí,album
+删除,shān chú,remove
+个人资料,gè rén zī liào,personal profile
+编辑,biān jí,edit
+详情,xiáng qíng,details
+重命名,zhòng mìng míng,rename
+文件夹,wén jiàn jiā,(document) folder
+创建,chuàng jiàn,create
+设为,shè wèi,set as
+共同创建者,gōng tóng chuàng jiàn zhě,co-creators
+嵌入,qiàn rù,embed
+屏蔽,píng bì,"shield, screen"
+举报,jǔ bào,report (to authorities)
+公开,gōng kāi,public
+喜好,xǐ hào,like
+热门,rè mén,popular
+感伤,gǎn shāng,sentimental
+弛放,chí fàng,relaxing
+浪漫,làng màn,romantic
+相似,xiāng sì,similar
+动向,dòng xiàng,trend
+专属,zhuān shǔ,exclusive
+重复,chóng fù,repeat
+厌,yàn,disgusted
+制作,zhì zuò,make
+时光胶囊,shí guāng jiāo náng,time capsule
+通勤,tōng qín,daily commute
+回味过往,huí wèi guò wǎng,reminisce
+聆听,líng tīng,listen
+听众,tīng zhòng,audience
+目录,mù lù,"catalog, table of contents"
+唱片,chàng piàn,"record, CD"
+精选辑,jīng xuǎn jí,best of collection
+发布,fā bù,release
+单曲,dān qǔ,single (record)
+巡回,xún huí,tour
+此,cǐ,this
+刷新,shuā xīn,refresh
+亲戚,qīn qī,relative
+优秀,yōu xiù,excellent
+温柔,wēn róu,gentle
+和尚,hé shàng,monk
+品格,pǐn gé,character
+赞美,zàn měi,eulogize
+积极,jī jí,"energetic, alertness"
+祝贺,zhù hè,congratulate
+热闹,rè nào,rambunctious
+代表,dài biǎo,represent
+陶瓷,táo cí,ceramics
+爱护,ài hu,cherish
+枝节,zhī jié,branches
+曾经,céng jīng,once
+困难,kùn nán,difficult
+和气,hé qì,kind
+几乎,jī hū,nearly
+洁净,jié jìng,clean
+待客,dài kè,hospitality
+皇帝,huáng dì,emperor
+锻炼,duàn liàn,exercise
+悲哀,bēi āi,sorrow
+属相,shǔ xiang,zodiac sign
+农历,nóng lì,lunar calendar
+挤满,jǐ mǎn,crowded
+舅舅,jiù jiù,uncle
+脾气,pí qì,temperament
+鼓励,gǔ lì,encourage
+故乡,gù xiāng,hometown
+丰富,fēng fù,plentiful
+愁,chóu,sorrow
+修,xiū,fix
+深情,shēn qíng,deep feeling
+典范,diǎn fàn,"model, paradigm"
+罐,guàn,"can, jar"
+樱桃,yīng táo,cherry
+著名,zhù míng,notable
+结实,jiē shí,stable
+管理,guǎn lǐ,management
+礼仪,lǐ yí,etiquette
+团聚,tuán jù,reunion
+心思,xīn sī,thought
+沾湿,zhān shī,get wet
+踩,cǎi,step on
+细心,xī xīn,careful
+消化,xiāo huà,digest
+路途遥远,lù tú yáo yuǎn,long road
+鬼,guǐ,monster
+武术,wǔ shù,martial arts
+穷苦,qióng kǔ,extremely poor
+墓地,mù dì,cemetery
+态度,tài dù,attitude
+耐心,nài xīn,patient
+尊敬,zūn jìng,respectable
+强壮,qiáng zhuàng,strong
+谈得来,tán de lái,able to converse
+坟,fén,grave
+洞,dòng,hole
+流派,liú pài,genre
+质量,zhì liàng,quality 
+民族,mín zú,ethnicity
+歌颂,gē sòng,praise in song
+收拾,shōu shí,clean up
+市场,shì chǎng,market
+佛教,fó jiào,Buddhism
+思考,sī kǎo,ponder
+流泪,liú lèi,weep
+剥,bō ,peel
+长辈,zhǎng bèi,elder
+抚摸,fǔ mō,stroke
+生肖,shēng xiào,zodiac
+劝,quàn,plead
+笨重,bèn zhòng,bulky
+摔碎,shuāi suì,shatter
+保留,bǎo liú,preserve
+民间,mín jiān,folk
+仪式,yí shì,ceremony
+念经,niàn jīng,recite scripture
+报仇,bào chóu,revenge
+打仗,dǎ zhàng,go to war
+仔细,zǐ xì,focused
+剪,jiǎn,cut
+隔壁,gé bì,next to
+举行,jǔ xíng,to hold an event
+盆,pén,basin
+信仰,xìn yǎng,belief
+以及,yǐ jí,and
+指定,zhǐ dìng,assign
+种类,zhǒng lèi,types
+名声,míng shēng,reputation
+起源于,qǐ yuán yú,begin at
+装饰品,zhuāng shì pǐn,decorations
+体现,tǐ xiàn,reflect
+实用,shí yòng,practical
+英雄,yīng xióng,hero
+疼爱,téng ài,"strong love, as of parent to child, etc."
+可惜,kě xī,pity
+期间,qī jiān,period of time
+末,mò,end
+商业,shāng yè,business
+自从,zì cóng,from a point forward
+每当,měi dāng,every time
+偶然,ǒu rán,accidentally
+渐渐,jiàn jiàn,gradually
+制,zhì ,manufacture
+造,zào,build something large
+盖,gài,build a house
+四周,sì zhōu,all around
+悠久,yōu jiǔ,long time
+邻近,lín jìn,adjacent
+昂贵,āng guì,luxurious
+珍贵,zhēn guì,precious
+贵重,guì zhòng,important
+尊贵,zūn guì,noble
+称为,chēng wèi,be called
+许愿,xǔ yuàn,make a wish
+尤其,yóu qí,especially
+少数,shǎo shù,few
+用具,yòng jù,tools
+大致,dà zhì,roughly
+实际上,shí jì shàng,in reality
+舍得,shě dé,willing
+大多数,dà duō shù,majority
+白费,bái fèi,waste
+后悔,hòu huǐ,regret
+直到,zhí dào,until
+拜年,bǎi nián,pay a New Year's call
+根据,gēn jù,go along with
+升职,shēng zhí,get promoted
+操作,cāo zuò,"action, operation"
+当前,dāng qián,currently
+采取,cǎi qǔ,take
+维护,wéi hù,"maintain, safeguard "
+发自,fā zì,from
+本人,běn rén,self
+条款,tiáo kuǎn,terms
+获取,huò qǔ,obtain
+规范,guī fàn,regulations
+道德,dào dé,ethics
+辅导员,fú dǎo yuán,counselor
+弱,ruò,weak
+创造,chuàng zào,produce
+高贵,gāo guì,noble
+僧,sēng rén,monk
+坚强,jiān qiáng,mentally strong
+乐器,yuè qì,instruments
+葬礼,zàng lǐ,funeral
+模仿,mó fǎng,copy
+孝敬,xiào jìng,filial piety
+相依为命,xiāng yī wéi mìng,depend on each other for survival
+来历,lái lì,origin
+心情,xīn qíng,mood
+专心,zhuān xīn,focused
+纯洁,chún jié,"pure, honest "
+骄傲,jiāo ào,prideful
+熟悉,shú xī,familiar with
+据说,jù shuō,according to/they say
+实在,shí zài,in reality
+包括,bāo kuò,including
+称呼,chéng hū,address (a person)
+清空,qīng kōng,"clear, empty"
+模型,mó xíng,model
+绘图,huì tú,drawing
+假设,jiǎ shè,hypothesis
+融合,róng hé,merge
+数据表,shù jù biǎo,data table
+表格,biǎo gé,tables
+字词表,zì cí biǎo,
+公式,gōng shì,equation
+意识形态,yì shí xíng tài,ideology
+气势,qì shì,
+典型,diǎn xíng,typical
+悲悼,bēi dào,mourn
+隧道,suì dào,tunnel
+怀念,huái niàn,remembrance
+颂扬,sòng yáng,celebration
+神圣,shén shèng,sacred
+珍存,zhēn cún,treasure
+回忆,huí yì,memory
+场所,cháng suǒ,place
+祈祷,qí dǎo,prayer
+亦,yì,also
+思念,sī niàn,miss (as for a loss)
+逝去,shì qù,leave
+旅程中,lǚ chéng zhōng,through the journey
+破茧成蝶,pò jiǎn chéng dié,metamorphose into a butterfly
+美眉,měi méi,beautiful girl
+高富帅,gāo fù shuài,tall rich and handsome
+加你好友,jiā nǐ hǎo yǒu,add you as a friend on social media
+意外,yì wài,(medical/traumatic) accident; unexpected
+友情,yǒu qíng,friendship
+得不偿失,dé bù cháng shī,lost more than you gained 
+补偿,bǔ cháng,compensate
+费劲,fèi jìn,spend effort
+瓶颈,píng jǐng,bottleneck
+上瘾,shàng yǐn,addictive
+灵气,líng qì,aura
+键盘,ziàn pán,(computer) keyboard
+抽象,chōu xiàng,abstract
+唐尧病,táng yào bìng,diabetes
+柿饼,shì bǐng,dried persimmon
+读谱,dú pǔ,read music
+重叠,chóng diè,overlap
+八节,bā jié,octave
+届,jiè,#NAME?
+抱歉,bào qiàn,
+道歉,dào qiàn,apologize
+原因,yuán yīn,reason
+借口,jiè kǒu,excuse
+柔术,róu shù,BJJ
+缠,chán,grapple
+吃你豆腐,chī nǐ dòu fǔ,take advantage of you
+人工智能,rén gōng zhì néng,artificial intelligence 
+机器学习,jī qì xué xí,machine learning
+虚构,xū gòu,fake
+强女人,qiáng nǚ rén,strong woman
+独立女性,dú lì nǚ xìng,independent woman
+创业,chuǎng yè,be an entrepreneur
+红,hóng,communist
+脆弱,cuì ruò,sensitive
+固执,gù zhì,stubborn
+高领,gāo lǐng,high necked (clothing)
+电商,diàn shāng,e-commerce 
+流浪汉,liú làng hàn,homeless person
+人口贩卖,rén kǒu fàn mài,
+悲观,bèi guān,pessimistic 
+乐观,lè guān,optimistic 
+婊,biǎo,bitch
+绿茶婊,lǜ chá biǎo,green tea bitch (pretending to be innocent but actually mean)
+厌女,yàn nǚ,misogynistic
+反馈,fǎn kuì,ask for feedback
+剧透,jù tòu,spoil (the plot)
+西藏,xī zàng,Tibet
+首长,shǒu zhǎng,(military) leader
+首领,shǒu zhǎng,tribal leader
+副作用,fù zuò yòng,side effect
+攻占,gōng zhàn,invade
+投票权,tóu piào quán,voting rights
+州张,zhōu zhǎng,governor
+接过,jiè guò,excuse me (to pass by someone)
+空姐,kōng jiě,flight attendant
+金钱观,jīn qián guān,attitudes towards money
+价值观,jià zhí guān,life values
+世界观,shì jiè guān,attitudes towards society and the world
+人生观,rén shēng guān,life philosophy
+三观,sān guān,three philosophies
+行业,háng yè,(an) industry
+卷,juǎn,"try-hard, flex "
+躺平,tǎng píng,relaxing
+写意,xiě yì,abstract
+如此,rú cǐ,in this way
+的确,dí què,indeed
+专业,zhuān yè,professional
+症状,zhèng zhuàng,symptom
+重点,zhòng diǎn,main point
+康复,kāng fù,recover
+重症,zhòng zhèng,severe illness
+抵抗力,dǐ kàng lì,"resistance, immunity "
+男凝,nán níng,male gaze
+后代,hòu dài,descendants
+高危,gāo wēi,high risk
+霸凌,bà líng,bully
+鼓点,gǔ diǎn,drumbeat
+节奏,jié zòu,rhythm
+尊严,zūn yán,dignity
+偏头疼,piān tóu téng,migraine
+嘲笑,cháo xiào,ridicule
+慰安妇,wēi ān fǔ,comfort women
+贤妻,xián qī,filial wife
+拷贝,kǎo bèi,copy
+粘贴,zhān tiē,paste
+剪切,jiǎn qiē,cut (a text selection)
+封建,fēng jiàn,feudal
+缠足,chán zú,bound feet
+局势,jú shì,situation
+地域,dì yù,area
+村庄,cūn zhuāng,village
+整容,zhěng róng,plastic surgery
+感染,gǎn rǎn,catch (a sickness)
+渐强,jiàn qiáng,crescendo
+口罩,kǒu zhào,mask
+盒子,hé zi,box
+血样,xuè yǎng,blood oxygen (level)
+布洛芬,bù luò fēn,ibuprofen
+美式,měi shì,Americano
+夜市,yè shì,night market
+城管,chéng guǎn,city law enforcement
+业界,yè jiè,industry
+韩国泡菜,hán guó pào cài,kimchi
+恐怖,kǒng bù,horrifying
+解释,jiě shì,explain
+瓦斯,wǎ sī,(household) gas 
+无人机,wú rén jī,drone
+直升机,zhí shēng jī,helicopter
+型号,xíng hào,(product) model 
+翻修,fān xiū,renovate
+部门,bù mén,department
+脊柱,jǐ zhù,spine
+因此,yǐn cǐ,therefore
+漫画,màn huà,comic
+迟钝,chí dùn,slow (to react)
+会诊,huì zhěn,consultation
+乳腺,rǔ xiàn,breast
+慢性病,màn xìng bìng,chronic illness
+肿瘤,zhǒng liú,tumor
+贫血,pín xuè,anemia
+称疼,chēng téng,pain tolerance
+误判,wù pàn,misjudgment
+验血,yàn xuě,blood test
+肢体,zhī tǐ,limbs
+现实,xiàn shí,"real life, reality "
+去世,qù shì,pass away
+具体,jù tǐ,specifically
+滤镜,lǜ jìng,"filter, bias "
+穷家富路,qióng jiā fù lù,"scrimp at home, spend abroad"
+孤单,gū dān,"alone, lonely "
+讨厌,tǎo yàn,hate
+想法,xiǎng fǎ,thought
+丫头,yā tou,girl
+痴心,chī xīn,infatuation
+少爷,shào yé,"master, sir"
+开溜,kāi liū,run away
+拖拉,tuō lā,"drag, dawdle"
+蠢货,chǔn huò,idiot
+瞬间,shùn jiān,instant
+控制,kòng zhì,control
+唬人,hǔ rén,bluff
+总之,zǒng zhī,in short
+或许,huò xǔ,maybe
+一线生机,yí xiàn shēng jī,lifeline
+虚伪,xū wèi,hypocritical
+哄哄,hōng hōng,"comfort, coax"
+难怪,nán guài,no wonder
+荒谬,huāng miù,absurd
+小看,xiǎo kàn,underestimate
+寻来,xún lái,obtain
+皇子妃,huáng zǐ fēi,princess
+抛弃,pāo qì,abandon
+砍,kǎn,hack
+弱点,ruò diǎn,weakness
+可恶,kě wù,hateful (dammit)
+坠,zhuì,fall
+塌,tā,collapse
+殿下,diàn xià,your highness
+猛烈,měng liè,violent
+攻击,gōng jí,attack
+留恋,liú liàn,nostalgia
+教训,jiào xùn,lecture
+臭,chòu,smelly (damn)
+敢,gǎn,dare to
+莫非,mò fēi,could it be
+预感,yù gǎn,premonition
+无憾,wú hàn,no regrets
+活宝,huó bǎo,clown
+操纵,cāo zòng,manipulate
+无能为力,wú néng wéi lì,powerless
+阻止,zǔ zhǐ,prevent
+绝技,jué jì,"trick, technique"
+激烈,jī liè,intensely
+驱逐,qū zhú,banish
+野兽,yě shòu,wild beast
+威力,wēi lì,power
+纯质,chún zhì,pure
+似乎,sì hū,seems
+不祥,bù xiáng,inauspicious
+冒失,mào shī,reckless
+既; 又,jì,"not only, but also"
+期待,qí daì,expectant
+撑住,chēng zhù,support (a load)
+娱乐,yú lè,entertainment
+估计,gū jì,estimate
+转世, zhuǎn shì, reincarnate
+千锤百炼, qiān chuí bǎi liàn, tried and tested
+碍眼, aì yǎn, eyesore
+诶哟, éi yō," ouch, yikes, ugh"
+插, chā, insert
+补充, bǔ chōng, supplementary
+谜团, mí tuán, mystery
+欣赏, xīn shǎng, appreciate
+求婚, qiú hūn, propose
+胡说, hú shuō, nonsense
+成事, chéng shì, succeed
+朕, zhèn, I
+苦思, kǔ sī, thought hard
+计谋, jì móu," plot, plan"
+智商, zhì shāng, IQ
+长老们, zhǎng lǎo mén, elders
+眼神, yǎn shén, expression in one’s eyes
+极度, jí dù, extreme
+侮辱, wú rǔ, insult
+敌人, dí rén, enemy
+提亲, tí qīn, propose
+实力, shí lì, strength
+幽默, yōu mò, humorous
+接受, jiē shòu, accept
+英雄, yīng xióng, hero
+休, xiū, stop
+继承, jì chéng, inherit
+一旦, yí dàn, once (something happens)
+晶, jīng, crystal
+介意, jiè yì," mind, care"
+结局, jié jú, ending
