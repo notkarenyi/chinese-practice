@@ -1,4 +1,9 @@
 # Chinese Practice
+
+The main product in this project is `app.R`, an RShiny app that displays semantic links between Chinese words in a given vocabulary list. 
+
+The interesting thing about Chinese is that its character structure uniquely lends it to root-word analysis, without the need for lemmatizing (at least, in the Chinese form). This will be obvious to native Chinese, but less so for Americans and heritage speakers like me.
+
 ## Prompt
 
 1. I need to learn Chinese.

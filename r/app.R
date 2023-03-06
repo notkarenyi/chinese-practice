@@ -1,5 +1,5 @@
 #
-# This is a Shiny web application. You can run the application by clicking
+# This is a Shiny web application for displaying semantic connections between Chinese vocab words from a list. You can run the application by clicking
 # the 'Run App' button above.
 #
 # Hooray for this person!!!
@@ -43,20 +43,64 @@ server <- function(input, output) {
         # get all phrases with the root character
         root = unlist(unname(dt[v==input$root,"pos"]))
         
+        get_nodes <- function(root,counter,stop) {
+            #' a recursive selection of nodes
+            
+            if (counter>stop) {
+                return(root)
+            } else {
+                
+                # get all edges containing the phrases of interest
+                edges <- graph[f %in% root & t %in% root,]
+                
+                # get all unique nodes that are in the edges of interest
+                nodes <- vocab[vocab$id %in% root,]
+                
+                # create color
+                # why doesn't this work?
+                nodes$col <- ifelse((nodes$id %in% root),
+                                    "brickred",
+                                    "purple")
+                
+                v <- nodes$chinese %>% strsplit("") %>% unlist() %>% unique()
+                
+                
+                for (i in v) {
+                    root = c(root, unlist(unname(dt[v==i,"pos"])))
+                }
+                
+                root <- unique(root)
+                
+                get_nodes(root,counter+1,stop)
+            }
+        }
+        
+        root <- get_nodes(root, 0, stop=0)
+        
         # get all edges containing the phrases of interest
-        edges <- graph[f %in% root|t %in% root,]
+        edges <- graph[f %in% root & t %in% root,]
         
         # get all unique nodes that are in the edges of interest
-        n <- unique(c(unlist(edges$f),unlist(edges$t)))
-        nodes <- vocab[vocab$id %in% n,]
+        nodes <- vocab[vocab$id %in% root,]
+        
+        # create color
+        nodes$col <- ifelse((nodes$id %in% root),
+                        "brickred",
+                        "purple")
         
         net <- graph_from_data_frame(d=edges,
-                                     vertices=nodes)
+                                     vertices=nodes,
+                                     directed=F)
         plot(net,
              edge.arrow.size=.4,
              # vertex.label=NA,
-             vertex.size=200,
-             vertex.shape="none",
+             vertex.size=20,
+             vertex.color=V(net)$col,
+             # vertex.shape="none",
+             bbox=c(1000,1000),
+             margin=0,
+             layout=layout_with_kk(net),
+             # get the vertices (nodes) from the net 
              vertex.label=V(net)$chinese)
     })
 }
