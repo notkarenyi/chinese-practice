@@ -44,7 +44,7 @@ most_likely <- function(x) {
 
 dt <- mutate(dt, x = map(trans, most_likely))
 
-# make the positions into network connection format
+# make the positions into network connection format-----------------------------
 
 # find possible combinations between positions
 x <- map(dt$pos,combn,2,simplify=F)

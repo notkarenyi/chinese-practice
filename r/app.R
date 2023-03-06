@@ -23,12 +23,13 @@ ui <- fluidPage(
         sidebarPanel(
             selectizeInput("root",
                            "Select the word to focus on",
-                           choices=dt$v)
+                           choices=dt$v),
+            width="10%"
         ),
 
         # Show a plot of the chosen subset
         mainPanel(
-           plotOutput("network")
+           plotOutput("network", width="100%")
         )
     )
 )
@@ -56,12 +57,6 @@ server <- function(input, output) {
                 # get all unique nodes that are in the edges of interest
                 nodes <- vocab[vocab$id %in% root,]
                 
-                # create color
-                # why doesn't this work?
-                nodes$col <- ifelse((nodes$id %in% root),
-                                    "brickred",
-                                    "purple")
-                
                 v <- nodes$chinese %>% strsplit("") %>% unlist() %>% unique()
                 
                 
@@ -75,34 +70,35 @@ server <- function(input, output) {
             }
         }
         
-        root <- get_nodes(root, 0, stop=0)
+        root2 <- get_nodes(root, 0, stop=0)
         
         # get all edges containing the phrases of interest
-        edges <- graph[f %in% root & t %in% root,]
+        edges <- graph[f %in% root2 & t %in% root2,]
         
         # get all unique nodes that are in the edges of interest
-        nodes <- vocab[vocab$id %in% root,]
+        nodes <- vocab[vocab$id %in% root2,]
         
         # create color
         nodes$col <- ifelse((nodes$id %in% root),
-                        "brickred",
-                        "purple")
+                        "skyblue",
+                        "white")
         
         net <- graph_from_data_frame(d=edges,
                                      vertices=nodes,
                                      directed=F)
+        
         plot(net,
              edge.arrow.size=.4,
              # vertex.label=NA,
-             vertex.size=20,
+             vertex.size=4,
              vertex.color=V(net)$col,
              # vertex.shape="none",
              bbox=c(1000,1000),
              margin=0,
-             layout=layout_with_kk(net),
+             # layout=layout_with_kk(net),
              # get the vertices (nodes) from the net 
              vertex.label=V(net)$chinese)
-    })
+    }, height=3000, width=2000)
 }
 
 # Run the application 
