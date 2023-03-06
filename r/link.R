@@ -5,7 +5,10 @@ library(igraph)
 library(networkD3)
 
 # read data (manually created...)
-vocab <- read_csv("chinese/vocab.csv")
+# vocab <- read_csv("r/vocab.csv")
+vocab <- read_csv("vocab.csv")
+vocab$id <- seq(nrow(vocab))
+vocab <- vocab[,c(length(names(vocab)),1:(length(names(vocab))-1))]
 
 # get a list of all characters occurring in the set
 vocab$v <- vocab$chinese %>% strsplit("") 
@@ -14,6 +17,7 @@ dt <- as.data.table(table(v))
 
 # get only those characters occurring more than once in the set
 dt <- dt[N>1,]
+dt <- dt[order(N,decreasing=T),]
 
 # get the corresponding vocab words in the set using each of these characters
 dt <- mutate(dt, pos = map(v, ~grep(., vocab$chinese)))
@@ -53,9 +57,10 @@ graph <- as.data.table(data.frame(f,t))
 graph <- distinct(graph)
 
 # get the corresponding chinese phrases as the actual objects to graph
-graph$from <- vocab$chinese[graph$f]
-graph$to <- vocab$chinese[graph$t]
+# graph$from <- vocab$chinese[graph$f]
+# graph$to <- vocab$chinese[graph$t]
+# graph <- graph[,!c("f","t")]
 
-graph <- graph[,!c("f","t")]
+# test: interactive network graph
+# simpleNetwork(graph[1:300,])
 
-simpleNetwork(graph[1:3000,])
