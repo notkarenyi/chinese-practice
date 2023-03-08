@@ -12,6 +12,8 @@ library(shiny)
 # source("r/link.R")
 source("link.R")
 
+face="chinese"
+
 # Define UI for application that draws a histogram
 ui <- fluidPage(
 
@@ -24,6 +26,10 @@ ui <- fluidPage(
             selectizeInput("root",
                            "Select the word to focus on",
                            choices=dt$v),
+            sliderInput("recursions",
+                        "Levels of detail",
+                        1,5,value=1),
+            actionButton("flip","Flip cards"),
             width="10%"
         ),
 
@@ -36,6 +42,13 @@ ui <- fluidPage(
 
 # Define server logic required 
 server <- function(input, output) {
+    
+    f <- reactiveValues(face="chinese")
+
+    observeEvent(input$flip, 
+                  f$face<-ifelse(f$face=="chinese",
+                         "english",
+                         "chinese"))
 
     output$network <- renderPlot({
         
@@ -70,7 +83,7 @@ server <- function(input, output) {
             }
         }
         
-        root2 <- get_nodes(root, 0, stop=0)
+        root2 <- get_nodes(root, 1, stop=input$recursions)
         
         # get all edges containing the phrases of interest
         edges <- graph[f %in% root2 & t %in% root2,]
@@ -87,18 +100,26 @@ server <- function(input, output) {
                                      vertices=nodes,
                                      directed=F)
         
-        plot(net,
-             edge.arrow.size=.4,
-             # vertex.label=NA,
-             vertex.size=4,
-             vertex.color=V(net)$col,
-             # vertex.shape="none",
-             bbox=c(1000,1000),
-             margin=0,
-             # layout=layout_with_kk(net),
-             # get the vertices (nodes) from the net 
-             vertex.label=V(net)$chinese)
-    }, height=3000, width=2000)
+        # get the vertices (nodes) from the net 
+
+        V(net)$size <- 10
+        V(net)$color <- V(net)$col
+        E(net)$arrow.size <- .4
+        l <- layout_with_fr(net)
+
+        if (face=="chinese") {
+            plot(net,
+                 layout=l,
+                 vertex.label=V(net)$chinese
+            )
+        } else {
+            plot(net,
+                 layout=l,
+                 vertex.label=V(net)$english
+            )
+        }
+        
+    }, height=2000, width=1500)
 }
 
 # Run the application 

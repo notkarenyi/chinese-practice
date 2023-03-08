@@ -46,6 +46,11 @@ dt <- mutate(dt, x = map(trans, most_likely))
 
 # make the positions into network connection format-----------------------------
 
+# IF YOU DON'T FILTER OUT LISTS OF LENGTH 1 YOU GET BAD RESULTS WITH COMBN()
+# not sure why this happens but we need to do a second check of position length (# of occurrences)
+dt$l <- map(dt$pos,length)
+dt <- dt[l>1,]
+
 # find possible combinations between positions
 x <- map(dt$pos,combn,2,simplify=F)
 
