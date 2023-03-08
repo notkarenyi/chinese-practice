@@ -2,7 +2,6 @@ library(readr)
 library(data.table)
 library(tidyverse)
 library(igraph)
-library(networkD3)
 
 # read data (manually created...)
 # vocab <- read_csv("r/vocab.csv")

@@ -8,6 +8,8 @@
 #
 
 library(shiny)
+library(plotly)
+library(ggnetwork)
 
 # source("r/link.R")
 source("link.R")
@@ -29,13 +31,13 @@ ui <- fluidPage(
             sliderInput("recursions",
                         "Levels of detail",
                         1,5,value=1),
-            actionButton("flip","Flip cards"),
+            # actionButton("flip","Flip cards"),
             width="10%"
         ),
 
         # Show a plot of the chosen subset
         mainPanel(
-           plotOutput("network", width="100%")
+           plotlyOutput("network", width="100%")
         )
     )
 )
@@ -43,14 +45,14 @@ ui <- fluidPage(
 # Define server logic required 
 server <- function(input, output) {
     
-    f <- reactiveValues(face="chinese")
+    # f <- reactiveValues(face="chinese")
 
-    observeEvent(input$flip, 
-                  f$face<-ifelse(f$face=="chinese",
-                         "english",
-                         "chinese"))
+    # observeEvent(input$flip, 
+    #               f$face<-ifelse(f$face=="chinese",
+    #                      "english",
+    #                      "chinese"))
 
-    output$network <- renderPlot({
+    output$network <- renderPlotly({
         
         # generate graph based on selection
         
@@ -93,35 +95,47 @@ server <- function(input, output) {
         
         # create color
         nodes$col <- ifelse((nodes$id %in% root),
-                        "skyblue",
-                        "white")
+                        "Root",
+                        "Other")
         
         net <- graph_from_data_frame(d=edges,
                                      vertices=nodes,
                                      directed=F)
+        net <- graph.data.frame(edges)
+        
+        V(net)$chinese <- nodes$chinese
+        V(net)$english <- nodes$english
+        V(net)$col <- nodes$col
         
         # get the vertices (nodes) from the net 
-
-        V(net)$size <- 10
-        V(net)$color <- V(net)$col
-        V(net)$frame.color <- "white"
-        V(net)$vertex.shape <- "square"
-        E(net)$arrow.size <- .4
-        l <- layout.fruchterman.reingold(net)
-
-        if (f$face=="chinese") {
-            plot(net,
-                 layout=l,
-                 vertex.label=V(net)$chinese
-            )
-        } else {
-            plot(net,
-                 layout=l,
-                 vertex.label=V(net)$english
-            )
-        }
+        set.seed(123)
+        p <- ggplot(ggnetwork(net),
+                  aes(x = x, y = y, xend = xend, yend = yend)) +
+           geom_edges(color="grey60",size=.1) +
+           geom_nodes(aes(color=col),size=18) +
+           geom_nodetext(aes(label=chinese)) +
+           ggtitle("") +
+           theme_blank()
+        p %>%
+            ggplotly(tooltip=V(net)$english) %>%
+            layout(autosize=F,
+                   width=1500,
+                   height=1500)
         
-    }, height=1500, width=1500)
+
+        # if (f$face=="chinese") {
+        #     plot(net,
+        #          layout=l,
+        #          vertex.label=V(net)$chinese
+        #     )
+        # } else {
+        #     plot(net,
+        #          layout=l,
+        #          vertex.label=V(net)$english
+        #     )
+        # }
+        
+    })
 }
 
 # Run the application 
