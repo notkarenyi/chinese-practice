@@ -104,10 +104,12 @@ server <- function(input, output) {
 
         V(net)$size <- 10
         V(net)$color <- V(net)$col
+        V(net)$frame.color <- "white"
+        V(net)$vertex.shape <- "square"
         E(net)$arrow.size <- .4
-        l <- layout_with_fr(net)
+        l <- layout.fruchterman.reingold(net)
 
-        if (face=="chinese") {
+        if (f$face=="chinese") {
             plot(net,
                  layout=l,
                  vertex.label=V(net)$chinese
@@ -119,7 +121,7 @@ server <- function(input, output) {
             )
         }
         
-    }, height=2000, width=1500)
+    }, height=1500, width=1500)
 }
 
 # Run the application 
