@@ -115,7 +115,11 @@ server <- function(input, output) {
             # sets the specific order of tooltip variables (in this case 1)
             ggplotly(tooltip="text",
                      width=1200,
-                     height=1500)
+                     height=1500) %>%
+            layout(xaxis = list(fixedrange = TRUE), 
+                   yaxis = list(fixedrange = TRUE)) %>%
+            config(modeBarButtonsToRemove = c("zoomIn2d", "zoomOut2d"))
+        
     })
 }
 
