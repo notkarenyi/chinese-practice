@@ -7,16 +7,41 @@
 #   https://kateto.net/network-visualization
 #
 
+# setup-------------------------------------------------------------------------
+
 library(shiny)
 library(plotly)
 library(ggnetwork)
 
-# source("r/link.R")
 source("link.R")
 
-face="chinese"
+get_nodes <- function(root,counter,stop) {
+    #' a recursive selection of nodes
+    
+    if (counter>stop) {
+        return(root)
+    } else {
+        
+        # get all edges containing the phrases of interest
+        edges <- graph[f %in% root & t %in% root,]
+        
+        # get all unique nodes that are in the edges of interest
+        nodes <- vocab[vocab$name %in% root,]
+        
+        v <- nodes$chinese %>% strsplit("") %>% unlist() %>% unique()
+        
+        for (i in v) {
+            root = c(root, unlist(unname(dt[v==i,"pos"])))
+        }
+        
+        root <- unique(root)
+        
+        get_nodes(root,counter+1,stop)
+    }
+}
 
-# Define UI for application that draws a histogram
+# define UI---------------------------------------------------------------------
+
 ui <- fluidPage(
 
     # Application title
@@ -30,53 +55,28 @@ ui <- fluidPage(
                            choices=dt$v),
             sliderInput("recursions",
                         "Levels of detail",
-                        1,5,value=1),
-            # actionButton("flip","Flip cards"),
-            width="10%"
+                        1,5,value=1,
+                        ticks=F),
+            width=2
         ),
 
         # Show a plot of the chosen subset
         mainPanel(
-           plotlyOutput("network", width="100%")
+           plotlyOutput("network")
         )
     )
 )
 
-# Define server logic required 
+# define server logic-----------------------------------------------------------
+
 server <- function(input, output) {
 
     output$network <- renderPlotly({
         
-        # generate graph based on selection
+        # Generate graph based on selection-------------------------------------
         
         # get all phrases with the root character
         root = unlist(unname(dt[v==input$root,"pos"]))
-        
-        get_nodes <- function(root,counter,stop) {
-            #' a recursive selection of nodes
-            
-            if (counter>stop) {
-                return(root)
-            } else {
-                
-                # get all edges containing the phrases of interest
-                edges <- graph[f %in% root & t %in% root,]
-                
-                # get all unique nodes that are in the edges of interest
-                nodes <- vocab[vocab$name %in% root,]
-                
-                v <- nodes$chinese %>% strsplit("") %>% unlist() %>% unique()
-                
-                for (i in v) {
-                    root = c(root, unlist(unname(dt[v==i,"pos"])))
-                }
-                
-                root <- unique(root)
-                
-                get_nodes(root,counter+1,stop)
-            }
-        }
-        
         root2 <- get_nodes(root, 1, stop=input$recursions)
         
         # get all edges containing the phrases of interest
@@ -85,7 +85,7 @@ server <- function(input, output) {
         # get all unique nodes that are in the edges of interest
         nodes <- vocab[vocab$name %in% root2,]
         
-        # create color
+        # color the root words differently
         nodes$col <- ifelse((nodes$name %in% root),
                             "Root",
                             "Other")
@@ -95,10 +95,10 @@ server <- function(input, output) {
         # format for ggplot
         net <- ggnetwork(graph.data.frame(edges))
         
-        # add back information
+        # add back information for labels etc
         net <- left_join(net,select(nodes,name,chinese,text,col))
 
-        # get the vertices (nodes) from the net 
+        # set seed such that the random node placement is the same every time
         set.seed(123)
         
         p <- ggplot(net, aes(x = x, y = y, xend = xend, yend = yend, text=text)) +
@@ -108,14 +108,17 @@ server <- function(input, output) {
             scale_color_manual(values=c("white","skyblue"),
                                labels=c("Other","Root")) +
             ggtitle("") +
-            theme_blank()
+            theme_blank() +
+            theme(legend.position="none",
+                  text=element_text(family="Comic Sans"))
         p %>%
-            # sets the specific order of tooltip
+            # sets the specific order of tooltip variables (in this case 1)
             ggplotly(tooltip="text",
-                     width=1500,
+                     width=1200,
                      height=1500)
     })
 }
 
-# Run the application 
+# run app-----------------------------------------------------------------------
+
 shinyApp(ui = ui, server = server)
