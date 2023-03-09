@@ -5,9 +5,9 @@ library(igraph)
 
 # read data (manually created...)
 # vocab <- read_csv("r/vocab.csv")
-vocab <- read_csv("vocab.csv")
-vocab$id <- seq(nrow(vocab))
-vocab <- vocab[,c(length(names(vocab)),1:(length(names(vocab))-1))]
+vocab <- as.data.table(read_csv("vocab.csv"))
+vocab$name <- seq(nrow(vocab))
+vocab <- vocab[,text:=paste0(pinyin, " / ", english)]
 
 # get a list of all characters occurring in the set
 vocab$v <- vocab$chinese %>% strsplit("") 

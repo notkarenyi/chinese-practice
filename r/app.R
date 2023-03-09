@@ -44,13 +44,6 @@ ui <- fluidPage(
 
 # Define server logic required 
 server <- function(input, output) {
-    
-    # f <- reactiveValues(face="chinese")
-
-    # observeEvent(input$flip, 
-    #               f$face<-ifelse(f$face=="chinese",
-    #                      "english",
-    #                      "chinese"))
 
     output$network <- renderPlotly({
         
@@ -70,10 +63,9 @@ server <- function(input, output) {
                 edges <- graph[f %in% root & t %in% root,]
                 
                 # get all unique nodes that are in the edges of interest
-                nodes <- vocab[vocab$id %in% root,]
+                nodes <- vocab[vocab$name %in% root,]
                 
                 v <- nodes$chinese %>% strsplit("") %>% unlist() %>% unique()
-                
                 
                 for (i in v) {
                     root = c(root, unlist(unname(dt[v==i,"pos"])))
@@ -91,50 +83,37 @@ server <- function(input, output) {
         edges <- graph[f %in% root2 & t %in% root2,]
         
         # get all unique nodes that are in the edges of interest
-        nodes <- vocab[vocab$id %in% root2,]
+        nodes <- vocab[vocab$name %in% root2,]
         
         # create color
-        nodes$col <- ifelse((nodes$id %in% root),
-                        "Root",
-                        "Other")
+        nodes$col <- ifelse((nodes$name %in% root),
+                            "Root",
+                            "Other")
         
-        net <- graph_from_data_frame(d=edges,
-                                     vertices=nodes,
-                                     directed=F)
-        net <- graph.data.frame(edges)
+        nodes$name <- as.character(nodes$name)
         
-        V(net)$chinese <- nodes$chinese
-        V(net)$english <- nodes$english
-        V(net)$col <- nodes$col
+        # format for ggplot
+        net <- ggnetwork(graph.data.frame(edges))
         
+        # add back information
+        net <- left_join(net,select(nodes,name,chinese,text,col))
+
         # get the vertices (nodes) from the net 
         set.seed(123)
-        p <- ggplot(ggnetwork(net),
-                  aes(x = x, y = y, xend = xend, yend = yend)) +
-           geom_edges(color="grey60",size=.1) +
-           geom_nodes(aes(color=col),size=18) +
-           geom_nodetext(aes(label=chinese)) +
-           ggtitle("") +
-           theme_blank()
+        
+        p <- ggplot(net, aes(x = x, y = y, xend = xend, yend = yend, text=text)) +
+            geom_edges(color="grey60",size=.1) +
+            geom_nodes(aes(color=col),size=18) +
+            geom_nodetext(aes(label=chinese)) +
+            scale_color_manual(values=c("white","skyblue"),
+                               labels=c("Other","Root")) +
+            ggtitle("") +
+            theme_blank()
         p %>%
-            ggplotly(tooltip=V(net)$english) %>%
-            layout(autosize=F,
-                   width=1500,
-                   height=1500)
-        
-
-        # if (f$face=="chinese") {
-        #     plot(net,
-        #          layout=l,
-        #          vertex.label=V(net)$chinese
-        #     )
-        # } else {
-        #     plot(net,
-        #          layout=l,
-        #          vertex.label=V(net)$english
-        #     )
-        # }
-        
+            # sets the specific order of tooltip
+            ggplotly(tooltip="text",
+                     width=1500,
+                     height=1500)
     })
 }
 
