@@ -16,77 +16,71 @@ The interesting thing about Chinese is that its character structure uniquely len
 
 ## Specs 
 
-React app (RShiny?)
+*wishlist
 
-*Wishlist
+### Medium
 
-* button class for all these buttons
+* React app?
+* RShiny?
+
+### Sentence practice (Duolingo style) 
+
+**2/2023: All of these capabilities are much better accomplished using ChatGPT lol. Pausing development**
+
+* How to query my own .csv files? SQL?
+
+* English sentence prompt
+
+  * What kind of sentence templates to use?
+
+    * write my own English templates?
+
+    * get someone else's list of sentences to practice in other languages? where to find this?
+
+    * draw verbatim from a children's book?
+
+  * How to populate the template?
+
+    * randomly mad-lib from the English column of my Chinese vocab list?
+      * involves labeling my own list for parts of speech either by hand or using ML*
+    * get someone else's list of common words and parts of speech?
+    * try lemmatization and look at others' generators
+
+* User input answer box and submit button
+
+* Some kind of reaction, then next button
+
+  * What kind of grading to implement?
+    * no grading, just vibes
+    * grading based on .csv lookup
+    * grading based on Google translate* (would need API or something)
+    * grading based on ML*
+
+### Flashcard sorting
 
 * Login (user input) to store user-specific information in separate .csvs*
+* read in csv (using what package?)
+* maybe highlight common root words and connect them automatically*
 
-* Welcome screen with 2 options
+  * tokenize (split on character), then count and sort by frequency
+  * select characters above a percentage or absolute threshold of frequency (or both/either) - variable common is TRUE
+  * (in this vein, could implement pre-sorting before manual organization allowed)
+  * when click preview, you can show/hide connections between root words - should we label the meaning?
+    * connection is curved line drawn automatically between positions associated with the cards where common is TRUE (what is the math behind this)
+    * color/connections grouped by root word (separate column after identifying common roots)
+* card class (could maybe bootstrap this)
 
-  * Sentence practice
-  * Flashcard sorting
+  * properties: rectangle, word (front), pinyin + definition (back), x, y, boolean selected, tag list (or single value), sub-tag, boolean flipped, boolean common, root word list (or single value)
+  * when click, deselect others and select this one
+  * when touching selection rectangle, boolean selected is TRUE
+  * when click and drag, move
+  * auto-sort button to arrange by tag (including untagged)
+    * need to figure out the math behind this - something like number of cells in the matrix determined by the number of tags total, the x and y position determined by number of cells and a counter in a loop
 
-* Sentence practice (Duolingo style) **2/2023: All of these capabilities are much better accomplished using ChatGPT lol. Pausing development**
-
-  * How to query my own .csv files? SQL?
-
-  * English sentence prompt
-
-    * What kind of sentence templates to use?
-
-      * write my own English templates?
-
-      * get someone else's list of sentences to practice in other languages? where to find this?
-
-      * draw verbatim from a children's book?
-
-    * How to populate the template?
-
-      * randomly mad-lib from the English column of my Chinese vocab list?
-        * involves labeling my own list for parts of speech either by hand or using ML*
-      * get someone else's list of common words and parts of speech?
-      * try lemmatization and look at others' generators
-
-  * User input answer box and submit button
-
-  * Some kind of reaction, then next button
-
-    * What kind of grading to implement?
-      * no grading, just vibes
-      * grading based on .csv lookup
-      * grading based on Google translate* (would need API or something)
-      * grading based on ML*
-
-* Flashcard sorting
-
-  * read in csv (using what package?)
-
-  * maybe highlight common root words and connect them automatically*
-
-    * tokenize (split on character), then count and sort by frequency
-    * select characters above a percentage or absolute threshold of frequency (or both/either) - variable common is TRUE
-    * (in this vein, could implement pre-sorting before manual organization allowed)
-    * when click preview, you can show/hide connections between root words - should we label the meaning?
-      * connection is curved line drawn automatically between positions associated with the cards where common is TRUE (what is the math behind this)
-      * color/connections grouped by root word (separate column after identifying common roots)
-
-  * card class (could maybe bootstrap this)
-
-    * properties: rectangle, word (front), pinyin + definition (back), x, y, boolean selected, tag list (or single value), sub-tag, boolean flipped, boolean common, root word list (or single value)
-    * when click, deselect others and select this one
-    * when touching selection rectangle, boolean selected is TRUE
-    * when click and drag, move
-    * auto-sort button to arrange by tag (including untagged)
-      * need to figure out the math behind this - something like number of cells in the matrix determined by the number of tags total, the x and y position determined by number of cells and a counter in a loop
-
-    * study mode
-      * when click, flip
-      * when ctrl + click, hide (?)
-    * organize mode
-      * when selected is TRUE and add tag button clicked or shift + T, add tag in tag column of data frame (user input box)
-
-  * save option to save data frame to csv (with username*)
+  * study mode
+    * when click, flip
+    * when ctrl + click, hide (?)
+  * organize mode
+    * when selected is TRUE and add tag button clicked or shift + T, add tag in tag column of data frame (user input box)
+* save option to save data frame to csv (with username*)
 

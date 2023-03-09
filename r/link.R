@@ -1,12 +1,12 @@
-library(readr)
+library(readxl)
 library(data.table)
 library(tidyverse)
 library(igraph)
 
 # read data (manually created...)
 # vocab <- read_csv("r/vocab.csv")
-vocab <- as.data.table(read_csv("vocab.csv"))
-vocab$name <- seq(nrow(vocab))
+vocab <- as.data.table(read_xlsx("vocab.xlsx"))
+names(vocab) <- tolower(names(vocab))
 vocab <- vocab[,text:=paste0(pinyin, " / ", english)]
 
 # get a list of all characters occurring in the set
@@ -59,12 +59,3 @@ t <- unlist(map(x, map, ~.[2]))
 
 graph <- as.data.table(data.frame(f,t))
 graph <- distinct(graph)
-
-# get the corresponding chinese phrases as the actual objects to graph
-# graph$from <- vocab$chinese[graph$f]
-# graph$to <- vocab$chinese[graph$t]
-# graph <- graph[,!c("f","t")]
-
-# test: interactive network graph
-# simpleNetwork(graph[1:300,])
-
