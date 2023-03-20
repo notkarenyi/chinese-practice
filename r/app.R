@@ -54,21 +54,22 @@ ui <- fluidPage(
             selectizeInput("root",
                            "Type or select a word to focus on",
                            choices=dt$v),
+            actionButton("randomize",
+                         "Randomize"),
+            hr(),
             sliderInput("recursions",
                         "Levels of detail",
                         1,5,value=1,
                         ticks=F),
-            actionButton("randomize",
-                         "Randomize (IN DEVELOPMENT)"),
             br(),
             p("Tip: Hover over a word for the English translation."),
-            p("___"),
+            hr(),
             h4("Background"),
             p("The Chinese language provides interesting opportunities for linguistic analysis. There are two semantic units: within characters, we have 偏旁部首 or 'radicals' that provide clues to the meaning; and the characters themselves are reused in phrases with related meanings. A common question for a native speaker to ask when learning a new word is: '__ 是什么 __?', meaning 'what phrases is this character found in?'"),
             p("For example, the two-character phrase 编程 is composed of 编, a word used in phrases such as 编故事 or 编织 that mean more or less 'to weave', and 程, a word used in phrases such as 工程师 that relate to engineering. 编程 means 'to program/code'."),
             p("This common question recognizes the finding from educational psychology that organizing new knowledge into existing schemas is important for improving retention. In other words, learning vocabulary can be much faster when we make these lingistic connections."),
             p("This app organizes a given list of vocabulary words based on common characters and graphs them into a network using the igraph and plotly packages."),
-            p("___"),
+            hr(),
             p("Created by Karen Yi"),
             a("View on Github",href="https://github.com/notkarenyi/chinese-practice"),
             width=2
@@ -85,58 +86,68 @@ ui <- fluidPage(
 
 server <- function(input, output) {
     
-    observeEvent(input$randomize,
-                 {root = sample(dt$v,1)})
-
-    output$network <- renderPlotly({
+    make_network <- function(root) {
         
-        # Generate graph based on selection-------------------------------------
-        
-        # get all phrases with the root character
-        root = unlist(unname(dt[v==input$root,"pos"]))
-        root2 <- get_nodes(root, 1, stop=input$recursions)
-        
-        # get all edges containing the phrases of interest
-        edges <- graph[f %in% root2 & t %in% root2,]
-        
-        # get all unique nodes that are in the edges of interest
-        nodes <- vocab[vocab$name %in% root2,]
-        
-        # color the root words differently
-        nodes$col <- ifelse((nodes$name %in% root),
-                            "Root",
-                            "Other")
-        
-        nodes$name <- as.character(nodes$name)
-        
-        # format for ggplot
-        net <- ggnetwork(graph.data.frame(edges))
-        
-        # add back information for labels etc
-        net <- left_join(net,select(nodes,name,chinese,text,col))
-
-        # set seed such that the random node placement is the same every time
-        set.seed(123)
-        
-        p <- ggplot(net, aes(x = x, y = y, xend = xend, yend = yend, text=text)) +
-            geom_edges(color="grey60",size=.1) +
-            geom_nodes(aes(color=col),size=18) +
-            geom_nodetext(aes(label=chinese)) +
-            scale_color_manual(values=c("white","lavender"),
-                               labels=c("Other","Root")) +
-            ggtitle("") +
-            theme_blank() +
-            theme(legend.position="none",
-                  text=element_text(family="Comic Sans"))
-        p %>%
-            # sets the specific order of tooltip variables (in this case 1)
-            ggplotly(tooltip="text",
-                     width=1000 + 20*length(nodes),
-                     height=1500 + 50*length(nodes)) %>%
-            layout(xaxis = list(fixedrange = TRUE), 
-                   yaxis = list(fixedrange = TRUE)) %>%
-            config(modeBarButtonsToRemove = c("zoomIn2d", "zoomOut2d"))
-        
+        output$network <- renderPlotly({
+            
+            # Generate graph based on selection---------------------------------
+            
+            # get all phrases with the root character
+            root_phrase <- unlist(unname(dt[v==root,"pos"]))
+            root_node <- get_nodes(root_phrase, 1, stop=input$recursions)
+            
+            # get all edges containing the phrases of interest
+            edges <- graph[f %in% root_node & t %in% root_node,]
+            
+            # get all unique nodes that are in the edges of interest
+            nodes <- vocab[vocab$name %in% root_node,]
+            
+            # color the root words differently
+            nodes$col <- ifelse((nodes$name %in% root_phrase),
+                                "Root",
+                                "Other")
+            
+            nodes$name <- as.character(nodes$name)
+            
+            # format for ggplot
+            net <- ggnetwork(graph.data.frame(edges))
+            
+            # add back information for labels etc
+            net <- left_join(net,select(nodes,name,chinese,text,col))
+            
+            # set seed such that the random node placement is the same every time
+            # set.seed(123)
+            
+            p <- ggplot(net, aes(x = x, y = y, 
+                                 xend = xend, yend = yend, text=text)) +
+                geom_edges(color="grey60",size=.1) +
+                geom_nodes(aes(color=col),size=18) +
+                geom_nodetext(aes(label=chinese)) +
+                scale_color_manual(values=c("white","lavender"),
+                                   labels=c("Other","Root")) +
+                ggtitle(paste0("Words related to: ",
+                               dt$most_likely[dt$v==root])) +
+                theme_blank() +
+                theme(legend.position="none",
+                      text=element_text(family="Comic Sans"))
+            p %>%
+                # sets the specific order of tooltip variables (in this case 1)
+                ggplotly(tooltip="text",
+                         width=800 + 5*nrow(nodes),
+                         height=600 + 8*nrow(nodes)) %>%
+                layout(xaxis = list(fixedrange = TRUE), 
+                       yaxis = list(fixedrange = TRUE)) %>%
+                config(modeBarButtonsToRemove = c("zoomIn2d", "zoomOut2d"))
+        })
+    }
+    
+    observeEvent(input$root,{
+        make_network(input$root)
+    })
+    
+    observeEvent(input$randomize,{
+        print(sample(dt$v,1))
+        make_network(sample(dt$v,1))
     })
 }
 

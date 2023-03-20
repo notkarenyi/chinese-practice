@@ -4,7 +4,7 @@ library(tidyverse)
 library(igraph)
 
 # read data (manually created...)
-# vocab <- read_csv("r/vocab.csv")
+# vocab <- as.data.table(read_xlsx("r/vocab.xlsx"))
 vocab <- as.data.table(read_xlsx("vocab.xlsx"))
 names(vocab) <- tolower(names(vocab))
 vocab <- vocab[,text:=paste0(pinyin, " / ", english)]
@@ -35,13 +35,13 @@ most_likely <- function(x) {
     guess_meaning(x)[guess_meaning(x)==max(guess_meaning(x))]
   )
   if (length(r)>1) {
-    return(0)
+    return("Not yet translated")
   } else {
     return(r)
   }
 }
 
-dt <- mutate(dt, x = map(trans, most_likely))
+dt <- mutate(dt, most_likely = map(trans, most_likely))
 
 # make the positions into network connection format-----------------------------
 
@@ -59,3 +59,10 @@ t <- unlist(map(x, map, ~.[2]))
 
 graph <- as.data.table(data.frame(f,t))
 graph <- distinct(graph)
+
+# what vocab do I still have left to learn?
+# stats <- read_xlsx("r/vocab.xlsx",skip=2,sheet="Statistics") %>% as.data.table()
+# stats <- stats[,c("Character","CHR/million")]
+# names(stats) <- c("v","chrpermil")
+# stats <- left_join(stats,dt)
+# stats[is.na(N),][300:2000,]
