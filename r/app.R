@@ -67,7 +67,7 @@ ui <- fluidPage(
             h4("Background"),
             p("The Chinese language provides interesting opportunities for linguistic analysis. There are two semantic units: within characters, we have 偏旁部首 or 'radicals' that provide clues to the meaning; and the characters themselves are reused in phrases with related meanings. A common question for a native speaker to ask when learning a new word is: '__ 是什么 __?', meaning 'what phrases is this character found in?'"),
             p("For example, the two-character phrase 编程 is composed of 编, a word used in phrases such as 编故事 or 编织 that mean more or less 'to weave', and 程, a word used in phrases such as 工程师 that relate to engineering. 编程 means 'to program/code'."),
-            p("This common question recognizes the finding from educational psychology that organizing new knowledge into existing schemas is important for improving retention. In other words, learning vocabulary can be much faster when we make these lingistic connections."),
+            p("This common question recognizes the finding from educational psychology that organizing new knowledge into existing schemas improves retention. In other words, learning vocabulary is much faster when we make these lingistic connections."),
             p("This app organizes a given list of vocabulary words based on common characters and graphs them into a network using the igraph and plotly packages."),
             hr(),
             p("Created by Karen Yi"),
@@ -133,11 +133,12 @@ server <- function(input, output) {
             p %>%
                 # sets the specific order of tooltip variables (in this case 1)
                 ggplotly(tooltip="text",
-                         width=800 + 5*nrow(nodes),
-                         height=600 + 8*nrow(nodes)) %>%
-                layout(xaxis = list(fixedrange = TRUE), 
-                       yaxis = list(fixedrange = TRUE)) %>%
-                config(modeBarButtonsToRemove = c("zoomIn2d", "zoomOut2d"))
+                         width=800 + 6*nrow(nodes),
+                         height=600 + 12*nrow(nodes)) %>%
+                layout(xaxis = list(fixedrange = T), 
+                       yaxis = list(fixedrange = T),
+                       dragmode = F) %>%
+                config(displayModeBar = F)
         })
     }
     
