@@ -16,7 +16,7 @@ library(ggnetwork)
 
 source("link.R")
 # graph <- read.csv("graph.csv")
-text <- readLines("text.txt")
+text <- readLines("text.txt", encoding="UTF-8")
 
 get_nodes <- function(root,counter,stop) {
     #' a recursive selection of nodes
@@ -72,13 +72,13 @@ ui <- fluidPage(
             tags$details(tags$summary(tags$a("About this app (expand)")),
                          tags$br(),
                          tags$p(text[1],
-                                tags$a(href="https://en.wikipedia.org/wiki/Radical_(Chinese_characters)", "'radicals'"),
-                                text[2]),
-                         tags$br(),
-                         tags$p(text[3], 
-                                tags$a(href="https://www.sciencedirect.com/topics/psychology/memory-schema#:~:text=Schemas%20are%20semantic%20memory%20structures,memories%20that%20have%20been%20forgotten", "schemas"), 
+                                tags$a(href=text[2],text[3]),
                                 text[4]),
-                         tags$p(text[5])),
+                         tags$p(text[5]),
+                         tags$p(text[6],
+                                tags$a(href=text[7],text[8]), 
+                                text[9]),
+                         tags$p(text[10])),
             
             hr(),
             p("Created by Karen Yi"),
