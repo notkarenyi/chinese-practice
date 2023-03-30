@@ -44,6 +44,9 @@ get_nodes <- function(root,counter,stop) {
 # define UI---------------------------------------------------------------------
 
 ui <- fluidPage(
+    tags$head(
+        tags$link(rel = "stylesheet", type = "text/css", href = "index.css")
+    ),
 
     # Application title
     titlePanel("chinese word net"),
@@ -130,7 +133,10 @@ server <- function(input, output) {
                 geom_edges(color="grey60",size=.1) +
                 geom_nodes(aes(color=col),size=18) +
                 geom_nodetext(aes(label=chinese)) +
-                scale_color_manual(values=c("white","lavender"),
+                scale_color_manual(values=c("white",rgb(red=200/255, 
+                                                        green=200/255, 
+                                                        blue=255/255, 
+                                                        alpha=1)),
                                    labels=c("Other","Root")) +
                 ggtitle(paste0("Words related to: ",
                                dt$most_likely[dt$v==root])) +
