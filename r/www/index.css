@@ -1,10 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 
-body, .plotly {
+body {
     font-family: 'Inter', sans-serif !important;
     color: black;
 }
 
+/* Sidebar */
 .well {
     background-color: white;
     border: solid 3px rgb(200, 200, 255);
@@ -23,6 +24,9 @@ a:hover, a:focus, a:active {
     cursor: pointer;
 }
 
+/* Shiny interactive elements */
+
+/* range bar */
 .irs--shiny .irs-bar--single {
     background-color: rgb(90,90,190); 
     border: none;
@@ -31,6 +35,7 @@ a:hover, a:focus, a:active {
     top: 27px;
 }
 
+/* range bar numbers */
 .irs--shiny .irs-min, .irs--shiny .irs-max, .irs--shiny .irs-single {
     font-family: 'Inter', sans-serif;
     background-color: rgba(0,0,0,0);
@@ -40,10 +45,7 @@ a:hover, a:focus, a:active {
     padding: 1px 10px;
 }
 
-.irs--shiny .irs-single {
-    background-color: rgba(0,0,0,0);
-}
-
+/* range bar background */
 .irs--shiny .irs-line {
     background: none;
     background-color: white;
@@ -53,6 +55,7 @@ a:hover, a:focus, a:active {
     cursor: pointer;
 }
 
+/* range bar handle */
 .irs--shiny .irs-handle {
     background-color: rgb(200, 200, 255);
     border: solid 2px rgb(90,90,190);
@@ -62,6 +65,7 @@ a:hover, a:focus, a:active {
     top: 26px;
 }
 
+/* dropdown and buttons */
 .selectize-input, .action-button {
     border-radius: 30px;
     border: solid 2px rgb(90,90,190);

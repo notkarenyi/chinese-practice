@@ -15,6 +15,8 @@ library(plotly)
 library(ggnetwork)
 
 source("link.R")
+# graph <- read.csv("graph.csv")
+text <- readLines("text.txt")
 
 get_nodes <- function(root,counter,stop) {
     #' a recursive selection of nodes
@@ -32,7 +34,7 @@ get_nodes <- function(root,counter,stop) {
         v <- nodes$chinese %>% strsplit("") %>% unlist() %>% unique()
         
         for (i in v) {
-            root = c(root, unlist(unname(dt[v==i,"pos"])))
+            root = c(root, unlist(unname(vocab_clean[v==i,"pos"])))
         }
         
         root <- unique(root)
@@ -56,7 +58,7 @@ ui <- fluidPage(
         sidebarPanel(
             selectizeInput("root",
                            "Type or select a word to focus on",
-                           choices=dt$v),
+                           choices=vocab_clean$v),
             actionButton("randomize",
                          "Randomize"),
             hr(),
@@ -68,16 +70,15 @@ ui <- fluidPage(
             p("Tip: Hover over or tap a word for the English translation."),
             hr(),
             tags$details(tags$summary(tags$a("About this app (expand)")),
-                         tags$p(""),
-                         tags$p("The Chinese language provides interesting opportunities for linguistic analysis. There are two semantic units: within characters, we have 偏旁部首 or ",
-                            tags$a(href="https://en.wikipedia.org/wiki/Radical_(Chinese_characters)", "'radicals'"),
-                            "that provide clues to the meaning; and the characters themselves are reused in phrases with related meanings. A common question for a native speaker to ask when learning a new word is: '__ 是什么 __?', meaning 'what phrases is this character found in?'"),
-                         tags$p("For example, the two-character phrase 编程 is composed of 编, a word used in phrases such as 编故事 or 编织 that mean more or less 'to weave', and 程, a word used in phrases such as 工程师 that relate to engineering. 编程 means 'to program/code'."),
-                         tags$p("This common question recognizes the finding from educational psychology that organizing new knowledge into existing", 
-                             tags$a(href="https://www.sciencedirect.com/topics/psychology/memory-schema#:~:text=Schemas%20are%20semantic%20memory%20structures,memories%20that%20have%20been%20forgotten.",
-                             "schemas"), 
-                             "improves retention. In other words, learning vocabulary is much faster when we make these lingistic connections."),
-                         tags$p("This app organizes a given list of vocabulary words based on common characters and graphs them into a network using the igraph and plotly packages.")),
+                         tags$br(),
+                         tags$p(text[1],
+                                tags$a(href="https://en.wikipedia.org/wiki/Radical_(Chinese_characters)", "'radicals'"),
+                                text[2]),
+                         tags$br(),
+                         tags$p(text[3], 
+                                tags$a(href="https://www.sciencedirect.com/topics/psychology/memory-schema#:~:text=Schemas%20are%20semantic%20memory%20structures,memories%20that%20have%20been%20forgotten", "schemas"), 
+                                text[4]),
+                         tags$p(text[5])),
             
             hr(),
             p("Created by Karen Yi"),
@@ -103,7 +104,7 @@ server <- function(input, output) {
             # Generate graph based on selection---------------------------------
             
             # get all phrases with the root character
-            root_phrase <- unlist(unname(dt[v==root,"pos"]))
+            root_phrase <- unlist(unname(vocab_clean[v==root,"pos"]))
             root_node <- get_nodes(root_phrase, 1, stop=input$recursions)
             
             # get all edges containing the phrases of interest
@@ -139,10 +140,9 @@ server <- function(input, output) {
                                                         alpha=1)),
                                    labels=c("Other","Root")) +
                 ggtitle(paste0("Words related to: ",
-                               dt$most_likely[dt$v==root])) +
+                               vocab_clean$most_likely[vocab_clean$v==root])) +
                 theme_blank() +
-                theme(legend.position="none",
-                      text=element_text(family="Comic Sans"))
+                theme(legend.position="none")
             p %>%
                 # sets the specific order of tooltip variables (in this case 1)
                 ggplotly(tooltip="text",
@@ -150,6 +150,7 @@ server <- function(input, output) {
                          height=600 + 12*nrow(nodes)) %>%
                 layout(xaxis = list(fixedrange = T), 
                        yaxis = list(fixedrange = T),
+                       font = list(family = "sans serif"),
                        dragmode = F) %>%
                 config(displayModeBar = F)
         })
@@ -160,8 +161,8 @@ server <- function(input, output) {
     })
     
     observeEvent(input$randomize,{
-        print(sample(dt$v,1))
-        make_network(sample(dt$v,1))
+        print(sample(vocab_clean$v,1))
+        make_network(sample(vocab_clean$v,1))
     })
 }
 
