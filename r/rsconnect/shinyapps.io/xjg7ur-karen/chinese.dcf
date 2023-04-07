@@ -5,10 +5,10 @@ account: xjg7ur-karen
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 8520454
-bundleId: 7026058
+bundleId: 7062386
 url: https://xjg7ur-karen.shinyapps.io/chinese/
-when: 1680137652.36522
-lastSyncTime: 1680137652.36522
+when: 1680890714.31127
+lastSyncTime: 1680890714.31127
 asMultiple: FALSE
 asStatic: FALSE
 ignoredFiles: app-archive.R|sample.csv|sentences.csv

@@ -1,7 +1,7 @@
 library(readxl)
 library(data.table)
-library(tidyverse)
-library(igraph)
+library(purrr)
+library(dplyr)
 
 # read data (manually created...)
 # vocab <- as.data.table(read_xlsx("r/vocab.xlsx"))

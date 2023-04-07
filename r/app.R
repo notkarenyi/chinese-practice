@@ -13,6 +13,7 @@
 library(shiny)
 library(plotly)
 library(ggnetwork)
+library(igraph)
 
 source("link.R")
 # graph <- read.csv("graph.csv")
