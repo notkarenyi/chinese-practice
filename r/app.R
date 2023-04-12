@@ -1,12 +1,14 @@
+# This is a Shiny web application for displaying semantic connections between Chinese vocab words from a list. Run the application by clicking the 'Run App' button above.
 #
-# This is a Shiny web application for displaying semantic connections between Chinese vocab words from a list. You can run the application by clicking
-# the 'Run App' button above.
+# link.R produces 3 data frames:
+#  graph: position pairs containing all unique combinations of character phrases
+#  vocab: vocab phrases to learn
+#  chars: characters (roots) associated with the phrases
 #
 # Hooray for these people!!!
 #
 #   https://kateto.net/network-visualization
 #   https://minimaxir.com/notebooks/interactive-network/
-#
 
 # setup-------------------------------------------------------------------------
 
@@ -19,28 +21,32 @@ source("link.R")
 # graph <- read.csv("graph.csv")
 text <- readLines("text.txt", encoding="UTF-8")
 
-get_nodes <- function(root,counter,stop) {
-    #' a recursive selection of nodes
+get_nodes <- function(root,counter,stop,color,colors=c(),nodes=data.frame()) {
+    #' Select nodes recursively
     
-    if (counter>stop) {
-        return(root)
+    # get all edges containing the phrases of interest
+    edges <- graph[f %in% root & t %in% root,]
+    
+    # get all unique nodes that are in the edges of interest
+    nodes <- bind_rows(nodes,vocab[vocab$name %in% root,]) %>% distinct()
+
+    colors <- c(colors,rep(as.character(color),nrow(nodes)-length(colors)))
+
+    if (counter==stop) {
+        return(c(edges,nodes,data.frame(colors)))
     } else {
         
-        # get all edges containing the phrases of interest
-        edges <- graph[f %in% root & t %in% root,]
+        # get all individual characters from the nodes of interest
+        characters <- nodes$chinese %>% strsplit("") %>% unlist() %>% unique()
         
-        # get all unique nodes that are in the edges of interest
-        nodes <- vocab[vocab$name %in% root,]
-        
-        v <- nodes$chinese %>% strsplit("") %>% unlist() %>% unique()
-        
-        for (i in v) {
-            root = c(root, unlist(unname(vocab_clean[v==i,"pos"])))
+        # get all positions of phrases containing characters of interest
+        for (character in characters) {
+            root = c(root, unlist(unname(chars[v==character,"pos"])))
         }
         
         root <- unique(root)
         
-        get_nodes(root,counter+1,stop)
+        get_nodes(root,counter+1,stop,color+1,colors,nodes=nodes)
     }
 }
 
@@ -59,13 +65,13 @@ ui <- fluidPage(
         sidebarPanel(
             selectizeInput("root",
                            "Type or select a word to focus on",
-                           choices=vocab_clean$v),
+                           choices=chars$v),
             actionButton("randomize",
                          "Randomize"),
             hr(),
             sliderInput("recursions",
                         "Levels of detail",
-                        1,5,value=1,
+                        1,4,value=1,
                         ticks=F),
             br(),
             p("Tip: Hover over or tap a word for the English translation."),
@@ -104,44 +110,41 @@ server <- function(input, output) {
             
             # Generate graph based on selection---------------------------------
             
+            stop=input$recursions + 1
+            
             # get all phrases with the root character
-            root_phrase <- unlist(unname(vocab_clean[v==root,"pos"]))
-            root_node <- get_nodes(root_phrase, 1, stop=input$recursions)
+            root_phrases <- unlist(unname(chars[v==root,"pos"]))
+            graph_results <- get_nodes(root_phrases, counter=1, stop=stop, color=1)
             
-            # get all edges containing the phrases of interest
-            edges <- graph[f %in% root_node & t %in% root_node,]
-            
-            # get all unique nodes that are in the edges of interest
-            nodes <- vocab[vocab$name %in% root_node,]
-            
-            # color the root words differently
-            nodes$col <- ifelse((nodes$name %in% root_phrase),
-                                "Root",
-                                "Other")
-            
+            # deal with multiple output function
+            edges <- data.frame(graph_results[c('f','t')])
+            nodes <- data.frame(graph_results[!names(graph_results) %in% c('f','t','v')])
+            nodes$colors[grep(root,nodes$chinese)] <- 1
+
             nodes$name <- as.character(nodes$name)
             
             # format for ggplot
             net <- ggnetwork(graph.data.frame(edges))
             
             # add back information for labels etc
-            net <- left_join(net,select(nodes,name,chinese,text,col))
+            net <- left_join(net,select(nodes,name,chinese,text,colors))
             
             # set seed such that the random node placement is the same every time
             # set.seed(123)
             
+            cols <- c()
+            for (i in 1:stop) {
+                cols <- c(cols,rgb(red=(140+100*i/stop)/255, green=(140+100*i/stop)/255, blue=1, alpha=1))
+            }
+                
             p <- ggplot(net, aes(x = x, y = y, 
                                  xend = xend, yend = yend, text=text)) +
                 geom_edges(color="grey60",size=.1) +
-                geom_nodes(aes(color=col),size=18) +
+                geom_nodes(aes(color=colors),size=18) +
                 geom_nodetext(aes(label=chinese)) +
-                scale_color_manual(values=c("white",rgb(red=200/255, 
-                                                        green=200/255, 
-                                                        blue=255/255, 
-                                                        alpha=1)),
-                                   labels=c("Other","Root")) +
+                scale_color_manual(values=cols,labels=as.character(1:stop)) +
                 ggtitle(paste0("Words related to: ",
-                               vocab_clean$most_likely[vocab_clean$v==root])) +
+                               chars$most_likely[chars$v==root])) +
                 theme_blank() +
                 theme(legend.position="none")
             p %>%
@@ -162,8 +165,8 @@ server <- function(input, output) {
     })
     
     observeEvent(input$randomize,{
-        print(sample(vocab_clean$v,1))
-        make_network(sample(vocab_clean$v,1))
+        print(sample(chars$v,1))
+        make_network(sample(chars$v,1))
     })
 }
 

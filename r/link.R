@@ -12,17 +12,17 @@ vocab <- vocab[,text:=paste0(pinyin, " / ", english)]
 # get a list of all characters occurring in the set
 vocab$v <- vocab$chinese %>% strsplit("") 
 v <- vocab$chinese %>% strsplit("") %>% unlist()
-vocab_clean <- as.data.table(table(v))
+chars <- as.data.table(table(v))
 
 # get only those characters occurring more than once in the set
-vocab_clean <- vocab_clean[N>1,]
-vocab_clean <- vocab_clean[order(N,decreasing=T),]
+chars <- chars[N>1,]
+chars <- chars[order(N,decreasing=T),]
 
 # get the corresponding vocab words in the set using each of these characters
-vocab_clean <- mutate(vocab_clean, pos = map(v, ~grep(., vocab$chinese)))
+chars <- mutate(chars, pos = map(v, ~grep(., vocab$chinese)))
 
 # get the corresponding english translations for each "root" word
-vocab_clean <- mutate(vocab_clean, trans = map(pos, ~vocab$english[.]))
+chars <- mutate(chars, trans = map(pos, ~vocab$english[.]))
 
 guess_meaning <- function(x) {
   #' I am lazy to do NLP eg stemming, lemming
@@ -41,17 +41,17 @@ most_likely <- function(x) {
   }
 }
 
-vocab_clean <- mutate(vocab_clean, most_likely = map(trans, most_likely))
+chars <- mutate(chars, most_likely = map(trans, most_likely))
 
 # make the positions into network connection format-----------------------------
 
 # IF YOU DON'T FILTER OUT LISTS OF LENGTH 1 YOU GET BAD RESULTS WITH COMBN()
 # not sure why this happens but we need to do a second check of position length (# of occurrences)
-vocab_clean$l <- map(vocab_clean$pos,length)
-vocab_clean <- vocab_clean[l>1,]
+chars$l <- map(chars$pos,length)
+chars <- chars[l>1,]
 
 # find possible combinations between positions
-x <- map(vocab_clean$pos,combn,2,simplify=F)
+x <- map(chars$pos,combn,2,simplify=F)
 
 # format by extracting the first and second element of each combination, respectively
 f <- unlist(map(x, map, ~.[1]))
@@ -64,8 +64,8 @@ graph <- distinct(graph)
 # stats <- read_xlsx("r/vocab.xlsx",skip=2,sheet="Statistics") %>% as.data.table()
 # stats <- stats[,c("Character","CHR/million")]
 # names(stats) <- c("v","chrpermil")
-# stats <- left_join(stats,vocab_clean)
+# stats <- left_join(stats,chars)
 # stats[is.na(N),][300:2000,]
 
 # write.csv(graph, "r/graph.csv")
-# write.csv(vocab_clean, "r/vocab_clean.csv")
+# write.csv(chars, "r/chars.csv")
