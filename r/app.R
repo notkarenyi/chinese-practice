@@ -16,6 +16,7 @@ library(shiny)
 library(plotly)
 library(ggnetwork)
 library(igraph)
+library(htmlwidgets)
 
 source("link.R")
 # graph <- read.csv("graph.csv")
@@ -147,6 +148,7 @@ server <- function(input, output) {
                                chars$most_likely[chars$v==root])) +
                 theme_blank() +
                 theme(legend.position="none")
+            
             p %>%
                 # sets the specific order of tooltip variables (in this case 1)
                 ggplotly(tooltip="text",
@@ -156,18 +158,33 @@ server <- function(input, output) {
                        yaxis = list(fixedrange = T),
                        font = list(family = "sans serif"),
                        dragmode = F) %>%
-                config(displayModeBar = F)
+                config(displayModeBar = F) %>%
+                event_register("plotly_click")
+            # %>%
+            #     onRender("
+            #         function(el) {
+            #           el.on('plotly_click', function(d) { 
+            #             console.log(d['points'][0]['text']);
+            #           });
+            #         }
+            #     ")
+            
         })
     }
     
     observeEvent(input$root,{
+        # idk why this has to be a separate function to work
         make_network(input$root)
     })
     
     observeEvent(input$randomize,{
-        print(sample(chars$v,1))
-        make_network(sample(chars$v,1))
+        updateSelectizeInput(inputId="root",selected=sample(chars$v,1))
     })
+    
+    # output$root <- renderPrint({
+    #     dt <- event_data("plotly_click",source="p")
+    #     print(dt)
+    # })
 }
 
 # run app-----------------------------------------------------------------------
