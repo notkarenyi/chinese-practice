@@ -66,7 +66,8 @@ ui <- fluidPage(
         sidebarPanel(
             selectizeInput("root",
                            "Type or select a word to focus on",
-                           choices=chars$v),
+                           choices=chars$v,
+                           selected='不'),
             actionButton("randomize",
                          "Randomize"),
             hr(),
@@ -152,14 +153,15 @@ server <- function(input, output) {
             p %>%
                 # sets the specific order of tooltip variables (in this case 1)
                 ggplotly(tooltip="text",
-                         width=800 + 6*nrow(nodes),
-                         height=600 + 12*nrow(nodes)) %>%
+                         width=840 + 6*nrow(nodes) + 24*stop,
+                         height=600 + 12*nrow(nodes) + 24*stop) %>%
                 layout(xaxis = list(fixedrange = T), 
                        yaxis = list(fixedrange = T),
                        font = list(family = "sans serif"),
                        dragmode = F) %>%
                 config(displayModeBar = F) %>%
                 event_register("plotly_click")
+            
             # %>%
             #     onRender("
             #         function(el) {
@@ -174,16 +176,18 @@ server <- function(input, output) {
     
     observeEvent(input$root,{
         # idk why this has to be a separate function to work
+        updateSliderInput(inputId="recursions",value=1)
         make_network(input$root)
     })
     
     observeEvent(input$randomize,{
         updateSelectizeInput(inputId="root",selected=sample(chars$v,1))
     })
-    
-    # output$root <- renderPrint({
+
+    # observe({
     #     dt <- event_data("plotly_click",source="p")
-    #     print(dt)
+    #     if (is.null(dt)) print('hi') else print(dt)
+    #     updateSelectizeInput(inputId="root",selected="")
     # })
 }
 
