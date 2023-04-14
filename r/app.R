@@ -126,7 +126,20 @@ server <- function(input, output) {
             nodes$name <- as.character(nodes$name)
             
             # format for ggplot
-            net <- ggnetwork(graph.data.frame(edges))
+            g <- graph.data.frame(edges)
+            net <- ggnetwork(g,layout=layout_with_fr(g)) %>% arrange(name)
+            net2 <- ggnetwork(g,layout=layout_with_kk(g)) %>% arrange(name)
+            mapmean <- function(x, y, f, ...) {
+                out <- vector("list", length(x))
+                for (i in seq_along(x)) {
+                    out[[i]] <- mean(c(x[[i]], y[[i]]))
+                }
+                out
+            }
+            
+            for (nm in names(net)[names(net)!='name']) {
+                net[,nm] <- mapmean(net[,nm],net2[,nm]) %>% unlist()
+            }
             
             # add back information for labels etc
             net <- left_join(net,select(nodes,name,chinese,text,colors))
@@ -141,7 +154,8 @@ server <- function(input, output) {
                 
             p <- ggplot(net, aes(x = x, y = y, 
                                  xend = xend, yend = yend, text=text)) +
-                geom_edges(color="grey60",size=.1) +
+                geom_edges(color="grey60",
+                           size=.1) +
                 geom_nodes(aes(color=colors),size=18) +
                 geom_nodetext(aes(label=chinese)) +
                 scale_color_manual(values=cols,labels=as.character(1:stop)) +
@@ -153,8 +167,8 @@ server <- function(input, output) {
             p %>%
                 # sets the specific order of tooltip variables (in this case 1)
                 ggplotly(tooltip="text",
-                         width=840 + 6*nrow(nodes) + 24*stop,
-                         height=600 + 12*nrow(nodes) + 24*stop) %>%
+                         width=840 + 6*nrow(nodes),
+                         height=600 + 6*nrow(nodes)) %>%
                 layout(xaxis = list(fixedrange = T), 
                        yaxis = list(fixedrange = T),
                        font = list(family = "sans serif"),
