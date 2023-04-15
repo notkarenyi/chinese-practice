@@ -75,6 +75,10 @@ ui <- fluidPage(
                         "Levels of detail",
                         1,4,value=1,
                         ticks=F),
+            sliderInput("size",
+                        "Graph size",
+                        800,3200,value=1200,step=200,
+                        ticks=F),
             br(),
             p("Tip: Hover over or tap a word for the English translation."),
             hr(),
@@ -106,98 +110,94 @@ ui <- fluidPage(
 
 server <- function(input, output) {
     
-    make_network <- function(root) {
+    make_network <- reactive({
         
-        output$network <- renderPlotly({
-            
-            # Generate graph based on selection---------------------------------
-            
-            stop=input$recursions + 1
-            
-            # get all phrases with the root character
-            root_phrases <- unlist(unname(chars[v==root,"pos"]))
-            graph_results <- get_nodes(root_phrases, counter=1, stop=stop, color=1)
-            
-            # deal with multiple output function
-            edges <- data.frame(graph_results[c('f','t')])
-            nodes <- data.frame(graph_results[!names(graph_results) %in% c('f','t','v')])
-            nodes$colors[grep(root,nodes$chinese)] <- 1
+        # set seed such that the random node placement is the same every time
+        # set.seed(123)
+        
+        stop=input$recursions + 1
+        
+        # get all phrases with the root character
+        # root = '不'
+        root_phrases <- unlist(unname(chars[v==input$root,"pos"]))
+        graph_results <- get_nodes(root_phrases, counter=1, stop=stop, color=1)
+        updateSliderInput(inputId="size",value=round((800+3*length(graph_results$name))/100,0)*100)
+        
+        # deal with multiple output function
+        nodes <- data.frame(graph_results[!names(graph_results) %in% c('f','t','v')])
+        edges <- data.frame(graph_results[c('f','t')])
+        
+        nodes$colors[grep(root,nodes$chinese)] <- 1
+        nodes$name <- as.character(nodes$name)
+        
+        # format for ggplot
+        weights <- ifelse(edges$f==103,2,1)
+        g <- graph.data.frame(edges)
+        # net <- ggnetwork(g,layout=layout_with_fr(g))
+        net <- ggnetwork(g,layout=layout_with_kk(g,weights=weights))
+        
+        # add back information for labels etc
+        net <- left_join(net,select(nodes,name,chinese,text,colors))
+        
+        return(net)
+    })
+    
+    make_colors <- reactive({
+        cols <- c()
+        stop = input$recursions + 1
+        for (i in 1:stop) {
+            cols <- c(cols,rgb(red=(140+100*i/stop)/255, green=(140+100*i/stop)/255, blue=1, alpha=1))
+        }  
+        return(cols)
+    })
+    
+    output$network <- renderPlotly({
+        
+        p <- ggplot(make_network(), aes(x = x, y = y, 
+                                        xend = xend, yend = yend, text=text)) +
+            geom_edges(color="grey60",
+                       size=.1) +
+            geom_nodes(aes(color=colors),size=18) +
+            geom_nodetext(aes(label=chinese)) +
+            scale_color_manual(values=make_colors(),labels=as.character(1:stop)) +
+            ggtitle(paste0("Words related to: ",
+                           chars$most_likely[chars$v==root])) +
+            theme_blank() +
+            theme(legend.position="none") 
+        
+        p %>%
+            # sets the specific order of tooltip variables (in this case 1)
+            ggplotly(tooltip="text",
+                     width=input$size,
+                     height=input$size) %>%
+            layout(xaxis = list(fixedrange = T),
+                   yaxis = list(fixedrange = T),
+                   font = list(family = "sans serif"),
+                   dragmode = F) %>%
+            config(displayModeBar = F) %>%
+            event_register("plotly_click")
+        
 
-            nodes$name <- as.character(nodes$name)
-            
-            # format for ggplot
-            g <- graph.data.frame(edges)
-            net <- ggnetwork(g,layout=layout_with_fr(g)) %>% arrange(name)
-            net2 <- ggnetwork(g,layout=layout_with_kk(g)) %>% arrange(name)
-            mapmean <- function(x, y, f, ...) {
-                out <- vector("list", length(x))
-                for (i in seq_along(x)) {
-                    out[[i]] <- mean(c(x[[i]], y[[i]]))
-                }
-                out
-            }
-            
-            for (nm in names(net)[names(net)!='name']) {
-                net[,nm] <- mapmean(net[,nm],net2[,nm]) %>% unlist()
-            }
-            
-            # add back information for labels etc
-            net <- left_join(net,select(nodes,name,chinese,text,colors))
-            
-            # set seed such that the random node placement is the same every time
-            # set.seed(123)
-            
-            cols <- c()
-            for (i in 1:stop) {
-                cols <- c(cols,rgb(red=(140+100*i/stop)/255, green=(140+100*i/stop)/255, blue=1, alpha=1))
-            }
-                
-            p <- ggplot(net, aes(x = x, y = y, 
-                                 xend = xend, yend = yend, text=text)) +
-                geom_edges(color="grey60",
-                           size=.1) +
-                geom_nodes(aes(color=colors),size=18) +
-                geom_nodetext(aes(label=chinese)) +
-                scale_color_manual(values=cols,labels=as.character(1:stop)) +
-                ggtitle(paste0("Words related to: ",
-                               chars$most_likely[chars$v==root])) +
-                theme_blank() +
-                theme(legend.position="none")
-            
-            p %>%
-                # sets the specific order of tooltip variables (in this case 1)
-                ggplotly(tooltip="text",
-                         width=840 + 6*nrow(nodes),
-                         height=600 + 6*nrow(nodes)) %>%
-                layout(xaxis = list(fixedrange = T), 
-                       yaxis = list(fixedrange = T),
-                       font = list(family = "sans serif"),
-                       dragmode = F) %>%
-                config(displayModeBar = F) %>%
-                event_register("plotly_click")
-            
-            # %>%
-            #     onRender("
-            #         function(el) {
-            #           el.on('plotly_click', function(d) { 
-            #             console.log(d['points'][0]['text']);
-            #           });
-            #         }
-            #     ")
-            
-        })
-    }
+        # 
+        # %>%
+        #     onRender("
+        #         function(el) {
+        #           el.on('plotly_click', function(d) { 
+        #             console.log(d['points'][0]['text']);
+        #           });
+        #         }
+        #     ")
+        
+    })
     
     observeEvent(input$root,{
-        # idk why this has to be a separate function to work
         updateSliderInput(inputId="recursions",value=1)
-        make_network(input$root)
     })
     
     observeEvent(input$randomize,{
         updateSelectizeInput(inputId="root",selected=sample(chars$v,1))
     })
-
+    
     # observe({
     #     dt <- event_data("plotly_click",source="p")
     #     if (is.null(dt)) print('hi') else print(dt)
