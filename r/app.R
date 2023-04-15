@@ -110,7 +110,6 @@ server <- function(input, output) {
         
         # set seed such that the random node placement is the same every time
         # set.seed(123)
-        
         stop=input$recursions + 1
         
         # get all phrases with the root character
@@ -123,7 +122,7 @@ server <- function(input, output) {
         nodes <- data.frame(graph_results[!names(graph_results) %in% c('f','t','v')])
         edges <- data.frame(graph_results[c('f','t')])
         
-        nodes$colors[grep(root,nodes$chinese)] <- 1
+        nodes$colors[grep(input$root,nodes$chinese)] <- 1
         nodes$name <- as.character(nodes$name)
         
         # format for ggplot
@@ -157,7 +156,7 @@ server <- function(input, output) {
             geom_nodetext(aes(label=chinese)) +
             scale_color_manual(values=make_colors(),labels=as.character(1:stop)) +
             ggtitle(paste0("Words related to: ",
-                           chars$most_likely[chars$v==root])) +
+                           chars$most_likely[chars$v==input$root])) +
             theme_blank() +
             theme(legend.position="none") 
         
