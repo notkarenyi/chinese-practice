@@ -71,7 +71,8 @@ ui <- fluidPage(
                         ticks=F),
             sliderInput("size",
                         "Graph size",
-                        800,3200,value=1200,step=200,
+                        800,3200,step=200,
+                        value=1200,
                         ticks=F),
             
             # information accordion---------------------------------------------
@@ -106,7 +107,7 @@ ui <- fluidPage(
 
 server <- function(input, output) {
     
-    make_network <- reactive({
+    output$network <- renderPlotly({
         
         # set seed such that the random node placement is the same every time
         # set.seed(123)
@@ -133,33 +134,24 @@ server <- function(input, output) {
         
         # add back information for labels etc
         net <- left_join(net,select(nodes,name,chinese,text,colors))
-        
-        return(net)
-    })
     
-    make_colors <- reactive({
         cols <- c()
-        stop = input$recursions + 1
         for (i in 1:stop) {
             cols <- c(cols,rgb(red=(140+100*i/stop)/255, green=(140+100*i/stop)/255, blue=1, alpha=1))
-        }  
-        return(cols)
-    })
-    
-    output$network <- renderPlotly({
-        
-        p <- ggplot(make_network(), aes(x = x, y = y, 
+        }
+
+        p <- ggplot(net, aes(x = x, y = y, 
                                         xend = xend, yend = yend, text=text)) +
             geom_edges(color="grey60",
                        size=.1) +
             geom_nodes(aes(color=colors),size=18) +
             geom_nodetext(aes(label=chinese)) +
-            scale_color_manual(values=make_colors(),labels=as.character(1:stop)) +
+            scale_color_manual(values=cols, labels=as.character(1:stop)) +
             ggtitle(paste0("Words related to: ",
-                           chars$most_likely[chars$v==input$root])) +
+                           unlist(chars$most_likely[chars$v==input$root]))) +
             theme_blank() +
             theme(legend.position="none") 
-        
+
         p %>%
             # sets the specific order of tooltip variables (in this case 1)
             ggplotly(tooltip="text",
