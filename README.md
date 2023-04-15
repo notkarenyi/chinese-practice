@@ -4,6 +4,14 @@ The main product in this project is `app.R`, an RShiny app that displays semanti
 
 The interesting thing about Chinese is that its character structure uniquely lends it to root-word analysis, without the need for lemmatizing (at least, in the Chinese form). This will be obvious to native Chinese, but less so for Americans and heritage speakers like me.
 
+## Resources for network graphing
+
+https://kateto.net/network-visualization
+
+https://minimaxir.com/notebooks/interactive-network/
+
+https://briatte.github.io/ggnetwork/articles/ggnetwork.html
+
 ## Prompt
 
 1. I need to learn Chinese.

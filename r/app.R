@@ -4,11 +4,6 @@
 #  graph: position pairs containing all unique combinations of character phrases
 #  vocab: vocab phrases to learn
 #  chars: characters (roots) associated with the phrases
-#
-# Hooray for these people!!!
-#
-#   https://kateto.net/network-visualization
-#   https://minimaxir.com/notebooks/interactive-network/
 
 # setup-------------------------------------------------------------------------
 
@@ -16,7 +11,7 @@ library(shiny)
 library(plotly)
 library(ggnetwork)
 library(igraph)
-library(htmlwidgets)
+# library(htmlwidgets)
 
 source("link.R")
 # graph <- read.csv("graph.csv")
@@ -58,12 +53,11 @@ ui <- fluidPage(
         tags$link(rel = "stylesheet", type = "text/css", href = "index.css")
     ),
 
-    # Application title
     titlePanel("chinese word net"),
 
-    # Sidebar with a slider input for number of bins 
     sidebarLayout(
         sidebarPanel(
+            # inputs------------------------------------------------------------
             selectizeInput("root",
                            "Type or select a word to focus on",
                            choices=chars$v,
@@ -79,6 +73,8 @@ ui <- fluidPage(
                         "Graph size",
                         800,3200,value=1200,step=200,
                         ticks=F),
+            
+            # information accordion---------------------------------------------
             br(),
             p("Tip: Hover over or tap a word for the English translation."),
             hr(),
@@ -99,7 +95,7 @@ ui <- fluidPage(
             width=2
         ),
 
-        # Show a plot of the chosen subset
+        # show plot of the chosen subset
         mainPanel(
            plotlyOutput("network")
         )
@@ -174,21 +170,19 @@ server <- function(input, output) {
                    yaxis = list(fixedrange = T),
                    font = list(family = "sans serif"),
                    dragmode = F) %>%
-            config(displayModeBar = F) %>%
-            event_register("plotly_click")
-        
-
-        # 
+            config(displayModeBar = F) 
         # %>%
         #     onRender("
         #         function(el) {
-        #           el.on('plotly_click', function(d) { 
+        #           el.on('plotly_click', function(d) {
         #             console.log(d['points'][0]['text']);
         #           });
         #         }
         #     ")
         
     })
+    
+    # event_register(p,"plotly_click")
     
     observeEvent(input$root,{
         updateSliderInput(inputId="recursions",value=1)
@@ -197,14 +191,13 @@ server <- function(input, output) {
     observeEvent(input$randomize,{
         updateSelectizeInput(inputId="root",selected=sample(chars$v,1))
     })
-    
+
     # observe({
     #     dt <- event_data("plotly_click",source="p")
     #     if (is.null(dt)) print('hi') else print(dt)
-    #     updateSelectizeInput(inputId="root",selected="")
+    #     updateSelectizeInput(inputId="root",selected=sample(chars$v,1))
     # })
 }
 
 # run app-----------------------------------------------------------------------
-
 shinyApp(ui = ui, server = server)
