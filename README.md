@@ -6,11 +6,13 @@ The interesting thing about Chinese is that its character structure uniquely len
 
 ## Resources for network graphing
 
-https://kateto.net/network-visualization
+[Katya Ognyanova: Network Visualization](https://kateto.net/network-visualization)
 
-https://minimaxir.com/notebooks/interactive-network/
+[Max Woolf: plotly in R](https://minimaxir.com/notebooks/interactive-network/)
 
-https://briatte.github.io/ggnetwork/articles/ggnetwork.html
+[Francois Briatte: ggnetwork](https://briatte.github.io/ggnetwork/articles/ggnetwork.html)
+
+[Andy Chen: Coupled Events with Shiny](https://medium.com/@abchen/increasing-interaction-through-coupled-events-with-shiny-and-plotly-4a253dd3be12)
 
 ## Prompt
 
@@ -22,7 +24,7 @@ https://briatte.github.io/ggnetwork/articles/ggnetwork.html
 6. I need an app where I can organize the words in a 2D space and add tags/labels to make semantic connections
 7. I need to be able to see common root words, whether computationally or by drawing connections
 
-## Specs 
+## Initial Plan
 
 *wishlist
 

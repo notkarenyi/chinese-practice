@@ -61,11 +61,11 @@ graph <- as.data.table(data.frame(f,t))
 graph <- distinct(graph)
 
 # what vocab do I still have left to learn?
-# stats <- read_xlsx("r/vocab.xlsx",skip=2,sheet="Statistics") %>% as.data.table()
-# stats <- stats[,c("Character","CHR/million")]
-# names(stats) <- c("v","chrpermil")
+# stats <- read_xlsx("r/vocab.xlsx",sheet="Common Chinese") %>% as.data.table()
+# stats <- stats[,c("Character","CHR/million","Pinyin","English")]
+# names(stats) <- c("v","chrpermil","pinyin","english")
 # stats <- left_join(stats,chars)
-# stats[is.na(N),][300:2000,]
+# stats[is.na(N),] %>% View()
 
 # write.csv(graph, "r/graph.csv")
 # write.csv(chars, "r/chars.csv")
