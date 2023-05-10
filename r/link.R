@@ -4,8 +4,9 @@ library(purrr)
 library(dplyr)
 
 # read data (manually created...)
-# vocab <- as.data.table(read_xlsx("r/vocab.xlsx"))
-vocab <- as.data.table(read_xlsx("vocab.xlsx"))
+location <- ""
+# location <- "r/"
+vocab <- as.data.table(read_xlsx(paste0(location,"vocab.xlsx")))
 names(vocab) <- tolower(names(vocab))
 vocab <- vocab[,text:=paste0(pinyin, " / ", english)]
 
@@ -35,13 +36,22 @@ most_likely <- function(x) {
     guess_meaning(x)[guess_meaning(x)==max(guess_meaning(x))]
   )
   if (length(r)>1) {
-    return("Not yet translated")
+    return("")
   } else {
     return(r)
   }
 }
 
-chars <- mutate(chars, most_likely = map(trans, most_likely))
+chars <- mutate(chars, most_likely = as.character(map(trans, most_likely)))
+
+# what vocab do I still have left to learn?
+stats <- read_xlsx(paste0(location,"vocab.xlsx"),sheet="Common Chinese") %>% as.data.table()
+stats <- stats[,c("Character","CHR/million","Pinyin","English")]
+names(stats) <- c("v","chrpermil","pinyin","most_likely2")
+# stats <- left_join(stats,chars)
+chars <- left_join(chars,stats)
+chars[most_likely=="","most_likely"] <- chars[most_likely=="","most_likely2"]
+chars <- chars[,!c("most_likely2")]
 
 # make the positions into network connection format-----------------------------
 
@@ -60,12 +70,4 @@ t <- unlist(map(x, map, ~.[2]))
 graph <- as.data.table(data.frame(f,t))
 graph <- distinct(graph)
 
-# what vocab do I still have left to learn?
-# stats <- read_xlsx("r/vocab.xlsx",sheet="Common Chinese") %>% as.data.table()
-# stats <- stats[,c("Character","CHR/million","Pinyin","English")]
-# names(stats) <- c("v","chrpermil","pinyin","english")
-# stats <- left_join(stats,chars)
-# stats[is.na(N),] %>% View()
-
-# write.csv(graph, "r/graph.csv")
 # write.csv(chars, "r/chars.csv")

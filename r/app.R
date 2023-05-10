@@ -11,7 +11,6 @@ library(shiny)
 library(plotly)
 library(ggnetwork)
 library(igraph)
-# library(htmlwidgets)
 
 source("link.R")
 # graph <- read.csv("graph.csv")
@@ -61,18 +60,13 @@ ui <- fluidPage(
             selectizeInput("root",
                            "Type or select a word to focus on",
                            choices=chars$v,
-                           selected='不'),
+                           selected='中'),
             actionButton("randomize",
                          "Randomize"),
             hr(),
             sliderInput("recursions",
                         "Levels of detail",
                         1,4,value=1,
-                        ticks=F),
-            sliderInput("size",
-                        "Graph size",
-                        800,3200,step=200,
-                        value=1200,
                         ticks=F),
             
             # information accordion---------------------------------------------
@@ -114,10 +108,12 @@ server <- function(input, output) {
         stop=input$recursions + 1
         
         # get all phrases with the root character
-        # root = '不'
+        # input = c()
+        # input$root = '不'
+        # stop = 2
         root_phrases <- unlist(unname(chars[v==input$root,"pos"]))
         graph_results <- get_nodes(root_phrases, counter=1, stop=stop, color=1)
-        updateSliderInput(inputId="size",value=round((800+3*length(graph_results$name))/100,0)*100)
+        # updateSliderInput(inputId="size",value=round((800+3.5*length(graph_results$name))/100,0)*100)
         
         # deal with multiple output function
         nodes <- data.frame(graph_results[!names(graph_results) %in% c('f','t','v')])
@@ -135,59 +131,67 @@ server <- function(input, output) {
         # add back information for labels etc
         net <- left_join(net,select(nodes,name,chinese,text,colors))
     
+        # create gradient of colors based on number of levels of recursion
         cols <- c()
         for (i in 1:stop) {
             cols <- c(cols,rgb(red=(140+100*i/stop)/255, green=(140+100*i/stop)/255, blue=1, alpha=1))
         }
+        
+        # adjust graph size based on number of nodes present
+        size = round((800+length(graph_results$name)**1.4)/100,0)*100
 
-        p <- ggplot(net, aes(x = x, y = y, 
-                                        xend = xend, yend = yend, text=text)) +
+        p <- ggplot(net, aes(x=x, y=y, xend=xend, yend=yend, 
+                             # label the tooltips ?
+                             text=text,
+                             # identify which point was clicked
+                             key=chinese)) +
             geom_edges(color="grey60",
                        size=.1) +
             geom_nodes(aes(color=colors),size=18) +
             geom_nodetext(aes(label=chinese)) +
             scale_color_manual(values=cols, labels=as.character(1:stop)) +
             ggtitle(paste0("Words related to: ",
-                           unlist(chars$most_likely[chars$v==input$root]))) +
+                           chars$most_likely[chars$v==input$root])) +
             theme_blank() +
             theme(legend.position="none") 
-
+        
         p %>%
             # sets the specific order of tooltip variables (in this case 1)
             ggplotly(tooltip="text",
-                     width=input$size,
-                     height=input$size) %>%
+                     width=size,
+                     height=size,
+                     # ties plotly_click event to data
+                     source="name") %>%
             layout(xaxis = list(fixedrange = T),
                    yaxis = list(fixedrange = T),
                    font = list(family = "sans serif"),
                    dragmode = F) %>%
             config(displayModeBar = F) 
-        # %>%
-        #     onRender("
-        #         function(el) {
-        #           el.on('plotly_click', function(d) {
-        #             console.log(d['points'][0]['text']);
-        #           });
-        #         }
-        #     ")
-        
     })
     
-    # event_register(p,"plotly_click")
-    
+    # update graph when we change the root word via the input field
     observeEvent(input$root,{
         updateSliderInput(inputId="recursions",value=1)
     })
     
+    # update graph when we change the root word via randomization
     observeEvent(input$randomize,{
         updateSelectizeInput(inputId="root",selected=sample(chars$v,1))
     })
 
-    # observe({
-    #     dt <- event_data("plotly_click",source="p")
-    #     if (is.null(dt)) print('hi') else print(dt)
-    #     updateSelectizeInput(inputId="root",selected=sample(chars$v,1))
-    # })
+    # update graph whenever we click a node to explore more
+    observeEvent(event_data("plotly_click",source="name"), {
+        dt <- event_data("plotly_click",source="name")
+        if (!is.null(dt)) {
+            newWord <- strsplit(dt$key,"") %>% unlist()
+            if (input$root %in% newWord) {
+                newWord <- newWord[newWord!=input$root][sample(length(newWord)-1)]
+            } else {
+                newWord <- newWord[sample(length(newWord))]
+            }
+            updateSelectizeInput(inputId="root",selected=newWord)
+        } 
+    })
 }
 
 # run app-----------------------------------------------------------------------
