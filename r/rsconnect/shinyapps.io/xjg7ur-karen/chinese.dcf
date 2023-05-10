@@ -5,10 +5,10 @@ account: xjg7ur-karen
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 8520454
-bundleId: 7197820
+bundleId: 7198031
 url: https://notkarenyi.shinyapps.io/chinese/
-when: 1683698794.38241
-lastSyncTime: 1683698794.38241
+when: 1683700572.88996
+lastSyncTime: 1683700572.88996
 asMultiple: FALSE
 asStatic: FALSE
 ignoredFiles: app-archive.R|sample.csv|sentences.csv|test.R

@@ -14,6 +14,12 @@ The interesting thing about Chinese is that its character structure uniquely len
 
 [Andy Chen: Coupled Events with Shiny](https://medium.com/@abchen/increasing-interaction-through-coupled-events-with-shiny-and-plotly-4a253dd3be12)
 
+[hlendway via RStudio Community: Observe click events](https://community.rstudio.com/t/update-shinydashboard-input-value-selected-based-on-plotly-click/15318)
+
+[Carson Sievert via Gist: Using keys with click events](https://gist.github.com/daattali/9440f0b278dbbf538b3587e026811426#gistcomment-2207525)
+
+[Carson Sievert: Interactive events with plotly](https://webinars.cpsievert.me/20180220/#6)
+
 ## Prompt
 
 1. I need to learn Chinese.

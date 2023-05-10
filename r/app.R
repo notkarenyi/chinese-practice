@@ -71,7 +71,7 @@ ui <- fluidPage(
             
             # information accordion---------------------------------------------
             br(),
-            p("Tip: Hover over or tap a word for the English translation."),
+            p("Tip: Hover over or tap a word for the English translation. Click a word to center it in the graph."),
             hr(),
             tags$details(tags$summary(tags$a("About this app (expand)")),
                          tags$br(),
@@ -167,7 +167,7 @@ server <- function(input, output) {
                    font = list(family = "sans serif"),
                    dragmode = F) %>%
             config(displayModeBar = F) 
-    })
+    }) 
     
     # update graph when we change the root word via the input field
     observeEvent(input$root,{
@@ -184,12 +184,15 @@ server <- function(input, output) {
         dt <- event_data("plotly_click",source="name")
         if (!is.null(dt)) {
             newWord <- strsplit(dt$key,"") %>% unlist()
-            if (input$root %in% newWord) {
-                newWord <- newWord[newWord!=input$root][sample(length(newWord)-1)]
-            } else {
-                newWord <- newWord[sample(length(newWord))]
+            # make the new word NOT equal to the current root and PRESENT in the possible list
+            newWord <- newWord[(newWord!=input$root) & (newWord %in% chars$v)]
+            # random otherwise
+            newWord <- newWord[sample(length(newWord))]
+            # print(newWord)
+            # make sure we didn't filter out all possible words
+            if (length(newWord)) {
+                updateSelectizeInput(inputId="root",selected=newWord)
             }
-            updateSelectizeInput(inputId="root",selected=newWord)
         } 
     })
 }
