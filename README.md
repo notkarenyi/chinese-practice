@@ -100,3 +100,23 @@ The interesting thing about Chinese is that its character structure uniquely len
     * when selected is TRUE and add tag button clicked or shift + T, add tag in tag column of data frame (user input box)
 * save option to save data frame to csv (with username*)
 
+
+
+## V2
+
+Ideal:
+
+* JS
+* class for nodes
+  * attributes
+    * chinese
+    * english
+    * connections/links
+  * methods
+    * create
+    * connect (algorithm for kk sorting and network graphing)
+* display
+  * overflow out of the box
+  * transparency or faded for irrelevant nodes
+  * CSS animations? smooth transitions
+  * hidden or highly deemphasized menu

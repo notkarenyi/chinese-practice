@@ -9,6 +9,7 @@ location <- ""
 vocab <- as.data.table(read_xlsx(paste0(location,"vocab.xlsx")))
 names(vocab) <- tolower(names(vocab))
 vocab <- vocab[,text:=paste0(pinyin, " / ", english)]
+vocab$name <- as.character(vocab$name)
 
 # get a list of all characters occurring in the set
 vocab$v <- vocab$chinese %>% strsplit("") 
