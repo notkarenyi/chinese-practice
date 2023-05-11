@@ -113,10 +113,9 @@ server <- function(input, output) {
         # stop = 2
         root_phrases <- unlist(unname(chars[v==input$root,"pos"]))
         graph_results <- get_nodes(root_phrases, counter=1, stop=stop, color=1)
-        # updateSliderInput(inputId="size",value=round((800+3.5*length(graph_results$name))/100,0)*100)
-        
-        # deal with multiple output function
-        nodes <- data.frame(graph_results[!names(graph_results) %in% c('f','t','v')])
+
+        # deal with multiple-output function
+        nodes <- data.frame(graph_results[c('name','chinese','pinyin','english','text','colors')])
         edges <- data.frame(graph_results[c('f','t')])
         
         nodes$colors[grep(input$root,nodes$chinese)] <- 1
