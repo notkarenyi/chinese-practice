@@ -8,6 +8,7 @@
 # setup-------------------------------------------------------------------------
 
 library(shiny)
+library(shinybrowser)
 library(plotly)
 library(ggnetwork)
 library(igraph)
@@ -48,6 +49,8 @@ get_nodes <- function(root,counter,stop,color,colors=c(),nodes=data.frame()) {
 # define UI---------------------------------------------------------------------
 
 ui <- fluidPage(
+    shinybrowser::detect(),
+  
     tags$head(
         tags$link(rel = "stylesheet", type = "text/css", href = "index.css")
     ),
@@ -63,11 +66,13 @@ ui <- fluidPage(
                            selected='中'),
             actionButton("randomize",
                          "Randomize"),
-            hr(),
-            sliderInput("recursions",
-                        "Levels of detail",
-                        1,4,value=1,
-                        ticks=F),
+            
+            # tags$details(tags$summary(tags$a("More settings (expand)"))),
+            
+            checkboxInput("pinyin",
+                          "View all pinyin",
+                          value=FALSE,
+                          width='100%'),
             
             # information accordion---------------------------------------------
             br(),
@@ -105,12 +110,11 @@ server <- function(input, output) {
         
         # set seed such that the random node placement is the same every time
         # set.seed(123)
-        stop=input$recursions + 1
+        stop=2
         
         # get all phrases with the root character
         # input = c()
         # input$root = '不'
-        # stop = 2
         root_phrases <- unlist(unname(chars[v==input$root,"pos"]))
         graph_results <- get_nodes(root_phrases, counter=1, stop=stop, color=1)
 
@@ -180,8 +184,11 @@ server <- function(input, output) {
 
     # update graph whenever we click a node to explore more
     observeEvent(event_data("plotly_click",source="name"), {
+      
         dt <- event_data("plotly_click",source="name")
-        if (!is.null(dt)) {
+        
+        # NOTE: RESTRICT FEATURE ON DESKTOP FOR NOW bc touch is for navigation on mobile
+        if (!is.null(dt) & get_device()=="Desktop") {
             newWord <- strsplit(dt$key,"") %>% unlist()
             # make the new word NOT equal to the current root and PRESENT in the possible list
             newWord <- newWord[(newWord!=input$root) & (newWord %in% chars$v)]
