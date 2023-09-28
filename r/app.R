@@ -55,29 +55,39 @@ ui <- fluidPage(
         tags$link(rel = "stylesheet", type = "text/css", href = "index.css")
     ),
 
-    titlePanel("chinese word net"),
+    titlePanel(textOutput("word")),
 
     sidebarLayout(
         sidebarPanel(
             # inputs------------------------------------------------------------
+
             selectizeInput("root",
                            "Type or select a word to focus on",
                            choices=chars$v,
                            selected='中'),
+            
+            p("or if you prefer:"),
+            
             actionButton("randomize",
                          "Randomize"),
             
-            # tags$details(tags$summary(tags$a("More settings (expand)"))),
-            
+            hr(),
+            tags$b("Options"),
             checkboxInput("pinyin",
                           "View all pinyin",
                           value=FALSE,
                           width='100%'),
             
-            # information accordion---------------------------------------------
-            br(),
-            p("Tip: Hover over or tap a word for the English translation. Click a word to center it in the graph."),
+            # tags$details(tags$summary(tags$a("More settings (expand)"))),
+            
             hr(),
+            tags$b("Instructions"),
+            p("Hover over or tap a word for the English translation."),
+            p("Click a word to center it in the graph (desktop only)."),
+            
+            # information accordion---------------------------------------------
+            hr(),
+            
             tags$details(tags$summary(tags$a("About this app (expand)")),
                          tags$br(),
                          tags$p(text[1],
@@ -105,6 +115,15 @@ ui <- fluidPage(
 # define server logic-----------------------------------------------------------
 
 server <- function(input, output) {
+    
+    # set dashboard title to reflect the most likely English meaning of the root word
+    output$word <- reactive({
+      meaning = chars$most_likely[chars$v==input$root]
+      if (is.na(meaning)) {
+        meaning = input$root
+      }
+      paste0("chinese word net for: ", meaning)
+    })
     
     output$network <- renderPlotly({
         
@@ -157,8 +176,6 @@ server <- function(input, output) {
             geom_nodes(aes(color=colors),size=18) +
             geom_nodetext(aes(label=chinese)) +
             scale_color_manual(values=cols, labels=as.character(1:stop)) +
-            ggtitle(paste0("Words related to: ",
-                           chars$most_likely[chars$v==input$root])) +
             theme_blank() +
             theme(legend.position="none") 
         
