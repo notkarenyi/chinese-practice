@@ -17,32 +17,39 @@ source("link.R")
 # graph <- read.csv("graph.csv")
 text <- readLines("text.txt", encoding="UTF-8")
 
-get_nodes <- function(root,counter,stop,color,colors=c(),nodes=data.frame()) {
-    #' Select nodes recursively
-    
-    # get all edges containing the phrases of interest
-    edges <- graph[f %in% root & t %in% root,]
+get_nodes <- function(root,counter,stop,nodes=data.frame()) {
+    #' Using a "seed" or "root" word, select nodes recursively, 
+    #' or "prune" a mini-tree from the mother vocabulary knowledge graph
+    #' 
+    #' @param root string A Chinese character from user input
+    #' @param counter int Keeps track of which iteration we're on
+    #' @param stop int How many iterations to run before stopping
+    #' 
+    #' @return nodes data.frame All relevant nodes, pruned from the knowledge graph
     
     # get all unique nodes that are in the edges of interest
-    nodes <- bind_rows(nodes,vocab[vocab$name %in% root,]) %>% distinct()
-
-    colors <- c(colors,rep(as.character(color),nrow(nodes)-length(colors)))
+    new <- vocab[grep(root,vocab$chinese),]
+    new$colors <- as.character(counter)
+    nodes <- bind_rows(nodes,new) %>% distinct(chinese,.keep_all = TRUE)
 
     if (counter==stop) {
-        return(c(edges,nodes,data.frame(colors)))
+      
+        # if we are over the max number of nodes, randomly select some to display
+        # keep all roots, though
+        if (nrow(nodes)>70) {
+            orig = nodes[nodes$colors==1,]
+            nodes <- bind_rows(orig,
+                               sample_n(nodes[nodes$colors!=1,],70-nrow(orig)))
+        }
+        return(nodes)
+        
     } else {
         
-        # get all individual characters from the nodes of interest
-        characters <- nodes$chinese %>% strsplit("") %>% unlist() %>% unique()
+        # get all individual characters from the nodes of interest 
+        # (this includes previous root by definition)
+        root <- nodes$v %>% unlist() %>% unique() %>% paste0(collapse='|')
         
-        # get all positions of phrases containing characters of interest
-        for (character in characters) {
-            root = c(root, unlist(unname(chars[v==character,"pos"])))
-        }
-        
-        root <- unique(root)
-        
-        get_nodes(root,counter+1,stop,color+1,colors,nodes=nodes)
+        get_nodes(root,counter+1,stop,nodes=nodes)
     }
 }
 
@@ -77,8 +84,6 @@ ui <- fluidPage(
                           "View all pinyin",
                           value=FALSE,
                           width='100%'),
-            
-            # tags$details(tags$summary(tags$a("More settings (expand)"))),
             
             hr(),
             tags$b("Instructions"),
@@ -120,51 +125,65 @@ server <- function(input, output) {
     output$word <- reactive({
       meaning = chars$most_likely[chars$v==input$root]
       if (is.na(meaning)) {
+        # if unavailable, use chinese word directly
         meaning = input$root
       }
       paste0("chinese word net for: ", meaning)
     })
     
     output$network <- renderPlotly({
-        
-        # set seed such that the random node placement is the same every time
-        # set.seed(123)
-        stop=2
-        
+      
         # get all phrases with the root character
         # input = c()
         # input$root = '不'
-        root_phrases <- unlist(unname(chars[v==input$root,"pos"]))
-        graph_results <- get_nodes(root_phrases, counter=1, stop=stop, color=1)
-
-        # deal with multiple-output function
-        nodes <- data.frame(graph_results[c('name','chinese','pinyin','english','text','colors')])
-        edges <- data.frame(graph_results[c('f','t')])
+        nodes <- get_nodes(input$root, counter=1, stop=2) %>% distinct()
         
         if (input$pinyin) {
           nodes$chinese <- paste0(nodes$chinese,'\n',nodes$pinyin)
         }
         
         # set base color for the root words (relevant later)
-        nodes$colors[grep(input$root,nodes$chinese)] <- 1
+        nodes$colors[grep(input$root,nodes$chinese)] <- "1"
         nodes$name <- as.character(nodes$name)
         
+        # get a list of all characters occurring in the set
+        temp <- data.table(char = unique(unlist(nodes$v)))
+        
+        # for each character V, get all the IDs of the phrases containing V 
+        temp <- mutate(temp, pos = map(temp$char, ~nodes$name[grep(.,nodes$chinese)]))
+
+        # IF YOU DON'T FILTER OUT LISTS OF LENGTH 1 YOU GET BAD RESULTS WITH COMBN()
+        # not sure why this happens but we need to do a second check of position length (# of occurrences)
+        temp$l <- map(temp$pos,length)
+        temp <- temp[l>1,]
+        
+        # find possible combinations between positions
+        x <- map(temp$pos,combn,2,simplify=F)
+        
+        # format by extracting the first and second element of each combination, respectively
+        f <- unlist(map(x, map, ~.[1]))
+        t <- unlist(map(x, map, ~.[2]))
+        
+        edges <- as.data.table(data.frame(f,t)) %>% distinct()
+
         # format for ggplot
-        weights <- ifelse(edges$f==103,2,1)
         g <- graph.data.frame(edges)
-        net <- ggnetwork(g,layout=layout_with_kk(g,weights=weights))
+        net <- ggnetwork(g,layout=layout_with_kk(g))
         
         # add back information for labels etc
-        net <- left_join(net,select(nodes,name,chinese,text,colors))
+        net <- left_join(net,select(nodes,name,chinese,text,colors),by='name')
     
         # create gradient of colors based on number of levels of recursion
         cols <- c()
-        for (i in 1:stop) {
-            cols <- c(cols,rgb(red=(140+100*i/stop)/255, green=(140+100*i/stop)/255, blue=1, alpha=1))
+        for (i in 1:2) {
+            cols <- c(cols,rgb(red=(140+100*i/2)/255, 
+                               green=(140+100*i/2)/255, 
+                               blue=1, 
+                               alpha=1))
         }
-        
+
         # adjust graph size based on number of nodes present
-        size = round((800+length(graph_results$name)**1.4)/100,0)*100
+        size = round((800+nrow(nodes)**1.4)/100,0)*100
 
         p <- ggplot(net, aes(x=x, y=y, xend=xend, yend=yend, 
                              # label the tooltips ?
@@ -175,7 +194,7 @@ server <- function(input, output) {
                        size=.1) +
             geom_nodes(aes(color=colors),size=18) +
             geom_nodetext(aes(label=chinese)) +
-            scale_color_manual(values=cols, labels=as.character(1:stop)) +
+            scale_color_manual(values=cols, labels=as.character(1:2)) +
             theme_blank() +
             theme(legend.position="none") 
         
@@ -208,7 +227,7 @@ server <- function(input, output) {
       
         dt <- event_data("plotly_click",source="name")
         
-        # NOTE: RESTRICT FEATURE ON DESKTOP FOR NOW bc touch is for navigation on mobile
+        # RESTRICT FEATURE ON DESKTOP FOR NOW bc touch is for navigation on mobile
         if (!is.null(dt) & get_device()=="Desktop") {
             newWord <- strsplit(dt$key,"") %>% unlist()
             # make the new word NOT equal to the current root and PRESENT in the possible list
@@ -226,3 +245,4 @@ server <- function(input, output) {
 
 # run app-----------------------------------------------------------------------
 shinyApp(ui = ui, server = server)
+
