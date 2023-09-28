@@ -120,3 +120,22 @@ Ideal:
   * transparency or faded for irrelevant nodes
   * CSS animations? smooth transitions
   * hidden or highly deemphasized menu
+
+## Commercial applications
+
+* Upload your own vocab to study for a foreign language, or test prep such as MCAT
+
+* Display an entire dictionary
+  * adjust for frequency of use
+  
+  * https://pypi.org/project/wordfreq/
+  
+  * https://pypi.org/project/chinese-english-lookup/
+  
+  * https://cran.r-project.org/web/packages/translated/index.html
+  
+  * https://cran.r-project.org/web/packages/googleLanguageR/index.html
+  
+  * https://search.r-project.org/CRAN/refmans/rwstats/html/00Index.html
+  
+    
