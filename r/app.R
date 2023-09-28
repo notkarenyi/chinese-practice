@@ -36,10 +36,10 @@ get_nodes <- function(root,counter,stop,nodes=data.frame()) {
       
         # if we are over the max number of nodes, randomly select some to display
         # keep all roots, though
-        if (nrow(nodes)>70) {
+        if (nrow(nodes)>50) {
             orig = nodes[nodes$colors==1,]
             nodes <- bind_rows(orig,
-                               sample_n(nodes[nodes$colors!=1,],70-nrow(orig)))
+                               sample_n(nodes[nodes$colors!=1,],50-nrow(orig)))
         }
         return(nodes)
         
@@ -139,7 +139,7 @@ server <- function(input, output) {
         nodes <- get_nodes(input$root, counter=1, stop=2) %>% distinct()
         
         if (input$pinyin) {
-          nodes$chinese <- paste0(nodes$chinese,'\n',nodes$pinyin)
+          nodes$chinese <- paste0(nodes$chinese,'\n',nodes$pinyin,'\n',nodes$english)
         }
         
         # set base color for the root words (relevant later)
@@ -229,7 +229,9 @@ server <- function(input, output) {
         
         # RESTRICT FEATURE ON DESKTOP FOR NOW bc touch is for navigation on mobile
         if (!is.null(dt) & get_device()=="Desktop") {
-            newWord <- strsplit(dt$key,"") %>% unlist()
+            # address bug where we are using the pinyin as the character
+            newWord <- strsplit(dt$key,"<br />")[[1]][[1]]
+            newWord <- strsplit(newWord,"") %>% unlist()
             # make the new word NOT equal to the current root and PRESENT in the possible list
             newWord <- newWord[(newWord!=input$root) & (newWord %in% chars$v)]
             # random otherwise
