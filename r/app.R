@@ -122,13 +122,17 @@ server <- function(input, output) {
         nodes <- data.frame(graph_results[c('name','chinese','pinyin','english','text','colors')])
         edges <- data.frame(graph_results[c('f','t')])
         
+        if (input$pinyin) {
+          nodes$chinese <- paste0(nodes$chinese,'\n',nodes$pinyin)
+        }
+        
+        # set base color for the root words (relevant later)
         nodes$colors[grep(input$root,nodes$chinese)] <- 1
         nodes$name <- as.character(nodes$name)
         
         # format for ggplot
         weights <- ifelse(edges$f==103,2,1)
         g <- graph.data.frame(edges)
-        # net <- ggnetwork(g,layout=layout_with_fr(g))
         net <- ggnetwork(g,layout=layout_with_kk(g,weights=weights))
         
         # add back information for labels etc
@@ -172,14 +176,14 @@ server <- function(input, output) {
             config(displayModeBar = F) 
     }) 
     
-    # update graph when we change the root word via the input field
-    observeEvent(input$root,{
-        updateSliderInput(inputId="recursions",value=1)
-    })
-    
     # update graph when we change the root word via randomization
     observeEvent(input$randomize,{
         updateSelectizeInput(inputId="root",selected=sample(chars$v,1))
+    })
+    
+    # update graph when we change the pinyin setting, without changing input
+    observeEvent(input$pinyin,{
+        updateSelectizeInput(inputId="root",selected=input$root)
     })
 
     # update graph whenever we click a node to explore more
