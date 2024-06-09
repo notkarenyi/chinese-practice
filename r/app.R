@@ -64,10 +64,10 @@ ui <- fluidPage(
             actionButton("randomize",
                          "Randomize"),
             hr(),
-            sliderInput("recursions",
-                        "Levels of detail",
-                        1,4,value=1,
-                        ticks=F),
+            # sliderInput("recursions",
+            #             "Levels of detail",
+            #             1,4,value=1,
+            #             ticks=F),
             
             # information accordion---------------------------------------------
             br(),
