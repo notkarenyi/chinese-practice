@@ -15,19 +15,33 @@ library(igraph)
 source("link.R")
 # graph <- read.csv("graph.csv")
 text <- readLines("text.txt", encoding="UTF-8")
+maximum <- 50
 
-get_nodes <- function(root,counter,stop,color,colors=c(),nodes=data.frame()) {
+get_nodes <- function(root,counter,stop,color,orig_root,colors=c(),nodes=data.frame()) {
     #' Select nodes recursively
+    #' @example get_nodes(unlist(unname(chars[v=='中',"pos"])), counter=1, stop=2, color=1)
     
     # get all edges containing the phrases of interest
     edges <- graph[f %in% root & t %in% root,]
     
     # get all unique nodes that are in the edges of interest
     nodes <- bind_rows(nodes,vocab[vocab$name %in% root,]) %>% distinct()
+    
+    # ensure we stay a manageable number of nodes
+    if (counter==stop) {
+      # make sure we don't delete any of the first layer root nodes
+      removeable <- nodes$name[!(nodes$name %in% orig_root)]
+
+      remove <- sample(removeable,max(0,length(removeable)-maximum))
+
+      nodes <- nodes[!nodes$name %in% remove, ]
+      edges <- edges[!(f %in% remove | t %in% remove)]
+    }
 
     colors <- c(colors,rep(as.character(color),nrow(nodes)-length(colors)))
 
-    if (counter==stop) {
+    if ((counter==stop) | (nrow(nodes)==maximum)) {
+        # recursion base case
         return(c(edges,nodes,data.frame(colors)))
     } else {
         
@@ -41,7 +55,7 @@ get_nodes <- function(root,counter,stop,color,colors=c(),nodes=data.frame()) {
         
         root <- unique(root)
         
-        get_nodes(root,counter+1,stop,color+1,colors,nodes=nodes)
+        get_nodes(root,counter+1,stop,color+1,orig_root,colors,nodes=nodes)
     }
 }
 
@@ -107,7 +121,7 @@ server <- function(input, output) {
         # input$root = '不'
         stop = 2
         root_phrases <- unlist(unname(chars[v==input$root,"pos"]))
-        graph_results <- get_nodes(root_phrases, counter=1, stop=stop, color=1)
+        graph_results <- get_nodes(root_phrases, counter=1, stop=stop, color=1, orig_root=root_phrases)
 
         # deal with multiple-output function
         nodes <- data.frame(graph_results[c('name','chinese','pinyin','english','text','colors')])
