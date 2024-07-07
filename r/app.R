@@ -64,10 +64,6 @@ ui <- fluidPage(
             actionButton("randomize",
                          "Randomize"),
             hr(),
-            # sliderInput("recursions",
-            #             "Levels of detail",
-            #             1,4,value=1,
-            #             ticks=F),
             
             # information accordion---------------------------------------------
             br(),
@@ -105,12 +101,11 @@ server <- function(input, output) {
         
         # set seed such that the random node placement is the same every time
         # set.seed(123)
-        stop=input$recursions + 1
-        
+
         # get all phrases with the root character
         # input = c()
         # input$root = '不'
-        # stop = 2
+        stop = 2
         root_phrases <- unlist(unname(chars[v==input$root,"pos"]))
         graph_results <- get_nodes(root_phrases, counter=1, stop=stop, color=1)
 
@@ -167,11 +162,6 @@ server <- function(input, output) {
                    dragmode = F) %>%
             config(displayModeBar = F) 
     }) 
-    
-    # update graph when we change the root word via the input field
-    observeEvent(input$root,{
-        updateSliderInput(inputId="recursions",value=1)
-    })
     
     # update graph when we change the root word via randomization
     observeEvent(input$randomize,{
