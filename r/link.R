@@ -49,10 +49,13 @@ stats <- read_xlsx(paste0(location,"vocab.xlsx"),sheet="Common Chinese") %>% as.
 # remove the traditional characters towards the bottom of the list
 stats <- stats[1:4345,c("Character","CHR/million","Pinyin","English")]
 names(stats) <- c("v","chrpermil","pinyin","most_likely2")
+chars <- left_join(chars,stats) # get all character translations
+
+# print interesting statistics
 # stats <- left_join(stats,chars)
 # print(paste0(sum(is.na(stats$N)), " characters left to learn. ", round(sum(!is.na(stats$N))/nrow(stats)*100), "% of top 4345 most common characters learned"))
 # stats <- stats[is.na(stats$N)]
-chars <- left_join(chars,stats)
+
 chars[most_likely=="","most_likely"] <- chars[most_likely=="","most_likely2"]
 chars <- chars[,!c("most_likely2")]
 
