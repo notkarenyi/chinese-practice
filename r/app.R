@@ -158,10 +158,11 @@ server <- function(input, output) {
             geom_nodes(aes(color=colors),size=18) +
             geom_nodetext(aes(label=chinese)) +
             scale_color_manual(values=cols, labels=as.character(1:stop)) +
-            ggtitle(paste0("Words related to: ",
-                           chars$most_likely[chars$v==input$root])) +
+            labs(title=paste0("Words related to: ",
+                       chars$most_likely[chars$v==input$root])) +
             theme_blank() +
-            theme(legend.position="none") 
+            theme(legend.position="none",
+                  text = element_text(family="sans-serif"))
         
         p %>%
             # sets the specific order of tooltip variables (in this case 1)
