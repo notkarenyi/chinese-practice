@@ -63,7 +63,13 @@ get_nodes <- function(root,counter,stop,color,orig_root,colors=c(),nodes=data.fr
 
 ui <- fluidPage(
     tags$head(
-        tags$link(rel = "stylesheet", type = "text/css", href = "index.css")
+        tags$link(rel = "stylesheet", type = "text/css", href = "index.css"),
+        tags$script(HTML("
+          $(document).on('shiny:connected', function() {
+            var mobile = /Android|iPhone|iPad/i.test(navigator.userAgent);
+            Shiny.onInputChange('isMobile', mobile);
+          });
+        "))
     ),
 
     titlePanel("chinese word net"),
@@ -186,7 +192,7 @@ server <- function(input, output) {
     # update graph whenever we click a node to explore more
     observeEvent(event_data("plotly_click",source="name"), {
         dt <- event_data("plotly_click",source="name")
-        if (!is.null(dt)) {
+        if (!is.null(dt) & !input$isMobile) {
             newWord <- strsplit(dt$key,"") %>% unlist()
             # make the new word NOT equal to the current root and PRESENT in the possible list
             newWord <- newWord[(newWord!=input$root) & (newWord %in% chars$v)]
