@@ -162,7 +162,8 @@ server <- function(input, output) {
             geom_edges(color="grey60",
                        size=.1) +
             geom_nodes(aes(color=colors),size=18) +
-            geom_nodetext(aes(label=chinese)) +
+            # wrap if longer than 4 chars
+            geom_nodetext(aes(label=gsub('(.{4})(.+)','\\1\n\\2',chinese))) +
             scale_color_manual(values=cols, labels=as.character(1:stop)) +
             labs(title=paste0("Words related to: ",
                        chars$most_likely[chars$v==input$root])) +
