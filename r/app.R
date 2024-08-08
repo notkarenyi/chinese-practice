@@ -64,6 +64,7 @@ get_nodes <- function(root,counter,stop,color,orig_root,colors=c(),nodes=data.fr
 ui <- fluidPage(
     tags$head(
         tags$link(rel = "stylesheet", type = "text/css", href = "index.css"),
+        # cite: ChatGPT
         tags$script(HTML("
           $(document).on('shiny:connected', function() {
             var mobile = /Android|iPhone|iPad/i.test(navigator.userAgent);
