@@ -20,6 +20,10 @@ The interesting thing about Chinese is that its character structure uniquely len
 
 [Carson Sievert: Interactive events with plotly](https://webinars.cpsievert.me/20180220/#6)
 
+## Data
+
+Word and character frequency dataset: [SUBTLEX-CH: Chinese Word and Character Frequencies Based on Film Subtitles](https://doi.org/10.1371/journal.pone.0010729)
+
 ## Prompt
 
 1. I need to learn Chinese.
