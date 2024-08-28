@@ -6,9 +6,11 @@ library(dplyr)
 # read data (manually created...)
 location <- ""
 # location <- "r/"
+pos <- as.data.table(read_xlsx(paste0(location,"vocab.xlsx"),sheet='Common Words'))
 vocab <- as.data.table(read_xlsx(paste0(location,"vocab.xlsx")))
+vocab <- left_join(vocab,pos)
 names(vocab) <- tolower(names(vocab))
-vocab <- vocab[,text:=paste0(pinyin, " / ", english)]
+vocab <- vocab[,text:=paste0(pinyin, " / ", english, ' / ', part)]
 
 # get a list of all characters occurring in the set
 vocab$v <- vocab$chinese %>% strsplit("") 
