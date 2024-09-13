@@ -161,7 +161,7 @@ server <- function(input, output) {
                              # identify which point was clicked
                              key=chinese)) +
             geom_edges(color="grey60",
-                       size=.1) +
+                       linewidth=.1) +
             geom_nodes(aes(color=colors),size=18) +
             # wrap if longer than 4 chars
             geom_nodetext(aes(label=gsub('(.{4})(.+)','\\1\n\\2',chinese))) +
