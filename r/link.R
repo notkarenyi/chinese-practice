@@ -18,8 +18,10 @@ v <- vocab$chinese %>% strsplit("") %>% unlist()
 chars <- as.data.table(table(v))
 
 # get only those characters occurring more than once in the set
-chars <- chars[N>1,]
-chars <- chars[order(N,decreasing=T),]
+if (location!='r/') {
+  chars <- chars[N>1,]
+  chars <- chars[order(N,decreasing=T),]
+}
 
 # get the corresponding vocab words in the set using each of these characters
 chars <- mutate(chars, pos = map(v, ~grep(., vocab$chinese)))
@@ -54,9 +56,11 @@ names(stats) <- c("v","chrpermil","pinyin","most_likely2")
 chars <- left_join(chars,stats) # get all character translations
 
 # print interesting statistics
-# stats <- left_join(stats,chars)
-# print(paste0(sum(is.na(stats$N)), " characters left to learn. ", round(sum(!is.na(stats$N))/nrow(stats)*100), "% of top 4345 most common characters learned"))
-# stats <- stats[is.na(stats$N)]
+if (location=='r/') {
+  stats <- left_join(stats,chars)
+  print(paste0(sum(is.na(stats$N)), " characters left to learn. ", round((5000-sum(is.na(stats$N)))/5000*100), "% of top 5000 most common characters learned"))
+  stats <- stats[is.na(stats$N)]
+}
 
 chars[most_likely=="","most_likely"] <- chars[most_likely=="","most_likely2"]
 chars <- chars[,!c("most_likely2")]
