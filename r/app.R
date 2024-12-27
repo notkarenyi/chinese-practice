@@ -126,7 +126,7 @@ server <- function(input, output) {
         # get all phrases with the root character
         # input = c()
         # input$root = '不'
-        stop = 2
+        stop = 1
         root_phrases <- unlist(unname(chars[v==input$root,"pos"]))
         graph_results <- get_nodes(root_phrases, counter=1, stop=stop, color=1, orig_root=root_phrases)
 
