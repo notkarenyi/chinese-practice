@@ -6,8 +6,8 @@ library(dplyr)
 # read data (manually created...)
 location <- ""
 # location <- "r/"
-pos <- as.data.table(read_xlsx(paste0(location,"vocab.xlsx"),sheet='Common Words'))
-vocab <- as.data.table(read_xlsx(paste0(location,"vocab.xlsx")))
+pos <- as.data.table(read.csv(paste0(location,"parts-of-speech.csv")))
+vocab <- as.data.table(read.csv(paste0(location,"vocab.csv")))
 vocab <- left_join(vocab,pos)
 names(vocab) <- tolower(names(vocab))
 vocab <- vocab[,text:=paste0(pinyin, "\n", english, '\n', part)]
@@ -49,16 +49,18 @@ most_likely <- function(x) {
 chars <- mutate(chars, most_likely = as.character(map(trans, most_likely)))
 
 # what vocab do I still have left to learn?
-stats <- read_xlsx(paste0(location,"vocab.xlsx"),sheet="Common Chinese") %>% as.data.table()
-# remove the traditional characters towards the bottom of the list
-stats <- stats[1:4345,c("Character","CHR/million","Pinyin","English")]
-names(stats) <- c("v","chrpermil","pinyin","most_likely2")
+stats <- read.csv(paste0(location,"common-chinese.csv")) %>% as.data.table()
+stats <- stats[1:5000,c("Character","CHRmillion","Pinyin","English","Known")]
+names(stats) <- c("v","chrpermil","pinyin","most_likely2","known")
 chars <- left_join(chars,stats) # get all character translations
 
 # print interesting statistics
 if (location=='r/') {
   stats <- left_join(stats,chars)
-  print(paste0(sum(is.na(stats$N)), " characters left to learn. ", round((5000-sum(is.na(stats$N)))/5000*100), "% of top 5000 most common characters learned"))
+  stats[stats$known==0 & !is.na(stats$N),"known"] <- 1
+  cat(paste0(nrow(stats[stats$known==0,]), " characters left to learn.\n",
+               round(nrow(stats[stats$known==1,])/5000*100), "% of top 5000 most common characters learned.\n",
+               round(nrow(stats[1:3000,] %>% filter(known==1))/3000*100), "% of top 3000 most common characters learned"))
   stats <- stats[is.na(stats$N)]
 }
 
