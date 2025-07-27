@@ -6,5 +6,5 @@ For example, the two-character phrase 编程 is composed of 编, a word used in 
 This common question recognizes the finding from educational psychology that organizing new knowledge into existing
 https://www.sciencedirect.com/topics/psychology/memory-schema#:~:text=Schemas%20are%20semantic%20memory%20structures,memories%20that%20have%20been%20forgotten
 schemas
-improves retention. In other words, learning vocabulary is much faster when we make these lingistic connections.
+improves retention. In other words, learning vocabulary is much faster when we make these linguistic connections.
 This app organizes a given list of vocabulary words based on common characters and graphs them into a network using the igraph and plotly packages.
