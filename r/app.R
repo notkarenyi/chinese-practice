@@ -64,6 +64,7 @@ get_nodes <- function(root, counter, stop, color, orig_root, colors = c(), nodes
 # define UI---------------------------------------------------------------------
 
 ui <- fluidPage(
+  tags$link(rel = "icon", href = "www/favicon.ico"),
   tags$head(
     tags$link(rel = "stylesheet", type = "text/css", href = "index.css"),
     # cite: ChatGPT
