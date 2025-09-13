@@ -1500,7 +1500,7 @@
 域,42.76,yù,domain  ,1
 闲,42.74,xián,idle  ,1
 宇,42.72,yǔ,universe  ,1
-姓,42.63,xìng,surname  ,0
+姓,42.63,xìng,surname  ,1
 葬,42.44,zàng,bury  ,1
 党,42.38,dǎng,party  ,1
 售,42.36,shòu,sell  ,1
@@ -1563,7 +1563,7 @@
 伪,38.88,wěi,false  ,1
 距,38.88,jù,distance  ,1
 延,38.88,yán,extend  ,1
-凭,38.85,píng,based on  ,0
+凭,38.85,píng,based on  ,1
 田,38.83,tián,field  ,1
 捐,38.77,juān,donate  ,1
 挣,38.73,zhèng,earn  ,1
@@ -1606,7 +1606,7 @@
 隆,36.83,lóng,prosper  ,1
 狠,36.7,hěn,ferocious  ,1
 甩,36.7,shuǎi,throw  ,1
-燃,36.7,rán,burn  ,0
+燃,36.7,rán,burn  ,1
 抵,36.63,dǐ,resist  ,1
 粗,36.49,cū,coarse  ,1
 妓,36.49,jì,prostitute  ,0
@@ -1614,13 +1614,13 @@
 揭,36.42,jiē,lift  ,1
 涉,36.34,shè,involve  ,1
 晕,36.23,yūn,dizzy  ,1
-澡,36.23,zǎo,bath  ,0
+澡,36.23,zǎo,bath  ,1
 偿,36.21,cháng,repay  ,1
 牵,36.14,qiān,lead  ,1
-岸,36.14,àn,bank  ,0
+岸,36.14,àn,bank  ,1
 呐,35.97,nà,hey  ,1
 肚,35.95,dù,belly  ,1
-暖,35.87,nuǎn,warm  ,0
+暖,35.87,nuǎn,warm  ,1
 绳,35.84,shéng,rope  ,1
 蛇,35.78,shé,snake  ,1
 婴,35.78,yīng,infant  ,0
