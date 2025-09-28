@@ -1623,7 +1623,7 @@
 暖,35.87,nuǎn,warm  ,1
 绳,35.84,shéng,rope  ,1
 蛇,35.78,shé,snake  ,1
-婴,35.78,yīng,infant  ,0
+婴,35.78,yīng,infant  ,1
 胞,35.76,bāo,cell  ,1
 链,35.76,liàn,chain  ,1
 薄,35.74,bó,thin  ,1
@@ -1659,13 +1659,13 @@
 龄,34.03,líng,age  ,1
 汁,33.97,zhī,juice  ,1
 罐,33.92,guàn,can  ,1
-酱,33.86,jiàng,sauce  ,0
+酱,33.86,jiàng,sauce  ,1
 骚,33.84,sāo,harass,1
 芭,33.82,bā,banana  ,0
 亨,33.82,hēng,success  ,0
 齿,33.56,chǐ,tooth  ,1
 忽,33.56,hū,ignore  ,1
-肠,33.43,cháng,intestine  ,0
+肠,33.43,cháng,intestine  ,1
 钢,33.3,gāng,steel  ,1
 押,33.24,yā,deposit,1
 玻,33.22,bō,glass  ,1
@@ -2059,12 +2059,12 @@
 竭,17.63,jié,exhaust,1
 炎,17.61,yán,inflammation,1
 疏,17.57,shū,distant,1
-煮,17.53,zhǔ,boil,0
+煮,17.53,zhǔ,boil,1
 呈,17.53,chéng,present,0
-盐,17.53,yán,salt,0
+盐,17.53,yán,salt,1
 鄙,17.53,bǐ,contemptible,1
 匪,17.51,fěi,bandit,0
-煎,17.51,jiān,fry,0
+煎,17.51,jiān,fry,1
 耗,17.44,hào,consume,1
 鹿,17.38,lù,deer,1
 仆,17.38,pú,servant,1
@@ -2074,7 +2074,7 @@
 掘,17.29,jué,dig,1
 谜,17.12,mí,riddle,1
 捷,17.08,jié,quick,1
-馅,17.08,xiàn,stuffing,0
+馅,17.08,xiàn,stuffing,1
 瞄,17.06,miáo,aim,1
 赎,16.99,shú,redeem,1
 肾,16.95,shèn,kidney,1
@@ -2131,7 +2131,7 @@
 妄,15.8,wàng,vain  ,0
 漆,15.71,qī,lacquer  ,1
 膏,15.67,gāo,ointment  ,1
-虾,15.58,xiā,shrimp  ,0
+虾,15.58,xiā,shrimp  ,1
 筋,15.54,jīn,tendon  ,1
 慎,15.54,shèn,cautious  ,1
 浅,15.54,qiǎn,shallow  ,1
@@ -3342,7 +3342,7 @@
 酯,1.92,zhǐ,ester  ,0
 诋,1.92,dǐ,slander  ,0
 讳,1.92,huì,avoid  ,1
-饺,1.92,jiǎo,dumpling  ,0
+饺,1.92,jiǎo,dumpling  ,1
 蛎,1.92,lì,oyster  ,0
 楠,1.92,nán,cypress  ,0
 谛,1.9,dì,discern  ,0
