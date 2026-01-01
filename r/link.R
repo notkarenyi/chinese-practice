@@ -52,7 +52,10 @@ chars <- mutate(chars, most_likely = as.character(map(trans, most_likely)))
 
 # what vocab do I still have left to learn?
 stats <- read.csv(paste0(location, "common-chinese.csv")) %>% as.data.table()
-stats <- stats[1:5000, c("Character", "CHRmillion", "Pinyin", "English", "Known")]
+stats <- stats[
+  1:5000,
+  c("Character", "CHRmillion", "Pinyin", "English", "Known")
+]
 names(stats) <- c("v", "chrpermil", "pinyin", "most_likely2", "known")
 chars <- left_join(chars, stats) # get all character translations
 
@@ -60,13 +63,42 @@ chars <- left_join(chars, stats) # get all character translations
 if (location == "r/") {
   stats <- left_join(stats, chars)
   stats[stats$known == 0 & !is.na(stats$N), "known"] <- 1
-  cat(paste0(
-    nrow(stats[stats$known == 0, ]), " characters left to learn.\n",
-    round(nrow(stats[stats$known == 1, ]) / 5000 * 100), "% of top 5000 most common characters learned.\n",
-    round(nrow(stats[1:3000, ] %>% filter(known == 1)) / 3000 * 100), "% of top 3000 most common characters learned"
-  ))
+
+  unknown_5000 <- stats[stats$known == 0, ] %>%
+    nrow()
+  pct_5000 <- stats %>%
+    filter(known == 1) %>%
+    nrow() %>%
+    `/`(5000) %>%
+    `*`(100) %>%
+    round()
+  unknown_3000 <- stats[1:3000, ] %>%
+    filter(known == 0) %>%
+    nrow()
+  pct_3000 <- stats[1:3000, ] %>%
+    filter(known == 1) %>%
+    nrow() %>%
+    `/`(3000) %>%
+    `*`(100) %>%
+    round()
+
+  cat(
+    paste0(
+      unknown_5000,
+      " characters left to learn.\n",
+      pct_5000,
+      "% of top 5000 most common characters learned.\n",
+      unknown_3000,
+      " characters left to learn.\n",
+      pct_3000,
+      "% of top 3000 most common characters learned\n"
+    )
+  )
+
   stats <- stats[is.na(stats$N)]
-  stats %>% View()
+  stats %>%
+    filter(known == 0) %>%
+    View()
 }
 
 chars[most_likely == "", "most_likely"] <- chars[most_likely == "", "most_likely2"]
