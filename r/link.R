@@ -83,16 +83,14 @@ if (location == "r/") {
     round()
 
   cat(
-    paste0(
-      unknown_5000,
-      " characters left to learn.\n",
-      pct_5000,
-      "% of top 5000 most common characters learned.\n",
-      unknown_3000,
-      " characters left to learn.\n",
-      pct_3000,
-      "% of top 3000 most common characters learned\n"
-    )
+    pct_5000,
+    "% of top 5000 most common characters learned: ",
+    unknown_5000,
+    " characters left to learn.\n",
+    pct_3000,
+    "% of top 3000 most common characters learned: ",
+    unknown_3000,
+    " characters left to learn.\n"
   )
 
   stats <- stats[is.na(stats$N)]
