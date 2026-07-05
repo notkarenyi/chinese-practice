@@ -8,6 +8,7 @@ location <- ""
 # location <- "r/"
 pos <- as.data.table(read.csv(paste0(location, "parts-of-speech.csv")))
 vocab <- as.data.table(read.csv(paste0(location, "vocab.csv")))
+vocab$Name <- seq_len(nrow(vocab))
 vocab <- left_join(vocab, pos)
 names(vocab) <- tolower(names(vocab))
 vocab <- vocab[, text := paste0(pinyin, "\n", english, "\n", part)]
