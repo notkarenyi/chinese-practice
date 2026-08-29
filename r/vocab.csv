@@ -123,7 +123,7 @@ Chinese,Pinyin,English
 农场主,nóng mín zhǔ,farm owner (like in America)
 农民,nóng mín,small farmers (like in China)
 农民工,nóng mín gōng,farmers who moved to the city to find work
-户口,hù kǒu,“registered residence” allows your kids to go to a certain school etc. based on evidence of where you live
+户口,hù kǒu,“registered residence” allows your kids to go to a certain school etc based on evidence of where you live,
 快递,kuài dì,express delivery (of packages)
 快递公司,kuài dì gōng sī,like USPS (a type of relatively fast delivery company)
 情况,qíng kuàng,situation
@@ -146,7 +146,7 @@ Chinese,Pinyin,English
 引起,yǐn qǐ,cause
 纹身,wén shēn,tattoo
 囚犯,qiú fàn,prisoner
-甚至,shèn zhì,even (I don’t even know...)
+甚至,shèn zhì,even (I don’t even know)
 必须,bì xū,must
 配合,pèi hé,cooperate
 威胁,wēi xié,threaten
@@ -220,7 +220,7 @@ Chinese,Pinyin,English
 评分,píng fēn,rating
 提议,tí yì,propose
 意见,yì jiàn,objection
-周到,zhōu dào,1. considerate (as a host) 2. thorough
+周到,zhōu dào,considerate (as a host); thorough,
 高粱,gāo liáng,sorghum
 山火,shān huǒ,mountain wildfire
 火灾,huǒ zāi,wildfire
@@ -679,7 +679,7 @@ Chinese,Pinyin,English
 体现,tǐ xiàn,reflect; embody
 实用,shí yòng,practical
 英雄,yīng xióng,hero
-疼爱,téng ài,strong love; as of parent to child; etc.
+疼爱,téng ài,strong love; as of parent to child; etc
 可惜,kě xī,pity
 期间,qī jiān,period of time
 末,mò,end
@@ -1056,12 +1056,6 @@ Chinese,Pinyin,English
 帅呆了,shuài dāi le,awesome
 抢劫,qiǎng jié,robbery
 拆东墙 补西壁,chāi dōng qiáng bǔ xī bì,to rob Peter to pay Paul
-
-
-
-
-
-
 发卡,fà qiǎ,hairclip
 友谊,yǒu yì,friendship
 支持,zhī chí,support
@@ -7187,7 +7181,6 @@ B超,B chāo,ultrasound
 瓤儿,rángr,flesh; pulp
 铝箔,lǚ bó,aluminum foil
 饲养,sì yǎng,raise (animals)
-颂扬,sòng yáng,praise highly
 用途,yòng tú,use; purpose
 固有,gù yǒu,inherent
 锐气,ruì qì,vigor; sharp spirit
@@ -7210,3 +7203,73 @@ B超,B chāo,ultrasound
 肚脐眼,dù qí yǎn,navel
 海蜇,hǎi zhé,jellyfish
 蹚水,tāng shuǐ,wade through water
+相投,xiāng tóu,hit it off
+夙敌,sù dí,archenemy
+阐释,chǎn shì,explain
+隆重,lóng zhòng,grand
+灵柩,líng jiù,coffin
+庸碌,yōng lù,mediocre and busy
+晓得,xiǎo de,know
+孱弱,chán ruò,frail
+赐福,cì fú,bestow blessings
+崽子,zǎi zi,brat
+蔫儿,niānr,wilted; listless
+大浪淘沙,dà làng táo shā,the worthy survive rigorous selection
+鸡鸣狗盗,jī míng gǒu dào,petty tricks
+老老少少,lǎo lǎo shào shào,people of all ages
+零打碎敲,líng dǎ suì qiāo,do things bit by bit
+鬼迷心窍,guǐ mí xīn qiào,blinded by obsession
+蔫儿不唧,niānr bù jī,spiritless
+趔趄,liè qie,stagger
+聚拢,jù lǒng,gather together
+惊惶,jīng huáng,panic-stricken
+墩布,dūn bù,mop
+哧溜,chī liū,with a whoosh
+咬着耳朵,yǎo zhe ěr duo,whisper into someone's ear
+光腚,guāng dìng,naked butt
+睡眠惺忪,shuì mián xīng sōng,sleepy and bleary-eyed
+茸毛,róng máo,fine hair; fuzz
+扑棱,pū leng,flap; flutter
+女婿,nǚ xu,son-in-law
+喷粪,pēn fèn,spout nonsense; spew filth
+噼啪,pī pā,crackling sound
+造就,zào jiù,create; bring about
+议论,yì lùn,discuss; comment on
+羼杂,chàn zá,mix in; intermingle
+留意,liú yì,pay attention to
+入定,rù dìng,enter a meditative state
+唼喋,shà zhá,whisper; murmur
+红润,hóng rùn,ruddy; rosy
+浮漾,fú yàng,float and ripple
+音节,yīn jié,syllable
+数落,shǔ luo,scold; criticize
+浊流,zhuó liú,muddy current
+吱声,zī shēng,make a sound; speak up
+冉冉,rǎn rǎn,slowly; gradually
+冒失鬼,mào shi guǐ,klutz; careless person
+断断续续,duàn duàn xù xù,on and off; intermittently
+寸草不生,cùn cǎo bù shēng,not a blade of grass grows
+盐碱地,yán jiǎn dì,saline-alkali soil
+寥落,liáo luò,sparse; desolate
+单调,dān diào,monotonous
+嘎嘎,gā gā,cackle; quack
+棱角,léng jiǎo,edges and corners
+蹿升,cuān shēng,shoot up; soar
+哨子,shào zi,whistle
+磨蹭,mó ceng,dawdle
+撵出,niǎn chū,drive out
+瘸腿,qué tuǐ,lame leg
+匣子,xiá zi,box; case
+淬炼,cuì liàn,tempering; refine through hardship
+蹙眉,cù méi,furrow one's brows
+澡堂,zǎo táng,public bathhouse
+浴池,yù chí,bath pool
+风箱,fēng xiāng,bellows
+沁出,qìn chū,seep out
+狗崽子,gǒu zǎi zi,dog's pup; brat
+欠揍,qiàn zòu,deserve a beating
+粉刺,fěn cì,acne; pimple
+牛犊,niú dú,calf
+呛到,qiàng dào,choke on; inhale
+蕴藏,yùn cáng,contain; harbor
+流域,liú yù,river basin
