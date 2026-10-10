@@ -192,9 +192,10 @@ if (location == "r/") {
       check.names = FALSE,
       stringsAsFactors = FALSE
     ) %>%
-      as.data.table()
+      as.data.table() %>%
+      select(1:3)
     if ("Name" %in% names(commit_table)) {
-      names(commit_table)[1:4] <- c("Chinese", "Pinyin", "English", "Blank")
+      names(commit_table) <- c("Chinese", "Pinyin", "English")
     }
     cat(nrow(commit_table), " words in this commit.\n")
     commit_chars <- commit_table %>%
@@ -215,7 +216,7 @@ if (location == "r/") {
     mutate(
       learned_5000 = 100 - (unknown_5000 / 5000) * 100,
       learned_3000 = 100 - (unknown_3000 / 3000) * 100,
-      dates = as.Date(dates, format = "%Y-%m-%d")
+      dates = as.POSIXct(dates / 1000, origin = "1970-01-01", tz = "UTC")
     ) %>%
     mutate(
       month = format(dates, "%Y-%m")
@@ -227,7 +228,8 @@ if (location == "r/") {
     ) %>%
     ggplot(aes(x = month)) +
     geom_point(aes(y = percent_5000), color = "blue") +
-    geom_point(aes(y = percent_3000), color = "red")
+    geom_point(aes(y = percent_3000), color = "red") +
+    theme(axis.text.x = element_text(angle = 90, hjust = 1))
   print(g)
 }
 
