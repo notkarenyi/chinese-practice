@@ -1,3 +1,7 @@
+# Edit vocab list
+# Create a graph of the number of characters learned over time
+# Created by Karen Yi on 2026-10-10
+
 source("link.R")
 
 if (!grepl("r\\b", getwd())) {

@@ -1,9 +1,12 @@
+"""
+Get the history of the vocab file in a GitHub repository and track the number of lines in the file over time. The script fetches commits that modified the specified file, retrieves the content of the file at each commit, and calculates the number of lines. It then saves this information to a JSON file to create a plot showing the average number of lines per month.
+"""
+
 from datetime import date
 from io import BytesIO
 
 import pandas as pd
 import requests
-from plotnine import aes, element_text, geom_point, ggplot, scale_x_discrete, theme
 from tqdm import tqdm
 
 OWNER = "notkarenyi"
@@ -57,14 +60,3 @@ df.sort_values(by="month", inplace=True)
 month = df.groupby("month")["len"].mean().reset_index()
 
 df.to_json("file_history.json", index=False)
-
-(
-    ggplot(month, aes(x="month", y="len"))
-    + geom_point()
-    + scale_x_discrete(
-        limits=pd.period_range(
-            month["month"].min(), month["month"].max(), freq="M"
-        ).astype(str)
-    )
-    + theme(axis_text_x=element_text(rotation=90, ha="right"))
-)
