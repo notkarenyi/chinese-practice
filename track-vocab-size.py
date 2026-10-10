@@ -14,15 +14,14 @@ XLSX = "r/vocab.xlsx"
 headers = {"Accept": "application/vnd.github+json"}
 
 rows = (
-    pd.read_csv("file_history.csv").to_records()
-    if pd.io.common.file_exists("file_history.csv")
-    else pd.DataFrame()
+    pd.read_json("file_history.json").to_dict("records")
+    if pd.io.common.file_exists("file_history.json")
+    else []
 )
+existing_commits = [row["commit"] for row in rows] if len(rows) > 0 else set()
 
 # Get commits that modified the file
 url = f"https://api.github.com/repos/{OWNER}/{REPO}/commits"
-
-rows = []
 
 for file in [CSV, XLSX]:
     params = {"path": file, "per_page": 100}
@@ -30,8 +29,8 @@ for file in [CSV, XLSX]:
     commits = requests.get(url, headers=headers, params=params).json()
 
     for commit in tqdm(commits):
-        if not commit in rows:
-            sha = commit["sha"]
+        sha = commit["sha"]
+        if sha not in existing_commits:
             date = commit["commit"]["author"]["date"]
 
             # Get the file at this commit
@@ -57,7 +56,7 @@ df["month"] = pd.to_datetime(df["date"]).dt.to_period("M").astype(str)
 df.sort_values(by="month", inplace=True)
 month = df.groupby("month")["len"].mean().reset_index()
 
-df.to_csv("file_history.csv", index=False)
+df.to_json("file_history.json", index=False)
 
 (
     ggplot(month, aes(x="month", y="len"))
