@@ -168,16 +168,16 @@ if (location == "r/") {
     arrange(date)
 
   commit_history <- read.csv("commit_history.csv")
-  if (!nrow(commit_history)) {
-    unknown_5000 <- c()
-    unknown_3000 <- c()
-    dates <- c()
-    sha <- c()
-  } else {
+  if (nrow(commit_history)) {
     unknown_5000 <- commit_history$unknown_5000
     unknown_3000 <- commit_history$unknown_3000
     dates <- commit_history$dates
-    sha <- commit_history$commit
+    commits <- commit_history$commit
+  } else {
+    unknown_5000 <- c()
+    unknown_3000 <- c()
+    dates <- c()
+    commits <- c()
   }
 
   for (sha in all_commits$commit) {
@@ -207,10 +207,10 @@ if (location == "r/") {
     dates <- c(dates, commit_stats$date)
     unknown_5000 <- c(unknown_5000, get_stats(commit_chars, 5000))
     unknown_3000 <- c(unknown_3000, get_stats(commit_chars, 3000))
-    sha <- c(sha, commit_stats$commit)
+    commits <- c(commits, sha)
   }
 
-  df <- data.frame(dates, unknown_5000, unknown_3000)
+  df <- data.frame(dates, unknown_5000, unknown_3000, commits)
   write.csv(df, "commit_history.csv", row.names = FALSE)
   g <- df %>%
     mutate(
