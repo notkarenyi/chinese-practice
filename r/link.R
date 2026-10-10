@@ -210,26 +210,42 @@ if (location == "r/") {
     commits <- c(commits, sha)
   }
 
-  df <- data.frame(dates, unknown_5000, unknown_3000, commits)
-  write.csv(df, "commit_history.csv", row.names = FALSE)
-  g <- df %>%
+  commit_history <- data.frame(dates, unknown_5000, unknown_3000, commits)
+  write.csv(commit_history, "commit_history.csv", row.names = FALSE)
+  graph <- commit_history %>%
     mutate(
       learned_5000 = 100 - (unknown_5000 / 5000) * 100,
       learned_3000 = 100 - (unknown_3000 / 3000) * 100,
       dates = as.POSIXct(dates / 1000, origin = "1970-01-01", tz = "UTC")
     ) %>%
     mutate(
-      month = format(dates, "%Y-%m")
+      month = as.Date(paste0(format(dates, "%Y-%m"), "-01"))
     ) %>%
     group_by(month) %>%
     summarize(
       percent_5000 = mean(learned_5000),
       percent_3000 = mean(learned_3000)
     ) %>%
+    arrange(month)
+  months <- seq(
+    min(graph$month),
+    max(graph$month),
+    by = "month"
+  )
+  g <- graph %>%
     ggplot(aes(x = month)) +
-    geom_point(aes(y = percent_5000), color = "blue") +
-    geom_point(aes(y = percent_3000), color = "red") +
-    theme(axis.text.x = element_text(angle = 90, hjust = 1))
+    geom_smooth(aes(y = percent_5000, color = "Top 5000", group = 1), se = FALSE) +
+    geom_point(aes(y = percent_5000, color = "Top 5000", group = 1)) +
+    geom_smooth(aes(y = percent_3000, color = "Top 3000", group = 2), se = FALSE) +
+    geom_point(aes(y = percent_3000, color = "Top 3000", group = 2)) +
+    theme_minimal() +
+    # scale_x_discrete(breaks = months) +
+    # theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+    labs(
+      title = "Percent of Common Chinese Characters Learned",
+      x = "Month",
+      y = "Percent Learned"
+    )
   print(g)
 }
 
