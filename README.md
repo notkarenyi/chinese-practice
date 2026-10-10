@@ -4,6 +4,12 @@ The main product in this project is `app.R`, an RShiny app that displays semanti
 
 The interesting thing about Chinese is that its character structure uniquely lends it to root-word analysis, without the need for lemmatizing (at least, in the Chinese form). This will be obvious to native Chinese, but less so for Americans and heritage speakers like me.
 
+[Visit the live site](https://notkarenyi.shinyapps.io/chinese/)
+
+![This app in action](network.png)
+
+![History of commits in this repository](vocab-progress.png)
+
 ## Resources for network graphing
 
 [Katya Ognyanova: Network Visualization](https://kateto.net/network-visualization)
