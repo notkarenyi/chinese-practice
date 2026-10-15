@@ -54,9 +54,9 @@ for file in [CSV, XLSX]:
 df = pd.DataFrame(rows)
 df["content"] = df["content"].str.replace(r"\d+,", "", regex=True)
 df["len"] = df["content"].apply(lambda x: len(x.split("\n")))
-df["day"] = pd.to_datetime(df["date"]).dt.date
-df["month"] = pd.to_datetime(df["date"]).dt.to_period("M").astype(str)
+df["day"] = pd.to_datetime(df["date"], utc=True).dt.date
+df["month"] = pd.to_datetime(df["date"], utc=True).dt.to_period("M").astype(str)
 df.sort_values(by="month", inplace=True)
 month = df.groupby("month")["len"].mean().reset_index()
 
-df.to_json("file_history.json", index=False)
+df.to_json("file_history.json", orient="records", force_ascii=False, indent=2)
