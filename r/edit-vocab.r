@@ -2,19 +2,22 @@
 # Create a graph of the number of characters learned over time
 # Created by Karen Yi on 2026-10-10
 
-source("link.R")
+library(tidyverse)
 
 if (!grepl("r\\b", getwd())) {
     setwd("r")
 }
+
+source("link.R")
 
 get_stats <- function(chars, n = 5000, view = FALSE) {
     #' get statistics on vocab learned
     #' @example get_stats(chars)
 
     stats <- clean_stats() %>%
-        select(-known) %>%
+        rename(known_stats = known) %>%
         left_join(chars[, c("v", "N", "known")], by = "v") %>%
+        mutate(known = known | known_stats) %>%
         mutate(known = ifelse(is.na(known), 0, known))
 
     stats[stats$known == 0 & !is.na(stats$N), "known"] <- 1
@@ -52,80 +55,102 @@ get_stats <- function(chars, n = 5000, view = FALSE) {
 # deduplicate vocab list
 vocab <- read.csv("vocab.csv")
 vocab <- vocab[!duplicated(vocab$Chinese), ]
-write.csv(vocab, "vocab.csv", row.names = FALSE)
+write.csv(vocab, "vocab.csv", row.names = FALSE, quote = FALSE)
 
 # print interesting statistics
 # what vocab do I still have left to learn?
-file_history <- fromJSON("file_history.json")
 
-all_commits <- data.frame(
-    commit = unlist(file_history$commit, use.names = FALSE),
-    date = unlist(file_history$date, use.names = FALSE),
-    content = unlist(file_history$content, use.names = FALSE),
-    stringsAsFactors = FALSE
-) %>%
-    arrange(date)
+get_commits <- function() {
+    #' get all commits from git log
+    #' @example get_commits()
 
-all_comits <- all_commits %>%
-    bind_rows(
-        data.frame(
-            commit = "latest",
-            date = Sys.time(),
-            content = read.csv("vocab.csv"),
-            stringsAsFactors = FALSE
-        )
-    )
+    file_history <- fromJSON("../file_history.json")
 
-commit_history() <- read.csv("commit_history.csv")
-if (nrow(commit_history)) {
-    unknown_5000 <- commit_history$unknown_5000
-    unknown_3000 <- commit_history$unknown_3000
-    dates <- commit_history$dates
-    commits <- commit_history$commit
-} else {
-    unknown_5000 <- c()
-    unknown_3000 <- c()
-    dates <- c()
-    commits <- c()
-}
-
-for (sha in all_commits$commit) {
-    if (sha %in% commit_history$commit) {
-        next
-    }
-    print(sha)
-    commit_stats <- all_commits %>%
-        filter(commit == sha)
-    commit_table <- read.csv(
-        text = as.character(commit_stats$content[[1]]),
-        check.names = FALSE,
+    all_commits <- data.frame(
+        commit = unlist(file_history$commit, use.names = FALSE),
+        date = unlist(file_history$date, use.names = FALSE),
+        content = unlist(file_history$content, use.names = FALSE),
         stringsAsFactors = FALSE
     ) %>%
-        as.data.table() %>%
-        select(1:3)
-    if ("Name" %in% names(commit_table)) {
-        names(commit_table) <- c("Chinese", "Pinyin", "English")
-    }
-    cat(nrow(commit_table), " words in this commit.\n")
-    commit_chars <- commit_table %>%
-        clean_vocab() %>%
-        guess_translations() %>%
-        get_translations()
-    cat(nrow(commit_chars), " characters in this commit.\n")
+        arrange(date)
 
-    dates <- c(dates, commit_stats$date)
-    unknown_5000 <- c(unknown_5000, get_stats(commit_chars, 5000))
-    unknown_3000 <- c(unknown_3000, get_stats(commit_chars, 3000))
-    commits <- c(commits, sha)
+    return(all_commits)
 }
 
-commit_history <- data.frame(dates, unknown_5000, unknown_3000, commits)
-write.csv(commit_history, "commit_history.csv", row.names = FALSE)
+process_commits <- function(all_commits) {
+    #' process commits and update commit history
+    #' @example process_commits()
+
+    commit_history <- read.csv("../commit_history.csv")
+    if (nrow(commit_history)) {
+        unknown_5000 <- commit_history$unknown_5000
+        unknown_3000 <- commit_history$unknown_3000
+        dates <- commit_history$dates
+        commits <- commit_history$commit
+    } else {
+        unknown_5000 <- c()
+        unknown_3000 <- c()
+        dates <- c()
+        commits <- c()
+    }
+
+    for (sha in all_commits$commit) {
+        if (sha %in% commit_history$commit) {
+            next
+        }
+        print(sha)
+        commit_stats <- all_commits %>%
+            filter(commit == sha)
+        commit_table <- read.csv(
+            text = as.character(commit_stats$content[[1]]),
+            check.names = FALSE,
+            stringsAsFactors = FALSE
+        ) %>%
+            as.data.table() %>%
+            select(1:3)
+        if ("Name" %in% names(commit_table)) {
+            names(commit_table) <- c("Chinese", "Pinyin", "English")
+        }
+        cat(nrow(commit_table), " words in this commit.\n")
+        commit_chars <- commit_table %>%
+            clean_vocab() %>%
+            guess_translations() %>%
+            get_translations()
+        cat(nrow(commit_chars), " characters in this commit.\n")
+
+        dates <- c(dates, commit_stats$date / 1000)
+        unknown_5000 <- c(unknown_5000, get_stats(commit_chars, 5000))
+        unknown_3000 <- c(unknown_3000, get_stats(commit_chars, 3000))
+        commits <- c(commits, sha)
+
+        commit_history <- data.frame(dates, unknown_5000, unknown_3000, commits)
+        write.csv(
+            filter(commit_history, commits != "latest"),
+            "../commit_history.csv",
+            row.names = FALSE
+        )
+    }
+
+    return(commit_history)
+}
+
+all_commits <- data.frame(
+    commit = c("latest"),
+    date = c(as.numeric(round(Sys.time())) * 1000),
+    content = paste(readLines("vocab.csv", warn = FALSE), collapse = "\n"),
+    stringsAsFactors = c(FALSE)
+)
+all_commits <- bind_rows(
+    get_commits(),
+    all_commits
+)
+commit_history <- process_commits(all_commits)
+
 graph <- commit_history %>%
     mutate(
         learned_5000 = 100 - (unknown_5000 / 5000) * 100,
         learned_3000 = 100 - (unknown_3000 / 3000) * 100,
-        dates = as.POSIXct(dates / 1000, origin = "1970-01-01", tz = "UTC")
+        dates = as.POSIXct(dates, origin = "1970-01-01", tz = "UTC")
     ) %>%
     mutate(
         month = as.Date(paste0(format(dates, "%Y-%m"), "-01"))
@@ -136,11 +161,13 @@ graph <- commit_history %>%
         percent_3000 = mean(learned_3000)
     ) %>%
     arrange(month)
+
 months <- seq(
     min(graph$month),
     max(graph$month),
     by = "month"
 )
+
 g <- graph %>%
     ggplot(aes(x = month)) +
     geom_smooth(aes(y = percent_5000, color = "Top 5000", group = 1), se = FALSE) +
