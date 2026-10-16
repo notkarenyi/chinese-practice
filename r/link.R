@@ -87,7 +87,7 @@ clean_stats <- function() {
   stats <- read.csv(paste0(location, "common-chinese.csv")) %>% as.data.table()
   stats <- stats[
     1:5000,
-    c("Character", "CHRmillion", "Pinyin", "English", "Known")
+    c("character", "chrmillion", "pinyin", "english", "known")
   ]
   names(stats) <- c("v", "chrpermil", "pinyin", "most_likely2", "known")
 
