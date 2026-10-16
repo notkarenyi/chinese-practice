@@ -20,9 +20,6 @@ get_stats <- function(chars, n = 5000, view = FALSE) {
     mutate(known = known | known_stats) %>%
     mutate(known = ifelse(is.na(known), 0, known))
 
-  cat(sum(stats$known_stats), " characters marked as learned.\n")
-  cat(sum(stats$known), " characters learned.\n")
-
   stats[stats$known == 0 & !is.na(stats$N), "known"] <- 1
   stats <- stats[1:n, ]
 
@@ -46,9 +43,10 @@ get_stats <- function(chars, n = 5000, view = FALSE) {
   )
 
   if (view) {
+    View(stats)
     stats %>%
       filter(!is.na(N)) %>%
-      filter(known == 0) %>%
+      filter(known_stats == 0) %>%
       View()
   }
 
@@ -78,6 +76,18 @@ get_commits <- function() {
     arrange(date)
 
   return(all_commits)
+}
+
+get_chars <- function(commit_table) {
+  #' get the corresponding english translations for each "root" word
+  #' @example get_chars(commit_table)
+
+  commit_chars <- commit_table %>%
+    clean_vocab() %>%
+    guess_translations() %>%
+    get_translations()
+
+  return(commit_chars)
 }
 
 process_commits <- function(all_commits) {
@@ -118,10 +128,7 @@ process_commits <- function(all_commits) {
       names(commit_table) <- c("Chinese", "Pinyin", "English")
     }
     cat(nrow(commit_table), " words in this commit.\n")
-    commit_chars <- commit_table %>%
-      clean_vocab() %>%
-      guess_translations() %>%
-      get_translations()
+    commit_chars <- get_chars(commit_table)
     cat(nrow(commit_chars), " characters in this commit.\n")
 
     date <- as.character(
@@ -132,8 +139,9 @@ process_commits <- function(all_commits) {
       )
     )
     dates <- c(dates, date)
-    unknown_5000 <- c(unknown_5000, get_stats(commit_chars, 5000))
-    unknown_3000 <- c(unknown_3000, get_stats(commit_chars, 3000))
+    view <- ifelse(sha == all_commits$commit[nrow(all_commits)], TRUE, FALSE)
+    unknown_5000 <- c(unknown_5000, get_stats(commit_chars, 5000, view = view))
+    unknown_3000 <- c(unknown_3000, get_stats(commit_chars, 3000, view = view))
     commits <- c(commits, sha)
 
     commit_history <- data.frame(dates, unknown_5000, unknown_3000, commits)
@@ -147,15 +155,17 @@ process_commits <- function(all_commits) {
   return(commit_history)
 }
 
-all_commits <- data.frame(
-    commit = c("latest"),
-    date = c(as.numeric(round(Sys.time())) * 1000),
-    content = paste(readLines("vocab.csv", warn = FALSE), collapse = "\n"),
-    stringsAsFactors = c(FALSE)
+get_stats(get_chars(read.csv("vocab.csv")), 3000, view = TRUE)
+today_commit <- data.frame(
+  commit = c("latest"),
+  date = c(as.numeric(round(Sys.time())) * 1000),
+  content = paste(readLines("vocab.csv", warn = FALSE), collapse = "\n"),
+  stringsAsFactors = c(FALSE)
 )
+# today_commit <- data.frame()
 all_commits <- bind_rows(
+  today_commit,
   get_commits()
-  # all_commits
 )
 commit_history <- process_commits(all_commits)
 
