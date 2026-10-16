@@ -1046,7 +1046,7 @@ character,chrmillion,pinyin,english,known
 熟,95.47,shú ,mature,0
 营,95.47,yíng,camp,0
 苏,95.26,sū,Su,0
-爷,95.24,yé,grandfather,0
+爷,95.24,yé,grandfather,1
 微,95.07,wēi,micro,0
 埃,94.66,āi,dust,0
 抽,94.43,chōu,pull,0
@@ -1157,7 +1157,7 @@ character,chrmillion,pinyin,english,known
 朝,77.47,zhāo,dynasty,0
 厅,77.28,tīng,hall,0
 恭,77.15,gōng,respectful,0
-汽,77.03,qì,gas,0
+汽,77.03,qì,gas,1
 补,76.94,bǔ,supplement,0
 徒,76.94,tú,walk,0
 稍,76.94,shāo,somewhat,0
@@ -1366,7 +1366,7 @@ character,chrmillion,pinyin,english,known
 豪,53.52,háo,burly,0
 征,53.46,zhēng,levy,0
 括,53.41,kuò,include,0
-盯,53.39,dīng,stare,0
+盯,53.39,dīng,stare,1
 稳,53.27,wěn,stable,0
 胆,53.09,dǎn,courage,0
 甲,53.09,jiǎ,shell,0
@@ -1398,7 +1398,7 @@ character,chrmillion,pinyin,english,known
 策,50.72,cè,policy,0
 鼻,50.66,bí,nose,0
 钻,50.66,zuān,drill,0
-池,50.64,chí,pool,0
+池,50.64,chí,pool,1
 虚,50.6,xū,empty,0
 桑,50.51,sāng,morus,0
 拾,50.43,shí,pick,0
@@ -1414,11 +1414,11 @@ character,chrmillion,pinyin,english,known
 拯,49.47,zhěng,rescue,0
 痕,49.44,hén,mark,0
 批,49.38,pī,batch,0
-绿,49.36,lǜ,green,0
+绿,49.36,lǜ,green,1
 乘,49.32,chéng,ride,0
 佳,49.29,jiā,good,0
-熊,49.23,xióng,bear,0
-辣,49.1,là,spicy,0
+熊,49.23,xióng,bear,1
+辣,49.1,là,spicy,1
 躺,48.97,tǎng,lie,0
 祈,48.95,qí,pray,0
 肥,48.93,féi,fat,0
@@ -1457,7 +1457,7 @@ character,chrmillion,pinyin,english,known
 侵,47.07,qīn,infringe,0
 陆,46.9,lù,land,0
 载,46.9,zài,carry,0
-爬,46.8,pá,climb,0
+爬,46.8,pá,climb,1
 挖,46.63,wā,dig,0
 骄,46.39,jiāo,proud,0
 兽,46.28,shòu,beast,0
@@ -1780,7 +1780,7 @@ character,chrmillion,pinyin,english,known
 返,28.31,fǎn,return,0
 奉,28.31,fèng,offer,0
 扇,28.29,shàn,fan,0
-肌,28.22,jī,muscle,0
+肌,28.22,jī,muscle,1
 廊,28.2,láng,hall,0
 仓,28.2,cāng,warehouse,0
 猴,28.18,hóu,monkey,0
@@ -2074,7 +2074,7 @@ character,chrmillion,pinyin,english,known
 掘,17.29,jué,dig,0
 谜,17.12,mí,riddle,0
 捷,17.08,jié,quick,0
-馅,17.08,xiàn,stuffing,0
+馅,17.08,xiàn,filling,1
 瞄,17.06,miáo,aim,0
 赎,16.99,shú,redeem,0
 肾,16.95,shèn,kidney,0
@@ -2119,7 +2119,7 @@ character,chrmillion,pinyin,english,known
 摘,16.01,zhāi,pick,0
 润,15.99,rùn,moist,0
 峰,15.97,fēng,peak,0
-鸭,15.97,yā,duck,0
+鸭,15.97,yā,duck,1
 庞,15.95,páng,bulky,0
 贷,15.93,dài,loan,0
 丛,15.88,cóng,cluster,0
@@ -2131,7 +2131,7 @@ character,chrmillion,pinyin,english,known
 妄,15.8,wàng,vain,0
 漆,15.71,qī,lacquer,0
 膏,15.67,gāo,ointment,0
-虾,15.58,xiā,shrimp,0
+虾,15.58,xiā,shrimp,1
 筋,15.54,jīn,tendon,0
 慎,15.54,shèn,cautious,0
 浅,15.54,qiǎn,shallow,0
@@ -2155,9 +2155,9 @@ character,chrmillion,pinyin,english,known
 忏,15.03,chàn,repent,0
 遮,15.03,zhē,cover,0
 瞬,15.03,shùn,instant,0
-玫,15.01,méi,rose,0
+玫,15.01,méi,rose,1
 捣,14.97,dǎo,pound,0
-串,14.92,chuàn,kebab,0
+串,14.92,chuàn,kebab,1
 慕,14.9,mù,admire,0
 奎,14.88,kuí,Kui (surname),0
 兼,14.86,jiān,combine,0
@@ -2174,7 +2174,7 @@ character,chrmillion,pinyin,english,known
 猩,14.62,xīng,ape,0
 靴,14.62,xuē,boot,0
 涯,14.6,yá,edge,0
-锅,14.56,guō,pot,0
+锅,14.56,guō,pot,1
 桩,14.56,zhuāng,post,0
 摊,14.52,tān,stall,0
 钩,14.45,gōu,hook,0
@@ -2390,7 +2390,7 @@ character,chrmillion,pinyin,english,known
 卵,10.29,luǎn,egg,0
 熙,10.27,xī,prosperous,0
 叹,10.25,tàn,sigh,0
-凤,10.2,fèng,phoenix,0
+凤,10.2,fèng,phoenix,1
 潘,10.2,pān,Pan (surname),0
 卸,10.16,xiè,unload,0
 唬,10.14,hǔ,startle,0
