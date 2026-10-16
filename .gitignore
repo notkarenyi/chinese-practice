@@ -4,3 +4,5 @@
 .Ruserdata
 r/~$vocab.xlsx
 *.dcf
+file_history.json
+commit_history.csv
