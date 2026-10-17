@@ -43,10 +43,9 @@ get_stats <- function(chars, n = 5000, view = FALSE) {
   )
 
   if (view) {
-    View(stats)
     stats %>%
-      filter(!is.na(N)) %>%
-      filter(known_stats == 0) %>%
+      filter(known_stats == 0, known == 0) %>%
+      as.data.frame() %>%
       View()
   }
 
@@ -158,7 +157,7 @@ process_commits <- function(all_commits) {
 get_stats(get_chars(read.csv("vocab.csv")), 3000, view = TRUE)
 today_commit <- data.frame(
   commit = c("latest"),
-  date = c(as.numeric(round(Sys.time())) * 1000),
+  date = c(format(as.POSIXct(Sys.time(), tz = "UTC"), "%Y-%m-%dT%H:%M:%OSZ")),
   content = paste(readLines("vocab.csv", warn = FALSE), collapse = "\n"),
   stringsAsFactors = c(FALSE)
 )
